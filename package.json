@@ -1,0 +1,24 @@
+{
+  "name": "react-masonry",
+  "version": "1.0.0",
+  "description": "**This component is in development, any help is welcome :).**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bogdanpetru/react-masonry.git"
+  },
+  "keywords": [
+    "masonry",
+    "react",
+    "component"
+  ],
+  "author": "Bogdan Petru Pintican",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bogdanpetru/react-masonry/issues"
+  },
+  "homepage": "https://github.com/bogdanpetru/react-masonry#readme"
+}
