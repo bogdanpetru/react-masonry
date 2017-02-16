@@ -23,3 +23,13 @@ return <Masonry>
 - [ ] declarative way to set responsive dimensions
 - [ ] images are mounted when they load
 - [ ] items can enter async
+- [ ] use styled component
+- [ ] airbnb eslint
+
+## TODO
+- [ ] install flow
+- [x] configure webpack 2
+- [x] get hello world
+- [x] basic project structure
+- [ ] configure jest
+- [ ] add editor config

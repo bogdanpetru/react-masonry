@@ -4,7 +4,8 @@
   "description": "**This component is in development, any help is welcome :).**",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,20 @@
   "bugs": {
     "url": "https://github.com/bogdanpetru/react-masonry/issues"
   },
-  "homepage": "https://github.com/bogdanpetru/react-masonry#readme"
+  "homepage": "https://github.com/bogdanpetru/react-masonry#readme",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
 }
