@@ -12,7 +12,7 @@ import Mansonry, { Brick } from 'react-masonry'
 return <Masonry>
     <Brick width={300}></Brick>
     <Brick maxWidth={200}></Brick>
-    <Brick minWidth={300></Brick>
+    <Brick minWidth={300}></Brick>
     <Brick></Brick>
 </Masonry>
 ```
