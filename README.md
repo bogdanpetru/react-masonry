@@ -31,6 +31,6 @@ return <Masonry>
 - [x] configure webpack 2
 - [x] get hello world
 - [x] basic project structure
-- [ ] configure jest
+- [x] configure jest
 - [ ] add editor config
 

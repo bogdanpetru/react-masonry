@@ -4,7 +4,7 @@
   "description": "**This component is in development, any help is welcome :).**",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "start": "webpack-dev-server --open --config webpack.config.js"
   },
   "repository": {
@@ -25,11 +25,15 @@
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
+    "babel-jest": "^18.0.0",
     "babel-loader": "^6.3.2",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.26.1",
+    "jest": "^18.1.0",
     "style-loader": "^0.13.1",
+    "ts-jest": "^18.0.3",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },
