@@ -1,0 +1,12 @@
+{
+  "extends": "eslint-config-airbnb",
+  "rules": {
+    "semi": 0,
+    "react/jsx-sort-props": ["off", {
+      "ignoreCase": true,
+      "callbacksLast": false,
+      "shorthandFirst": false,
+      "shorthandLast": false,
+    }]
+  }
+}

@@ -32,4 +32,5 @@ return <Masonry>
 - [x] get hello world
 - [x] basic project structure
 - [x] configure jest
-- [ ] add editor config
+- [x] add editor config
+- [x] add eslint
