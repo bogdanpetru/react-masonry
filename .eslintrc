@@ -1,5 +1,8 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": [
+    "eslint-config-airbnb",
+    "plugin:flowtype/recommended"
+  ],
   "rules": {
     "semi": 0,
     "react/jsx-sort-props": ["off", {
@@ -8,5 +11,8 @@
       "shorthandFirst": false,
       "shorthandLast": false,
     }]
-  }
+  },
+  "plugins": [
+    "flowtype"
+  ]
 }
