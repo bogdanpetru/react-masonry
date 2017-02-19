@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "start": "webpack-dev-server --open --config webpack.config.js"
+    "start": "webpack-dev-server --open --config webpack.config.js",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "repository": {
     "type": "git",
@@ -27,10 +28,12 @@
     "babel-core": "^6.23.1",
     "babel-jest": "^18.0.0",
     "babel-loader": "^6.3.2",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.26.1",
+    "flow-bin": "^0.39.0",
     "jest": "^18.1.0",
     "style-loader": "^0.13.1",
     "ts-jest": "^18.0.3",

@@ -27,10 +27,9 @@ return <Masonry>
 - [ ] airbnb eslint
 
 ## TODO
-- [ ] install flow
+- [x] install flow
 - [x] configure webpack 2
 - [x] get hello world
 - [x] basic project structure
 - [x] configure jest
 - [ ] add editor config
-
