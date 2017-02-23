@@ -14,21 +14,16 @@ function getAvailablePositions(
   }: { previousRow: position[], currentRow: position[] },
 ): position[] {
   // at this moment just construct the holes in order
-  const order = previousRow
-    .map((item, index) => ({ ...item, index }))
+  return previousRow
     .sort((current, next) => {
       return current.bottom < next.bottom ? -1 : 1;
     })
-    .map(item => item.index);
-
-  return order.map(index => {
-    return {
-      top: previousRow[index].bottom,
-      left: previousRow[index].left,
-      right: previousRow[index].right,
+    .map(item => ({
+      top: item.bottom,
+      left: item.left,
+      right: item.right,
       bottom: null, // later
-    };
-  });
+    }));
 }
 
 export default getAvailablePositions;
