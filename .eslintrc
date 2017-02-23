@@ -14,5 +14,12 @@
   },
   "plugins": [
     "flowtype"
-  ]
+  ],
+  "globals": {
+    "test": true,
+    "xtest": true,
+    "describe": true,
+    "xdescribe": true,
+    "expect": true
+  }
 }

@@ -16,7 +16,14 @@ describe('getPositions', () => {
         { top: 0, left: 55 },
         { top: 0, left: 80 },
       ];
-      expect(getPositions({ boxes, width })).toEqual(expected);
+      expect(
+        getPositions({ boxes, width }).map(item => ({
+          // I only care about let and right,
+          // the positions will also have bottom and right
+          left: item.left,
+          right: item.right,
+        })),
+      ).toEqual(expected);
     });
     test('should position second row correct', () => {
       const boxes = [
@@ -39,7 +46,7 @@ describe('getPositions', () => {
         { top: 0, left: 80 },
 
         // second row
-        { top: 24, left: 30 },
+        { top: 25, left: 30 },
         { top: 20, left: 80 },
         { top: 25, left: 55 },
         { top: 30, left: 0 },
