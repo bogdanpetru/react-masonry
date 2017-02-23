@@ -1,8 +1,8 @@
 // @flow
 
 type position = {
-  left: number,
   top: number,
+  left: number,
   right: number,
   bottom: number,
 };
@@ -10,15 +10,25 @@ type position = {
 function getAvailablePositions(
   {
     previousRow,
-    currentRow,
+    // currentRow,
   }: { previousRow: position[], currentRow: position[] },
-) {
+): position[] {
   // at this moment just construct the holes in order
-  const availablePositions = previousRow.sort((current, next) => {
-    return current < next ? -1 : 1;
-  });
+  const order = previousRow
+    .map((item, index) => ({ ...item, index }))
+    .sort((current, next) => {
+      return current.bottom < next.bottom ? -1 : 1;
+    })
+    .map(item => item.index);
 
-  return availablePositions;
+  return order.map(index => {
+    return {
+      top: previousRow[index].bottom,
+      left: previousRow[index].left,
+      right: previousRow[index].right,
+      bottom: null, // later
+    };
+  });
 }
 
 export default getAvailablePositions;

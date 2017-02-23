@@ -17,6 +17,7 @@
   ],
   "globals": {
     "test": true,
+    "ittest": true,
     "xtest": true,
     "describe": true,
     "xdescribe": true,
