@@ -1,11 +1,10 @@
 // @flow
+import getAvailablePositions from './getAvailablePositions';
 
 type box = {
   width: number,
   height: number,
 };
-
-import getAvailablePositions from './getAvailablePositions';
 
 function getPositions({ boxes, width }: { boxes: box[], width: number }) {
   // position first row
@@ -15,29 +14,38 @@ function getPositions({ boxes, width }: { boxes: box[], width: number }) {
        * each row will have it's own array
        * this way is easy to keep track
        */
-      // must not do this for first row
+
+      // new row
       if (acc.currentLeft + item.width > width) {
         acc.positions.push([]);
-        // must rate the positions by hight
+        // TODO handle edge case in which
+        // there is a space left
       }
 
-      // do this only for rows greater than 1
-      if (acc.positions.length > 1) {
-        // gets previous row, it must be calculated for each
-        const availablePositions = getAvailablePositions({
+      // first row
+      if (acc.positions.length === 1) {
+        acc.positions[acc.positions.length - 1].push({
+          top: acc.currentTop,
+          left: acc.currentLeft,
+          bottom: acc.currentTop + item.height,
+          right: acc.currentLeft + item.width,
+        });
+        acc.currentLeft = acc.currentLeft + item.width;
+
+        return acc;
+      }
+
+      // gets previous row, it must be calculated for each
+      // use available postions as a queue
+      if (!acc.availablePositions) {
+        acc.availablePositions = getAvailablePositions({
           // item, as one by one available positions are ocupied
           previousRow: acc.positions[acc.positions.length - 2],
           currentRow: acc.positions[acc.positions.length - 1],
         });
-      }
 
-      acc.positions[acc.positions.length - 1].push({
-        top: acc.currentTop,
-        left: acc.currentLeft,
-        bottom: acc.currentTop + item.hegiht,
-        right: acc.currentLeft + item.width,
-      });
-      acc.currentLeft = acc.currentLeft + item.width;
+        acc.availablePositions = availablePositions;
+      }
 
       return acc;
     },

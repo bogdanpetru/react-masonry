@@ -1,6 +1,15 @@
 import getPositions from '../getPositions';
 
-xdescribe('getPositions', () => {
+function restrictToLeftAndRight(item) {
+  return {
+    // I only care about top and right,
+    // the positions will also have bottom and right
+    top: item.top,
+    left: item.left,
+  };
+}
+
+describe('getPositions', () => {
   describe('optimal sizes, all of them fit in the row', () => {
     test('should position first row correct', () => {
       const boxes = [
@@ -17,14 +26,10 @@ xdescribe('getPositions', () => {
         { top: 0, left: 80 },
       ];
       expect(
-        getPositions({ boxes, width }).map(item => ({
-          // I only care about let and right,
-          // the positions will also have bottom and right
-          left: item.left,
-          right: item.right,
-        })),
+        getPositions({ boxes, width }).map(restrictToLeftAndRight),
       ).toEqual(expected);
     });
+
     test('should position second row correct', () => {
       const boxes = [
         { width: 30, height: 30 }, // last
@@ -52,7 +57,9 @@ xdescribe('getPositions', () => {
         { top: 30, left: 0 },
       ];
       const width = 15;
-      expect(getPositions({ boxes, width })).toEqual(expected);
+      expect(
+        getPositions({ boxes, width }).map(restrictToLeftAndRight),
+      ).toEqual(expected);
     });
   });
 
