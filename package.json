@@ -49,6 +49,7 @@
     "webpack-dev-server": "^2.3.0"
   },
   "dependencies": {
+    "ramda": "^0.23.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   }
