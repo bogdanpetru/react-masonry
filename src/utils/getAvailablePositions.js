@@ -1,29 +1,22 @@
 // @flow
+import type { position } from './types';
+import { compose, map, sort } from 'ramda';
 
-type position = {
-  top: number,
-  left: number,
-  right: number,
-  bottom: number,
-};
+const sortByHeight = (current: position, next: position) =>
+  current.bottom < next.bottom ? -1 : 1;
 
-function getAvailablePositions(
+const mapItemToPosition = item => ({
+  top: item.bottom,
+  left: item.left,
+  right: item.right,
+  bottom: null, // later
+});
+
+const getAvailablePositions = (
   {
     previousRow,
     // currentRow,
   }: { previousRow: position[], currentRow: position[] },
-): position[] {
-  // at this moment just construct the holes in order
-  return previousRow
-    .sort((current, next) => {
-      return current.bottom < next.bottom ? -1 : 1;
-    })
-    .map(item => ({
-      top: item.bottom,
-      left: item.left,
-      right: item.right,
-      bottom: null, // later
-    }));
-}
+): position[] => compose(map(mapItemToPosition), sort(sortByHeight))(previousRow);
 
 export default getAvailablePositions;

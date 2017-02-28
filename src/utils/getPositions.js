@@ -1,22 +1,19 @@
 // @flow
 import getAvailablePositions from './getAvailablePositions';
-
-type box = {
-  width: number,
-  height: number,
-};
+import getBoxToOptimalPosition from './getBoxToOptimalPosition';
+import { box } from './types';
 
 function getPositions({ boxes, width }: { boxes: box[], width: number }) {
   // position first row
   const intermediarPositions = boxes.reduce(
-    (acc, item) => {
+    (acc, box) => {
       /**
        * each row will have it's own array
        * this way is easy to keep track
        */
 
       // new row
-      if (acc.currentLeft + item.width > width) {
+      if (acc.currentLeft + box.width > width) {
         acc.positions.push([]);
         // TODO handle edge case in which
         // there is a space left
@@ -27,10 +24,10 @@ function getPositions({ boxes, width }: { boxes: box[], width: number }) {
         acc.positions[acc.positions.length - 1].push({
           top: acc.currentTop,
           left: acc.currentLeft,
-          bottom: acc.currentTop + item.height,
-          right: acc.currentLeft + item.width,
+          bottom: acc.currentTop + box.height,
+          right: acc.currentLeft + box.width,
         });
-        acc.currentLeft = acc.currentLeft + item.width;
+        acc.currentLeft = acc.currentLeft + box.width;
 
         return acc;
       }
@@ -39,13 +36,19 @@ function getPositions({ boxes, width }: { boxes: box[], width: number }) {
       // use available postions as a queue
       if (!acc.availablePositions) {
         acc.availablePositions = getAvailablePositions({
-          // item, as one by one available positions are ocupied
+          // box, as one by one available positions are ocupied
           previousRow: acc.positions[acc.positions.length - 2],
           currentRow: acc.positions[acc.positions.length - 1],
         });
-
-        acc.availablePositions = availablePositions;
       }
+      acc.availablePositions = availablePositions;
+
+      const position = getBoxToOptimalPosition({
+        box,
+        availablePositions: acc.availablePositions,
+      });
+
+      acc.positions[acc.positions.length - 1].push(position);
 
       return acc;
     },
