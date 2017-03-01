@@ -1,6 +1,6 @@
 // @flow
-import getAvailablePositions from './getAvailablePositions';
-import getBoxToOptimalPosition from './getBoxToOptimalPosition';
+import getAvailableSpots from './getAvailableSpots';
+import getOptimalSpot from './getOptimalSpot';
 import { box } from './types';
 
 function getPositions({ boxes, width }: { boxes: box[], width: number }) {
@@ -34,18 +34,17 @@ function getPositions({ boxes, width }: { boxes: box[], width: number }) {
 
       // gets previous row, it must be calculated for each
       // use available postions as a queue
-      if (!acc.availablePositions) {
-        acc.availablePositions = getAvailablePositions({
+      if (!acc.availableSpots) {
+        acc.availableSpots = getAvailableSpots({
           // box, as one by one available positions are ocupied
           previousRow: acc.positions[acc.positions.length - 2],
           currentRow: acc.positions[acc.positions.length - 1],
         });
       }
-      acc.availablePositions = availablePositions;
 
-      const position = getBoxToOptimalPosition({
+      const position = getOptimalSpot({
         box,
-        availablePositions: acc.availablePositions,
+        availableSpots: acc.availableSpots,
       });
 
       acc.positions[acc.positions.length - 1].push(position);
@@ -69,7 +68,7 @@ function getPositions({ boxes, width }: { boxes: box[], width: number }) {
           bottom,  - see algorithm.md at step 4, box number 4 has a position like this
        *  }
       */
-      availablePositions: [],
+      availableSpots: [],
     },
   );
 

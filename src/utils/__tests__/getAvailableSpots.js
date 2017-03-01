@@ -1,6 +1,6 @@
-import getAvailablePositions from '../getAvailablePositions';
+import getAvailableSpots from '../getAvailableSpots';
 
-describe('getAvailablePositions', () => {
+describe('getAvailableSpots', () => {
   test('should return positions in correct order', () => {
     const previousRow = [
       { top: 0, left: 0, bottom: 30, right: 30 }, // 4
@@ -15,8 +15,6 @@ describe('getAvailablePositions', () => {
       { top: 25, left: 30, right: 55, bottom: null },
       { top: 30, left: 0, right: 30, bottom: null },
     ];
-    expect(getAvailablePositions({ previousRow, currentRow })).toEqual(
-      expected,
-    );
+    expect(getAvailableSpots({ previousRow, currentRow })).toEqual(expected);
   });
 });

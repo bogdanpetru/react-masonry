@@ -6,7 +6,7 @@ import type { box, position } from './types';
 const doesBoxFit = (position: position, box: box): boolean =>
   position.right - position.left >= box.width;
 
-function getOptimalPosition(
+function getOptimalSpot(
   { availablePositions, box }: { availablePositions: position[], box: box },
 ): position {
   // iterate over each position and check where it fits
@@ -16,4 +16,4 @@ function getOptimalPosition(
   );
 }
 
-export default getOptimalPosition;
+export default getOptimalSpot;

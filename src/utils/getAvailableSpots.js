@@ -12,11 +12,11 @@ const mapItemToPosition = item => ({
   bottom: null, // later
 });
 
-const getAvailablePositions = (
+const getAvailableSpots = (
   {
     previousRow,
     // currentRow,
   }: { previousRow: position[], currentRow: position[] },
 ): position[] => compose(map(mapItemToPosition), sort(sortByHeight))(previousRow);
 
-export default getAvailablePositions;
+export default getAvailableSpots;
