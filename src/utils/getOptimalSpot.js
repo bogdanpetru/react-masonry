@@ -7,13 +7,13 @@ const doesBoxFit = (position: position, box: box): boolean =>
   position.right - position.left >= box.width;
 
 function getOptimalSpot(
-  { availablePositions, box }: { availablePositions: position[], box: box },
+  { availableSpots, box }: { availableSpots: position[], box: box },
 ): position {
   // iterate over each position and check where it fits
-  return find(
-    (position: position) => doesBoxFit(position, box),
-    availablePositions,
-  );
+  if (!availableSpots) {
+    return null
+  }
+  return find(position => doesBoxFit(position, box), availableSpots);
 }
 
 export default getOptimalSpot;

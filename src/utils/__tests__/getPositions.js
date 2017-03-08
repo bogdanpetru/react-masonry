@@ -56,7 +56,7 @@ describe('getPositions', () => {
         { top: 25, left: 55 },
         { top: 30, left: 0 },
       ];
-      const width = 15;
+      const width = 100;
       expect(
         getPositions({ boxes, width }).map(restrictToLeftAndRight),
       ).toEqual(expected);

@@ -1,4 +1,5 @@
 // @flow
+import { filter } from 'ramda'
 import getAvailableSpots from './getAvailableSpots';
 import getOptimalSpot from './getOptimalSpot';
 import { box } from './types';
@@ -14,40 +15,46 @@ function getPositions({ boxes, width }: { boxes: box[], width: number }) {
 
       // new row
       if (acc.currentLeft + box.width > width) {
-        acc.positions.push([]);
-        // TODO handle edge case in which
-        // there is a space left
+        acc.currentLeft = 0
+        acc.positions = [...acc.positions, []]
       }
 
       // first row
       if (acc.positions.length === 1) {
-        acc.positions[acc.positions.length - 1].push({
+        acc.positions[0].push({
           top: acc.currentTop,
           left: acc.currentLeft,
           bottom: acc.currentTop + box.height,
           right: acc.currentLeft + box.width,
         });
-        acc.currentLeft = acc.currentLeft + box.width;
 
+        acc.currentLeft = acc.currentLeft + box.width;
         return acc;
       }
 
-      // gets previous row, it must be calculated for each
-      // use available postions as a queue
-      if (!acc.availableSpots) {
+      const previousRow = acc.positions[acc.positions.length - 2]
+      // get availableSpots
+      if (0 === acc.availableSpots.length) {
         acc.availableSpots = getAvailableSpots({
-          // box, as one by one available positions are ocupied
-          previousRow: acc.positions[acc.positions.length - 2],
-          currentRow: acc.positions[acc.positions.length - 1],
-        });
+          previousRow,
+          currentRow: [],
+        })
       }
 
-      const position = getOptimalSpot({
+      const optimalSpot = getOptimalSpot({
         box,
         availableSpots: acc.availableSpots,
-      });
+      })
 
-      acc.positions[acc.positions.length - 1].push(position);
+      acc.positions[acc.positions.length - 1].push({
+        top: optimalSpot.top,
+        left: optimalSpot.left,
+        right: optimalSpot.right,
+        bottom: null
+      })
+
+      // remove use spot
+      acc.availableSpots = filter((spot) => spot !== optimalSpot, acc.availableSpots)
 
       return acc;
     },
