@@ -1,6 +1,6 @@
 // @flow
-import { compose, map, sort } from 'ramda';
-import type { position } from './types';
+import { compose, map, sort } from 'ramda'
+import type { position } from './types'
 
 const sortByHeight = (current: position, next: position) => {
   return current.bottom <= next.bottom && current.left <= next.left ? -1 : 1
@@ -20,8 +20,7 @@ const getAvailableSpots = (
     previousRow,
     // currentRow,
   }: { previousRow: position[], currentRow: position[] },
-): position[] => {
-  return compose(map(mapPositionToSpot), sort(sortByHeight))(previousRow)
-};
+): position[] => compose(map(mapPositionToSpot), sort(sortByHeight))(previousRow)
 
-export default getAvailableSpots;
+
+export default getAvailableSpots

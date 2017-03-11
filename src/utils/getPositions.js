@@ -46,6 +46,11 @@ function getPositions({ boxes, width }: { boxes: box[], width: number }) {
         availableSpots: acc.availableSpots,
       })
 
+      if (!optimalSpot) {
+        console.log(acc.positions, acc.availableSpots)
+        return
+      }
+
       acc.positions[acc.positions.length - 1].push({
         top: optimalSpot.top,
         left: optimalSpot.left,

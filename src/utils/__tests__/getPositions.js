@@ -63,11 +63,11 @@ describe('getPositions', () => {
     });
   });
 
-  xtest('should return correct positions on two rows', () => {
+  test('should return correct positions on two rows', () => {
     const boxes = [
       { width: 3, height: 3 }, // 1
       { width: 4, height: 2 }, // 2
-      { width: 4, height: 4 }, // 3
+      { width: 3, height: 4 }, // 3
       { width: 5, height: 2 }, // 4
       { width: 4, height: 3 }, // 5
       { width: 5, height: 1 }, // 6
