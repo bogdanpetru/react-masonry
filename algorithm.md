@@ -9,3 +9,6 @@ When one stone is placed, every previous spot must be verified and modified if t
 new stone changes it. After which a new spot is calculated, on top of the new position.
 
 Also it must be taken into account if a new position cuts a spot's top.
+
+There is an edge case that must be taken into account.
+When a stone is bigger than any available spots, it must be placed somehow.
