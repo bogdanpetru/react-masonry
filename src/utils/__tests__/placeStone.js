@@ -8,12 +8,13 @@ describe('placeStone', () => {
       position: { top: 0, left: 0 },
       availableSpots: [
         { top: 0, left: 50, right: 100, bottom: null },
-        { top: 100, left: 0, right: 100, bottom: null }
+        { top: 50, left: 0, right: 100, bottom: null }
       ]
     }
+    const containerSize = 100
     expect(
       placeStone({
-        stone, availableSpots
+        stone, availableSpots, containerSize
       })
     ).toEqual(expected)
   })

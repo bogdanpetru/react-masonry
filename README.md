@@ -34,3 +34,4 @@ return <Masonry>
 - [x] configure jest
 - [x] add editor config
 - [x] add eslint
+- [ ] add cosmos

@@ -2,14 +2,14 @@
 
 
 import { find, filter } from 'ramda'
-import type { stone, position } from './types'
+import type { stone, position, spot } from './types'
 
 const doesBoxFit = (position: position, stone: stone): boolean =>
   position.right - position.left >= stone.width
 
 function getOptimalSpot(
   { availableSpots, stone }: { availableSpots: position[], stone: stone },
-): position {
+): spot {
   // iterate over each position and check where it fits
   if (!availableSpots) {
     return null
@@ -18,12 +18,12 @@ function getOptimalSpot(
 }
 
 
-function placeStone({ stone, availableSpots } : { stone: stone, availableSpots: spot[] })  {
+function placeStone({ stone, availableSpots, containerSize } : { stone: stone, availableSpots: spot[], containerSize: number })  {
   // place stone
   const optimalSpot = getOptimalSpot({ availableSpots, stone })
   const position = {
     left: optimalSpot.left,
-    top: optimalSpot.top
+    top: optimalSpot.top,
   }
 
   const newAvailableSpots = availableSpots.map(spot => {
@@ -37,10 +37,18 @@ function placeStone({ stone, availableSpots } : { stone: stone, availableSpots: 
     return spot
   })
 
+  // add new spot
+  const newSpot = {
+    top: optimalSpot.top + stone.height,
+    left: optimalSpot.left,
+    right: containerSize,
+    bottom: null,
+  }
+
 
   return {
     position,
-    availableSpots: newAvailableSpots
+    availableSpots: [...newAvailableSpots, newSpot]
   }
 }
 
