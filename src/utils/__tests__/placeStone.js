@@ -65,4 +65,30 @@ describe('placeStone', () => {
       }),
     ).toEqual(expected);
   });
+  it('should place first stone on second row correct', () => {
+    const stone = { width: 30, height: 30 };
+    const availableSpots = [
+      { top: 9, left: 80, right: 100, bottom: null },
+      { top: 10, left: 0, right: 50, bottom: null },
+      { top: 20, left: 50, right: 100, bottom: null },
+    ];
+    const expected = {
+      position: { top: 10, left: 0 },
+      availableSpots: [
+        { top: 9, left: 80, right: 100, bottom: null },
+        { top: 10, left: 30, right: 50, bottom: null },
+        { top: 20, left: 50, right: 100, bottom: null },
+        { top: 40, left: 0, right: 100, bottom: null },
+      ],
+    };
+    const containerSize = 100;
+
+    const result = placeStone({
+      stone,
+      availableSpots,
+      containerSize,
+    });
+    expect(result.position).toEqual(expected.position);
+    expect(result.availableSpots[3]).toEqual(expected.availableSpots[3]);
+  });
 });
