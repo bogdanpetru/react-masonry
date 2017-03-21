@@ -32,6 +32,14 @@ function placeStone(
     top: optimalSpot.top,
   };
 
+  // add new spot
+  const newSpot = {
+    top: optimalSpot.top + stone.height,
+    left: optimalSpot.left,
+    right: containerSize,
+    bottom: null,
+  };
+
   const newAvailableSpots = availableSpots.map(spot => {
     if (spot === optimalSpot) {
       // restrict used spot
@@ -45,16 +53,18 @@ function placeStone(
       return usedSpot;
     }
 
+    // check if placed stone invalidates a space
+    // check right
+    if (
+      spot.right >= optimalSpot.left && position.top + stone.height >= spot.top
+    ) {
+      const constrainedSpot = { ...spot };
+      constrainedSpot.right = newSpot.left;
+      return constrainedSpot;
+    }
+
     return spot;
   });
-
-  // add new spot
-  const newSpot = {
-    top: optimalSpot.top + stone.height,
-    left: optimalSpot.left,
-    right: containerSize,
-    bottom: null,
-  };
 
   return {
     position,

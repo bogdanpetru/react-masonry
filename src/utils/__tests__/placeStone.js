@@ -65,7 +65,7 @@ describe('placeStone', () => {
       }),
     ).toEqual(expected);
   });
-  it('should place first stone on second row correct', () => {
+  xit('should place first stone on second row correct', () => {
     const stone = { width: 30, height: 30 };
     const availableSpots = [
       { top: 9, left: 80, right: 100, bottom: null },
@@ -89,6 +89,36 @@ describe('placeStone', () => {
       containerSize,
     });
     expect(result.position).toEqual(expected.position);
-    expect(result.availableSpots[3]).toEqual(expected.availableSpots[3]);
+    expect(result.availableSpots).toEqual(expected.availableSpots);
+  });
+  it(`
+    should place first stone on second row correct,
+     the optimal place is not the first and invalidates other available spaces
+    `, () => {
+    const stone = { width: 20, height: 30 };
+    const availableSpots = [
+      { top: 9, left: 80, right: 100, bottom: null },
+      { top: 10, left: 0, right: 50, bottom: null },
+      { top: 20, left: 50, right: 100, bottom: null },
+    ];
+    const expected = {
+      position: { top: 9, left: 80 },
+      availableSpots: [
+        { top: 10, left: 0, right: 50, bottom: null },
+        { top: 20, left: 50, right: 80, bottom: null },
+        { top: 39, left: 80, right: 100, bottom: null },
+      ],
+    };
+    const containerSize = 100;
+
+    const result = placeStone({
+      stone,
+      availableSpots,
+      containerSize,
+    });
+    expect(result.position).toEqual(expected.position);
+    expect(result.availableSpots[0]).toEqual(expected.availableSpots[0]);
+    expect(result.availableSpots[1]).toEqual(expected.availableSpots[1]);
+    expect(result.availableSpots[2]).toEqual(expected.availableSpots[2]);
   });
 });
