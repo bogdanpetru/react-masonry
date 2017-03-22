@@ -1,31 +1,57 @@
-import React from 'react'
-import getPositions from '../utils/getPositions'
+import React from 'react';
+import placeStone from '../utils/placeStone';
 
 class Masonry extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      dud: 'hello'
-    }
+    super(props);
+    this.state = {};
   }
+
+  componentDidMount() {
+    this.placeStones();
+  }
+
   render() {
-    const boxes = [
-      { width: 30, height: 30 }, // last
-      { width: 25, height: 25 }, // 2nd
-      { width: 25, height: 25 }, // 3rd
-      { width: 20, height: 20 }, // first position
+    return (
+      <div
+        style={{ ...this.props.style, position: 'relative' }}
+        ref={ref => this.node = ref}>
+        {this.renderStones()}
+      </div>
+    );
+  }
 
-      // second row
-      { width: 25, height: 30 }, // goes in 2 because it doesn't fit in fisrt
-      { width: 20, height: 25 }, // goes in (4) first position
-      { width: 25, height: 25 }, // goes in 3
-      { width: 20, height: 20 }, // goes in (1) in last position
+  placeStones() {
+    let availableSpots = [
+      { top: 0, left: 0, right: this.node.offsetWidth, bottom: null },
     ];
+    this.stones.forEach(stone => {
+      const stoneSize = {
+        width: stone.offsetWidth,
+        height: stone.offsetHeight,
+      };
+      const {
+        availableSpots: newAvailableSpots,
+        position,
+      } = placeStone({ availableSpots, stone: stoneSize });
+      availableSpots = newAvailableSpots;
+      console.log(position);
 
-    return <div>
-      dud
-    </div>
+      stone.style.top = `${position.top}px`;
+      stone.style.left = `${position.left}px`;
+    });
+  }
+
+  renderStones() {
+    this.stones = [];
+    return [...this.props.children].map((child, index) => {
+      return React.cloneElement(child, {
+        key: index,
+        ref: ref => this.stones[index] = ref,
+        style: { ...child.props.style, position: 'absolute' },
+      });
+    });
   }
 }
 
-export default Masonry
+export default Masonry;
