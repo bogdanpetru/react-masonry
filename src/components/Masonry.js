@@ -25,17 +25,23 @@ class Masonry extends React.Component {
     let availableSpots = [
       { top: 0, left: 0, right: this.node.offsetWidth, bottom: null },
     ];
-    this.stones.forEach(stone => {
+    this.stones.forEach((stone, index) => {
       const stoneSize = {
         width: stone.offsetWidth,
         height: stone.offsetHeight,
       };
+
       const {
-        availableSpots: newAvailableSpots,
         position,
-      } = placeStone({ availableSpots, stone: stoneSize });
+        availableSpots: newAvailableSpots,
+      } = placeStone({
+        availableSpots,
+        stone: stoneSize,
+        containerSize: this.node.offsetWidth,
+      });
       availableSpots = newAvailableSpots;
-      console.log(position);
+      console.log(newAvailableSpots);
+      window.test = newAvailableSpots;
 
       stone.style.top = `${position.top}px`;
       stone.style.left = `${position.left}px`;
