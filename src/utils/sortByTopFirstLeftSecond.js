@@ -1,8 +1,9 @@
 // @flow
-import { sort, compose } from 'ramda';
-import type { spot } from './types';
 
-const sortByTop = (current: position, next: position) => {
+import { sort } from 'ramda';
+import type { Spot } from './types';
+
+const sortByTop = (current: Spot, next: Spot) => {
   if (current.top === next.top) {
     return current.left < next.left ? -1 : 1;
   }

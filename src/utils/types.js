@@ -1,18 +1,18 @@
 // @flow
 
-export type stone = {
+export type Stone = {
   width: number,
   height: number,
 };
 
-export type position = {
+export type Position = {
   top: number,
   left: number,
   right: number,
   bottom: number,
 };
 
-export type spot = {
+export type Spot = {
   top: number,
   left: number,
   right: number,
