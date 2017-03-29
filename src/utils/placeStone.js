@@ -1,8 +1,9 @@
 // @flow
 
-import { find, filter, sort, compose } from 'ramda';
+import { find, filter } from 'ramda';
 import type { stone, position, spot } from './types';
 import sortByTopFirstLeftSecond from './sortByTopFirstLeftSecond';
+import getNewSpot from './getNewSpot';
 
 const doesBoxFit = (position: position, stone: stone): boolean =>
   position.right - position.left >= stone.width;
@@ -26,10 +27,6 @@ function placeStone(
     containerSize,
   }: { stone: stone, availableSpots: spot[], containerSize: number },
 ) {
-  if (stone.width === 65) {
-    debugger;
-  }
-
   // place stone
   const optimalSpot = getOptimalSpot({ availableSpots, stone });
   const position = {
@@ -38,12 +35,7 @@ function placeStone(
   };
 
   // add new spot
-  const newSpot = {
-    top: optimalSpot.top + stone.height,
-    left: optimalSpot.left,
-    right: containerSize,
-    bottom: null,
-  };
+  const newSpot = getNewSpot({ position, optimalSpot, availableSpots, spot });
 
   let newAvailableSpots = availableSpots.map(spot => {
     if (spot === optimalSpot) {

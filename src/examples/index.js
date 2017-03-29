@@ -14,12 +14,11 @@ const App = () => {
   return (
     <div>
       <Masonry style={{ width: 200, border: '1px solid blue', height: 500 }}>
-        <div style={{ ...box1Style, width: 40, height: 50 }}>1</div>
-        <div style={{ ...box1Style, width: 40, height: 50 }}>2</div>
-        <div style={{ ...box1Style, width: 50, height: 50 }}>3</div>
-        <div style={{ ...box1Style, width: 65, height: 50 }}>4</div>
-        <div style={{ ...box1Style, width: 65, height: 50 }}>5</div>
-
+        <div style={{ ...box1Style, width: 60, height: 20 }}>1</div>
+        <div style={{ ...box1Style, width: 70, height: 80 }}>2</div>
+        <div style={{ ...box1Style, width: 70, height: 33 }}>3</div>
+        <div style={{ ...box1Style, width: 60, height: 33 }}>3</div>
+        <div style={{ ...box1Style, width: 60, height: 33 }}>4</div>
       </Masonry>
     </div>
   );
