@@ -11,12 +11,10 @@ const doesBoxFit = (position: Position, stone: Stone): boolean =>
 const filterNullSPots = (spot: Spot): boolean => !!spot;
 
 function getOptimalSpot(
-  { availableSpots, stone }: { availableSpots: Position[], stone: Stone },
-): spot {
+  { availableSpots, stone }: { availableSpots: Spot[], stone: Stone },
+): Spot {
   // iterate over each position and check where it fits
-  if (!availableSpots) {
-    return null;
-  }
+
   return find(position => doesBoxFit(position, stone), availableSpots);
 }
 
@@ -39,7 +37,7 @@ function placeStone(
     position,
     optimalSpot,
     availableSpots,
-    spot,
+    stone,
     containerSize,
   });
 
