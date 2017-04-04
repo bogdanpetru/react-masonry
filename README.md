@@ -35,3 +35,5 @@ return <Masonry>
 - [x] add editor config
 - [x] add eslint
 - [ ] add cosmos
+- [ ] add precomit hook with linting
+- [ ] add commit hook with test runner with clicle ci
