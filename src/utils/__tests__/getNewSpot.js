@@ -21,5 +21,20 @@ describe('getNewSpot', () => {
       width: 30,
       height: 10,
     };
+    const newSpot = {
+      top: 40,
+      left: 0,
+      right: 30,
+      bottom: null,
+    };
+
+    expect(
+      getNewSpot({
+        availableSpots,
+        stone,
+        position,
+        optimalSpot: availableSpots[0],
+      }),
+    ).toEqual(newSpot);
   });
 });
