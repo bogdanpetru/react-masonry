@@ -17,8 +17,21 @@ const App = () => {
         <div style={{ ...box1Style, width: 60, height: 20 }}>1</div>
         <div style={{ ...box1Style, width: 70, height: 80 }}>2</div>
         <div style={{ ...box1Style, width: 70, height: 33 }}>3</div>
+        <div style={{ ...box1Style, width: 60, height: 33 }}>4</div>
+        <div style={{ ...box1Style, width: 60, height: 33 }}>3</div>
+
+        <div style={{ ...box1Style, width: 60, height: 20 }}>1</div>
+        <div style={{ ...box1Style, width: 70, height: 80 }}>2</div>
+        <div style={{ ...box1Style, width: 70, height: 33 }}>3</div>
         <div style={{ ...box1Style, width: 60, height: 33 }}>3</div>
         <div style={{ ...box1Style, width: 60, height: 33 }}>4</div>
+
+        <div style={{ ...box1Style, width: 60, height: 20 }}>1</div>
+        <div style={{ ...box1Style, width: 70, height: 80 }}>2</div>
+        <div style={{ ...box1Style, width: 70, height: 33 }}>3</div>
+        <div style={{ ...box1Style, width: 60, height: 33 }}>3</div>
+        <div style={{ ...box1Style, width: 60, height: 33 }}>4</div>
+
       </Masonry>
     </div>
   );
