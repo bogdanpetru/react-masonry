@@ -88,19 +88,33 @@ class Masonry extends React.Component {
   }
 
   renderAvailableSpots() {
-    if (this.state.availableSpots) {
-      return this.state.availableSpots.map(spot => {
-        const style = {
-          position: 'absolute',
-          border: '1px solid #9c9cff',
-          zIndex: 10,
-          background: '#d9d9ff',
-          ...spot,
-          bottom: 0,
-        };
-        return <div style={style} />;
-      });
+    const maxWidth = this.node && this.node.offsetWidth;
+    if (!maxWidth) {
+      return;
     }
+    const spots = this.state.availableSpots || [
+      {
+        top: 0,
+        left: 0,
+        right: 0,
+        botttom: 0,
+      },
+    ];
+
+    return spots.map(spot => {
+      const right = maxWidth - spot.right;
+      const style = {
+        ...spot,
+        position: 'absolute',
+        opacity: 0.8,
+        border: '1px solid #9c9cff',
+        zIndex: 10,
+        background: '#d9d9ff',
+        bottom: 0,
+        right,
+      };
+      return <div className="spot" style={style} />;
+    });
   }
 }
 
