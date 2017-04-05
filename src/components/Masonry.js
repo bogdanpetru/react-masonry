@@ -8,6 +8,9 @@ class Masonry extends React.Component {
   }
 
   componentDidMount() {
+    this.stones.forEach(stone => {
+      stone.style.opacity = 0;
+    });
     this.placeStones();
   }
 
@@ -17,6 +20,7 @@ class Masonry extends React.Component {
         style={{ ...this.props.style, position: 'relative' }}
         ref={ref => this.node = ref}>
         {this.renderStones()}
+        {this.renderAvailableSpots()}
       </div>
     );
   }
@@ -25,38 +29,78 @@ class Masonry extends React.Component {
     let availableSpots = [
       { top: 0, left: 0, right: this.node.offsetWidth, bottom: null },
     ];
-    this.stones.forEach((stone, index) => {
-      const stoneSize = {
-        width: stone.offsetWidth,
-        height: stone.offsetHeight,
-      };
 
-      const {
-        position,
-        availableSpots: newAvailableSpots,
-      } = placeStone({
-        availableSpots,
-        stone: stoneSize,
-        containerSize: this.node.offsetWidth,
-      });
-      availableSpots = newAvailableSpots;
-      console.log(newAvailableSpots);
-      window.test = newAvailableSpots;
+    this.placeStone({ stones: this.stones, availableSpots });
+  }
 
-      stone.style.top = `${position.top}px`;
-      stone.style.left = `${position.left}px`;
+  // make it recursive
+  placeStone({ stones, availableSpots }) {
+    if (!stones.length) {
+      return;
+    }
+
+    const stone = stones[0];
+    const stoneSize = {
+      width: stone.offsetWidth,
+      height: stone.offsetHeight,
+    };
+
+    const {
+      position,
+      availableSpots: newAvailableSpots,
+    } = placeStone({
+      availableSpots,
+      stone: stoneSize,
+      containerSize: this.node.offsetWidth,
     });
+
+    const realIndex = this.stones.length - stones.length;
+    this.setState({
+      [`stone--${realIndex}`]: position,
+      availableSpots: newAvailableSpots,
+    });
+
+    setTimeout(
+      () => {
+        this.placeStone({
+          stones: stones.slice(1),
+          availableSpots: newAvailableSpots,
+        });
+      },
+      2000,
+    );
   }
 
   renderStones() {
     this.stones = [];
     return [...this.props.children].map((child, index) => {
+      let positionStyle = this.state[`stone--${index}`];
+      if (positionStyle) {
+        positionStyle = { ...positionStyle, opacity: 1 };
+      }
+
       return React.cloneElement(child, {
         key: index,
         ref: ref => this.stones[index] = ref,
-        style: { ...child.props.style, position: 'absolute' },
+        style: { ...child.props.style, position: 'absolute', ...positionStyle },
       });
     });
+  }
+
+  renderAvailableSpots() {
+    if (this.state.availableSpots) {
+      return this.state.availableSpots.map(spot => {
+        const style = {
+          position: 'absolute',
+          border: '1px solid #9c9cff',
+          zIndex: 10,
+          background: '#d9d9ff',
+          ...spot,
+          bottom: 0,
+        };
+        return <div style={style} />;
+      });
+    }
   }
 }
 

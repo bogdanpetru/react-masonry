@@ -5,7 +5,7 @@ import Masonry from '../components/Masonry';
 const box1Style = {
   width: 30,
   height: 40,
-  background: 'red',
+  background: '#e88d8d',
   boxSizing: 'border-box',
   border: '1px solid #333',
 };
