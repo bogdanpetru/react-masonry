@@ -17,27 +17,28 @@ function getNewSpot(
   },
 ): Spot {
   let right = containerSize;
-  // iterate over next availableSpots
-  // and see if is cut by another position
-  for (let i = 0, len = availableSpots.length; i < len; i++) {
-    const item = availableSpots[i];
-    if (item === optimalSpot) {
-      continue;
-    }
-
-    // check spots on the right
-    if (optimalSpot.left < item.left && optimalSpot.top < item.top) {
-      right = item.left;
-      break;
-    }
-  }
-
-  return {
+  const newSpot = {
     right,
     top: optimalSpot.top + stone.height,
     left: optimalSpot.left,
     bottom: null,
   };
+
+  if (availableSpots.length === 4) {
+    // debugger;
+  }
+
+  for (let i = 0, len = availableSpots.length; i < len; i++) {
+    const item = availableSpots[i];
+
+    // check spots on the right
+    if (newSpot.left < item.left && newSpot.top < item.top) {
+      newSpot.right = item.left;
+      break;
+    }
+  }
+
+  return newSpot;
 }
 
 export default getNewSpot;

@@ -36,7 +36,7 @@ function placeStone(
   const newSpot = getNewSpot({
     position,
     optimalSpot,
-    availableSpots,
+    availableSpots: availableSpots.filter(spot => spot !== optimalSpot),
     stone,
     containerSize,
   });
@@ -47,20 +47,27 @@ function placeStone(
       let usedSpot = { ...optimalSpot };
       usedSpot.left = position.left + stone.width;
       // if the spot is consumed it should be removed
-      if (usedSpot.left === usedSpot.right) {
+      if (usedSpot.right - usedSpot.left < 5) {
         usedSpot = null;
       }
 
       return usedSpot;
     }
 
+    if (stone.width === 70) {
+      // debugger;
+    }
+
     // check if placed stone invalidates a space
     // check right
     if (
-      spot.right >= optimalSpot.left && position.top + stone.height > spot.top
+      position.left > spot.left && // make sure it is to the left
+      spot.right >= position.left && // and right is already smaller than this position right
+      position.top + stone.height > spot.top
     ) {
+      console.log('dud');
       const constrainedSpot = { ...spot };
-      constrainedSpot.right = newSpot.left;
+      constrainedSpot.right = position.left;
       return constrainedSpot;
     }
 
