@@ -34,6 +34,7 @@ return <Masonry>
 - [x] configure jest
 - [x] add editor config
 - [x] add eslint
+- [x] remove ramnda dep
 - [ ] add cosmos
 - [ ] add precomit hook with linting
 - [ ] add commit hook with test runner with clicle ci

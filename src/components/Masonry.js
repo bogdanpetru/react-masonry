@@ -67,7 +67,7 @@ class Masonry extends React.Component {
           availableSpots: newAvailableSpots,
         });
       },
-      1500,
+      100,
     );
   }
 

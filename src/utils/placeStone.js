@@ -1,6 +1,7 @@
 // @flow
 
-import { find, filter } from 'ramda';
+import find from './find';
+import filter from './filter';
 import type { Stone, Position, Spot } from './types';
 import sortByTopFirstLeftSecond from './sortByTopFirstLeftSecond';
 import getNewSpot from './getNewSpot';
@@ -34,7 +35,6 @@ function placeStone(
 
   // add new spot
   const newSpot = getNewSpot({
-    position,
     optimalSpot,
     availableSpots: availableSpots.filter(spot => spot !== optimalSpot),
     stone,
@@ -65,7 +65,6 @@ function placeStone(
       spot.right >= position.left && // and right is already smaller than this position right
       position.top + stone.height > spot.top
     ) {
-      console.log('dud');
       const constrainedSpot = { ...spot };
       constrainedSpot.right = position.left;
       return constrainedSpot;

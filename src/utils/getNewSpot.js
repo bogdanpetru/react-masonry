@@ -1,17 +1,15 @@
 // @flow
-import type { Spot, Position, Stone } from './types';
+import type { Spot, Stone } from './types';
 
 function getNewSpot(
   {
     availableSpots,
     optimalSpot,
-    position,
     containerSize,
     stone,
   }: {
     availableSpots: Spot[],
     optimalSpot: Spot,
-    position: Position,
     containerSize: number,
     stone: Stone,
   },
