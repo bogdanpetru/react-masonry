@@ -1,10 +1,10 @@
 import React, { PropTypes as t } from 'react';
-import placeStone from '../utils/placeStone';
+import placeStones from '../utils/placeStones';
 
 class Masonry extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { loaded: {} };
 
     this.setRef = ref => {
       this.node = ref;
@@ -16,56 +16,25 @@ class Masonry extends React.Component {
   }
 
   placeStones() {
-    const availableSpots = [
-      { top: 0, left: 0, right: this.node.offsetWidth, bottom: null },
-    ];
-
-    this.placeStone({ stones: this.stones, availableSpots });
-  }
-
-  // make it recursive
-  placeStone({ stones, availableSpots }) {
-    if (!stones.length) {
-      return;
-    }
-    const realIndex = this.stones.length - stones.length;
-    const stone = stones[0];
-
-    if (stone.tagName === 'IMG' && !this.stone.loaded[realIndex]) {
-      return;
-    }
-
-    const stoneSize = {
+    const containerSize = this.node.offsetWidth;
+    const stones = this.stones.map(stone => ({
       width: stone.offsetWidth,
       height: stone.offsetHeight,
-    };
+    }));
 
-    const {
-      position,
-      availableSpots: newAvailableSpots,
-    } = placeStone({
-      availableSpots,
-      stone: stoneSize,
-      containerSize: this.node.offsetWidth,
+    const positions = placeStones({
+      containerSize,
+      stones,
     });
 
     this.setState({
-      [`stone--${realIndex}`]: position,
-      availableSpots: newAvailableSpots,
+      positions,
     });
-
-    setTimeout(
-      () => {
-        this.placeStone({
-          stones: stones.slice(1),
-          availableSpots: newAvailableSpots,
-        });
-      },
-      100,
-    );
   }
 
   handleImageLoad(index) {
+    this.placeStones();
+    console.log('index', index);
     this.setState(prevState => ({
       ...prevState,
       loaded: {
@@ -78,12 +47,16 @@ class Masonry extends React.Component {
   renderStones() {
     this.stones = [];
     return [...this.props.children].map((child, index) => {
-      let positionStyle = this.state[`stone--${index}`];
+      let positionStyle;
+      if (this.state.positions) {
+        positionStyle = this.state.positions[index];
+      }
       if (positionStyle) {
         positionStyle = { ...positionStyle, opacity: 1 };
       }
 
       // if an image add onLoad
+      let visibilityStyle;
       let imageLoadHandler = null;
       if (child.type === 'img') {
         imageLoadHandler = {
@@ -94,13 +67,23 @@ class Masonry extends React.Component {
             }
           },
         };
+        if (!this.state.loaded[index]) {
+          // visibilityStyle = { visibility: 'hidden' };
+        }
       }
+
+      const style = {
+        ...child.props.style,
+        position: 'absolute',
+        ...positionStyle,
+        ...visibilityStyle,
+      };
 
       return React.cloneElement(child, {
         ref: ref => {
           this.stones[index] = ref;
         },
-        style: { ...child.props.style, position: 'absolute', ...positionStyle },
+        style,
         ...imageLoadHandler,
       });
     });

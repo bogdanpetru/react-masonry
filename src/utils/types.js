@@ -14,5 +14,5 @@ export type Spot = {
   top: number,
   left: number,
   right: number,
-  bottom: number,
+  bottom: number | null,
 };
