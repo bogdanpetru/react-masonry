@@ -10,7 +10,8 @@
       "callbacksLast": false,
       "shorthandFirst": false,
       "shorthandLast": false,
-    }]
+    }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   },
   "plugins": [
     "flowtype"
