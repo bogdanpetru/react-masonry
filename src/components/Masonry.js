@@ -33,8 +33,8 @@ class Masonry extends React.Component {
   }
 
   handleImageLoad(index) {
+    // after each image reposition stones
     this.placeStones();
-    console.log('index', index);
     this.setState(prevState => ({
       ...prevState,
       loaded: {
@@ -67,9 +67,6 @@ class Masonry extends React.Component {
             }
           },
         };
-        if (!this.state.loaded[index]) {
-          // visibilityStyle = { visibility: 'hidden' };
-        }
       }
 
       const style = {
