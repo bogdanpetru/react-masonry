@@ -1,15 +1,35 @@
-import React, { PropTypes as t } from 'react';
-import placeStones from '../utils/placeStones';
+// @flow
 
-class Masonry extends React.Component {
+import React, { Component } from 'react';
+import placeStones from '../utils/placeStones';
+import type { Position, Stone } from '../utils/types';
+
+class Masonry extends Component {
   constructor(props) {
     super(props);
-    this.state = { loaded: {} };
 
-    this.setRef = ref => {
+    this.setRef = (ref) => {
       this.node = ref;
     };
   }
+
+  state = {
+    loaded: {},
+    positions: [],
+  };
+
+  state: {
+    loaded: any,
+    positions: Position[],
+  };
+
+  props: {
+    style: object,
+    children: any,
+  };
+
+  stones = [];
+  stones: Stone[];
 
   componentDidMount() {
     this.placeStones();
@@ -32,7 +52,19 @@ class Masonry extends React.Component {
     });
   }
 
-  handleImageLoad(index) {
+  getPositionStyle(index: number) {
+    let positionStyle;
+    if (this.state.positions) {
+      positionStyle = this.state.positions[index];
+    }
+    if (positionStyle) {
+      positionStyle = { ...positionStyle, opacity: 1 };
+    }
+
+    return positionStyle;
+  }
+
+  handleImageLoad(index: number) {
     // after each image reposition stones
     this.placeStones();
     this.setState(prevState => ({
@@ -45,24 +77,19 @@ class Masonry extends React.Component {
   }
 
   renderStones() {
+    // keep refs
     this.stones = [];
     return [...this.props.children].map((child, index) => {
-      let positionStyle;
-      if (this.state.positions) {
-        positionStyle = this.state.positions[index];
-      }
-      if (positionStyle) {
-        positionStyle = { ...positionStyle, opacity: 1 };
-      }
+      const positionStyle = this.getPositionStyle(index);
 
       // if an image add onLoad
       let visibilityStyle;
       let imageLoadHandler = null;
       if (child.type === 'img') {
         imageLoadHandler = {
-          onLoad: event => {
+          onLoad: (event) => {
             this.handleImageLoad(index);
-            if (child.props.onLoad) {
+            if (typeof child.props.onLoad === 'function') {
               child.props.onLoad(event);
             }
           },
@@ -77,7 +104,7 @@ class Masonry extends React.Component {
       };
 
       return React.cloneElement(child, {
-        ref: ref => {
+        ref: (ref) => {
           this.stones[index] = ref;
         },
         style,
@@ -86,49 +113,13 @@ class Masonry extends React.Component {
     });
   }
 
-  renderAvailableSpots() {
-    const maxWidth = this.node && this.node.offsetWidth;
-    if (!maxWidth) {
-      return null;
-    }
-
-    const spots = this.state.availableSpots || [
-      {
-        top: 0,
-        left: 0,
-        right: 0,
-        botttom: 0,
-      },
-    ];
-
-    return spots.map(spot => {
-      const right = maxWidth - spot.right;
-      const style = {
-        ...spot,
-        position: 'absolute',
-        opacity: 0.8,
-        border: '1px solid #9c9cff',
-        zIndex: 10,
-        background: '#d9d9ff',
-        bottom: 0,
-        right,
-      };
-
-      return <div className="spot" style={style} />;
-    });
-  }
-
   render() {
     return (
-      <div
-        style={{ ...this.props.style, position: 'relative' }}
-        ref={this.setRef}>
+      <div style={{ ...this.props.style, position: 'relative' }} ref={this.setRef}>
         {this.renderStones()}
       </div>
     );
   }
 }
-
-Masonry.propTypes = {};
 
 export default Masonry;

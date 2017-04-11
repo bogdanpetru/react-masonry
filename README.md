@@ -72,10 +72,10 @@ These props can be also added on div element like so:
 
 - [ ] items can have set dimensions, if they are not set they will be read from the dom
 - [ ] declarative way to set responsive dimensions
-- [ ] images are mounted when they load
 - [ ] items can enter async
 - [ ] use styled component
-- [ ] airbnb eslint
+- [x] airbnb eslint
+- [x] images are mounted when they load
 
 ## TODO
 - [x] install flow
