@@ -35,15 +35,19 @@ class Masonry extends Component {
     this.placeStones();
   }
 
+  getStones() {
+    return this.stoneNodes.map(stone => ({
+      width: stone.offsetWidth,
+      height: stone.offsetHeight,
+    }));
+  }
+
   placeStones() {
     if (this.node === null) {
       return;
     }
     const containerSize = this.node.offsetWidth;
-    const stones = this.stoneNodes.map(stone => ({
-      width: stone.offsetWidth,
-      height: stone.offsetHeight,
-    }));
+    const stones = this.getStones();
 
     const positions = placeStones({
       containerSize,
