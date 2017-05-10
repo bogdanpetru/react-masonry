@@ -5,13 +5,18 @@ import placeStones from '../utils/placeStones';
 import type { Position, Stone } from '../utils/types';
 
 class Masonry extends Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
-    this.setRef = (ref) => {
+    this.setRef = (ref = null) => {
       this.node = ref;
     };
   }
+
+  props: { children: any, style: {} };
+  node: HTMLElement | null;
+  stoneNodes: Array<HTMLElement>;
+  setRef: () => void;
 
   state = {
     loaded: {},
@@ -20,12 +25,7 @@ class Masonry extends Component {
 
   state: {
     loaded: any,
-    positions: Position[],
-  };
-
-  props: {
-    style: object,
-    children: any,
+    positions: Position[] | null,
   };
 
   stones = [];
@@ -36,8 +36,11 @@ class Masonry extends Component {
   }
 
   placeStones() {
+    if (this.node === null) {
+      return;
+    }
     const containerSize = this.node.offsetWidth;
-    const stones = this.stones.map(stone => ({
+    const stones = this.stoneNodes.map(stone => ({
       width: stone.offsetWidth,
       height: stone.offsetHeight,
     }));
@@ -78,7 +81,7 @@ class Masonry extends Component {
 
   renderStones() {
     // keep refs
-    this.stones = [];
+    this.stoneNodes = [];
     return [...this.props.children].map((child, index) => {
       const positionStyle = this.getPositionStyle(index);
 
@@ -105,7 +108,7 @@ class Masonry extends Component {
 
       return React.cloneElement(child, {
         ref: (ref) => {
-          this.stones[index] = ref;
+          this.stoneNodes[index] = ref;
         },
         style,
         ...imageLoadHandler,
