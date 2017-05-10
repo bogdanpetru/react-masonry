@@ -51,10 +51,6 @@ function placeStone(
       return usedSpot;
     }
 
-    if (stone.width === 70) {
-      // debugger;
-    }
-
     // check if placed stone invalidates a space
     // check right
     if (
@@ -64,6 +60,12 @@ function placeStone(
     ) {
       const constrainedSpot = { ...spot };
       constrainedSpot.right = position.left;
+      return constrainedSpot;
+    }
+
+    if (position.left + stone.width > spot.left) {
+      const constrainedSpot = { ...spot };
+      constrainedSpot.bottom = position.top;
       return constrainedSpot;
     }
 
