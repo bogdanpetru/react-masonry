@@ -121,4 +121,85 @@ describe('placeStone', () => {
     expect(result.availableSpots[1]).toEqual(expected.availableSpots[1]);
     expect(result.availableSpots[2]).toEqual(expected.availableSpots[2]);
   });
+  it('should invalidate bottom of a spot if a stone is paced above it', () => {
+    /**
+    100
+      +--------------------------------------------+
+      |--------------------------------+           |
+      ||             ||                |           |
+      ||             ||                |           |
+      ||   30x30     ||  30x20         |           |
+      ||             ||                |           |
+      ||             +-----------------+           |
+      |--------------+                             |
+      |--------------------------------------------+
+      ||                                          ||
+      ||                                          ||
+      ||        100x20                            ||
+      ||                                          ||
+      ||                                          ||
+      ||                                          ||
+      ||                                          ||
+      +--------------------------------------------+
+      |                                            |
+      |
+      |
+      |
+
+    */
+    const stone = { width: 100, height: 20 };
+    const availableSpots = [
+      {
+        top: 0,
+        left: 60,
+        right: 100,
+        bottom: null,
+      },
+      {
+        top: 20,
+        left: 30,
+        right: 100,
+        bottom: null,
+      },
+      {
+        top: 30,
+        left: 0,
+        right: 100,
+        bottom: null,
+      },
+    ];
+
+    const expected = {
+      position: { top: 30, left: 0 },
+      availableSpots: [
+        {
+          top: 0,
+          left: 60,
+          right: 100,
+          bottom: 30,
+        },
+        {
+          top: 20,
+          left: 30,
+          right: 100,
+          bottom: 30,
+        },
+        {
+          top: 50,
+          left: 0,
+          right: 100,
+          bottom: null,
+        },
+      ],
+    };
+
+    const containerSize = 100;
+    const result = placeStone({
+      stone,
+      availableSpots,
+      containerSize,
+    });
+    expect(result.position).toEqual(expected.position);
+    expect(result.availableSpots).toEqual(expected.availableSpots);
+  });
 });
