@@ -202,4 +202,70 @@ describe('placeStone', () => {
     expect(result.position).toEqual(expected.position);
     expect(result.availableSpots).toEqual(expected.availableSpots);
   });
+  it("it should take into account bottom's spot, and doesn't fit", () => {
+    const availableSpots = [
+      {
+        top: 0,
+        left: 60,
+        right: 100,
+        bottom: 30,
+      },
+      {
+        top: 20,
+        left: 30,
+        right: 100,
+        bottom: 30,
+      },
+      {
+        top: 50,
+        left: 0,
+        right: 100,
+        bottom: null,
+      },
+    ];
+    const stone = { width: 30, height: 60 };
+    const containerSize = 100;
+    const result = placeStone({
+      stone,
+      availableSpots,
+      containerSize,
+    });
+    expect(result.position).toEqual({
+      top: 50,
+      left: 0,
+    });
+  });
+  it("it should take into account bottom's spot, and it fit", () => {
+    const availableSpots = [
+      {
+        top: 0,
+        left: 60,
+        right: 100,
+        bottom: 30,
+      },
+      {
+        top: 20,
+        left: 30,
+        right: 100,
+        bottom: 30,
+      },
+      {
+        top: 50,
+        left: 0,
+        right: 100,
+        bottom: null,
+      },
+    ];
+    const stone = { width: 30, height: 30 };
+    const containerSize = 100;
+    const result = placeStone({
+      stone,
+      availableSpots,
+      containerSize,
+    });
+    expect(result.position).toEqual({
+      top: 0,
+      left: 60,
+    });
+  });
 });

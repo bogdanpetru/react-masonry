@@ -6,8 +6,14 @@ import type { Stone, Spot } from './types';
 import sortByTopFirstLeftSecond from './sortByTopFirstLeftSecond';
 import getNewSpot from './getNewSpot';
 
-const doesBoxFit = (position: Spot, stone: Stone): boolean =>
-  position.right - position.left >= stone.width;
+const doesBoxFit = (spot: Spot, stone: Stone): boolean => {
+  const fitsWidth = spot.right - spot.left >= stone.width;
+  if (!spot.bottom) {
+    return fitsWidth;
+  }
+  const fitsHeight = spot.bottom - spot.top >= stone.height;
+  return fitsHeight;
+};
 
 const filterNullSPots = (spot: Spot): boolean => !!spot;
 
