@@ -49,8 +49,14 @@ function placeStone(
       // restrict used spot
       let usedSpot = { ...optimalSpot };
       usedSpot.left = position.left + stone.width;
+
       // if the spot is consumed it should be removed
       if (usedSpot.right - usedSpot.left < 5) {
+        usedSpot = null;
+      }
+
+      // if it has height it shoud be bigger than 5
+      if (usedSpot && usedSpot.bottom && usedSpot.bottom - usedSpot.top < 5) {
         usedSpot = null;
       }
 
@@ -69,7 +75,8 @@ function placeStone(
       return constrainedSpot;
     }
 
-    if (position.left + stone.width > spot.left) {
+    if (position.left + stone.width > spot.left && position.top >= spot.top) {
+      // stome must be placed above this spot
       const constrainedSpot = { ...spot };
       constrainedSpot.bottom = position.top;
       return constrainedSpot;
