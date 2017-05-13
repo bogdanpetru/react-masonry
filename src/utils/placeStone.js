@@ -2,7 +2,7 @@
 
 import find from './find';
 import filter from './filter';
-import type { Stone, Spot } from './types';
+import type { Stone, Spot, Position } from './types';
 import sortByTopFirstLeftSecond from './sortByTopFirstLeftSecond';
 import getNewSpot from './getNewSpot';
 
@@ -11,8 +11,9 @@ const doesBoxFit = (spot: Spot, stone: Stone): boolean => {
   if (!spot.bottom) {
     return fitsWidth;
   }
+
   const fitsHeight = spot.bottom - spot.top >= stone.height;
-  return fitsHeight;
+  return fitsWidth && fitsHeight;
 };
 
 const filterNullSPots = (spot: Spot): boolean => !!spot;
@@ -27,8 +28,15 @@ function placeStone(
     stone,
     availableSpots,
     containerSize,
-  }: { stone: Stone, availableSpots: Spot[], containerSize: number },
-) {
+  }: {
+    stone: Stone,
+    availableSpots: Spot[],
+    containerSize: number,
+  },
+): {
+  position: Position,
+  availableSpots: Spot[],
+} {
   // place stone
   const optimalSpot = getOptimalSpot({ availableSpots, stone });
   const position = {

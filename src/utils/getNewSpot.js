@@ -1,4 +1,5 @@
 // @flow
+
 import type { Spot, Stone } from './types';
 
 function getNewSpot(
@@ -14,24 +15,27 @@ function getNewSpot(
     stone: Stone,
   },
 ): Spot {
-  let right = containerSize;
+  const right = containerSize;
   const newSpot = {
     right,
     top: optimalSpot.top + stone.height,
     left: optimalSpot.left,
-    bottom: null,
+    /**
+     * New spot should have the same bottom
+     * as the spot the stone ocupied.
+     */
+    bottom: optimalSpot.bottom || null,
   };
 
-  if (availableSpots.length === 4) {
-    // debugger;
-  }
-
-  for (let i = 0, len = availableSpots.length; i < len; i++) {
-    const item = availableSpots[i];
-
+  /**
+   * If new spot is on the left and it's top is smaler than one
+   * (first found) it should limit right of the current spot.
+   */
+  for (let i = 0, len = availableSpots.length; i < len; i += 1) {
+    const spot = availableSpots[i];
     // check spots on the right
-    if (newSpot.left < item.left && newSpot.top < item.top) {
-      newSpot.right = item.left;
+    if (newSpot.left < spot.left && newSpot.top < spot.top) {
+      newSpot.right = spot.left;
       break;
     }
   }
