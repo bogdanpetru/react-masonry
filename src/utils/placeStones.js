@@ -1,10 +1,14 @@
 // @flow
 
 import placeStone from './placeStone';
-import type { Stone, Position } from './types';
+import type { Stone, Position, Gutter } from './types';
 
 function placeStones(
-  { stones, containerSize }: { stones: Stone[], containerSize: number },
+  {
+    stones,
+    containerSize,
+    gutter,
+  }: { stones: Stone[], containerSize: number, gutter: Gutter },
 ): Position[] | null {
   if (!stones.length) {
     return null;
@@ -21,7 +25,13 @@ function placeStones(
   ];
 
   for (let i = 0, len = stones.length; i < len; i += 1) {
-    const stone = stones[i];
+    let stone = stones[i];
+    if (gutter) {
+      stone = {
+        width: stone.width + gutter.left + gutter.right,
+        height: stone.height + gutter.top + gutter.bottom,
+      };
+    }
     const {
       position,
       availableSpots: newAvailableSpots,
@@ -31,7 +41,14 @@ function placeStones(
       containerSize,
     });
 
-    positions.push(position);
+    let newPosition = { ...position };
+    if (gutter) {
+      newPosition = {
+        top: position.top + gutter.top,
+        left: position.left + gutter.left,
+      };
+    }
+    positions.push(newPosition);
     availableSpots = newAvailableSpots;
   }
 

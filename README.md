@@ -34,35 +34,35 @@ Stacking process has the following steps:
 
 ##### gutter: number|{top, left, right, bottom} - default: 0
 
-Space around stones. Specify a `number` for all 4 directions or specify for desired directions with an object.
+-  [x] Space around stones. Specify a `number` for all 4 directions or specify for desired directions with an object.
 
 ##### transition: fade|fadeMove|false - fade
 
-Whether place stones one after another using an animation.
+- [ ] Whether place stones one after another using an animation.
 
 ##### transitionDudation: number - 150
 
-Transition duration in ms.
+- [ ] Transition duration in ms.
 
 ##### enterOneAfterAnother: bool - true
 
-Whether stones are placed one after another with a delay (oneAfterAnotherDelay) between them.
+- [ ] Whether stones are placed one after another with a delay (oneAfterAnotherDelay) between them.
 
 ##### oneAfterAnotherDelay: number - 100
 
-Speed with which stones are placed when `enterOneAfterAnother=true`
+- [ ] Speed with which stones are placed when `enterOneAfterAnother=true`
 
 ##### updateOnWindowResize: bool - true
 
-Whether to calculate again positions when Windows changes size.
+- [ ] Whether to calculate again positions when Windows changes size.
 
 ##### updatePositions: method
 
-Call to reposition stones.
+- [ ] Call to reposition stones.
 
 #### Customize specific stones in different way
 
-These props can be also added on div element like so:
+- [ ] These props can be also added on div element like so:
 
 `data-masonry-settings={{ gutter: 20, offset: { bottom: 20 } }}`
 

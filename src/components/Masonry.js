@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import placeStones from '../utils/placeStones';
-import type { Position, Stone } from '../utils/types';
+import normalizeGutter from '../utils/normalizeGutter';
+import type { Position, Stone, Gutter } from '../utils/types';
 
 class Masonry extends Component {
   constructor(props: any) {
@@ -13,7 +14,6 @@ class Masonry extends Component {
     };
   }
 
-  props: { children: any, style: {} };
   node: HTMLElement | null;
   stoneNodes: Array<HTMLElement>;
   setRef: () => void;
@@ -26,6 +26,16 @@ class Masonry extends Component {
   state: {
     loaded: any,
     positions: Position[] | null,
+  };
+
+  static defaultProps = {
+    gutter: 10,
+  };
+
+  props: {
+    children: any,
+    style: {},
+    gutter: Gutter | number,
   };
 
   stones = [];
@@ -48,10 +58,12 @@ class Masonry extends Component {
     }
     const containerSize = this.node.offsetWidth;
     const stones = this.getStones();
+    const gutter = normalizeGutter(this.props.gutter);
 
     const positions = placeStones({
       containerSize,
       stones,
+      gutter,
     });
 
     this.setState({

@@ -16,3 +16,10 @@ export type Spot = {
   right: number,
   bottom: number | null,
 };
+
+export type Gutter = {
+  top?: number,
+  left?: number,
+  right?: number,
+  bottom?: number,
+};
