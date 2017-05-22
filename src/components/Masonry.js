@@ -30,12 +30,14 @@ class Masonry extends Component {
 
   static defaultProps = {
     gutter: 10,
+    transition: 'fade',
   };
 
   props: {
     children: any,
     style: {},
     gutter: Gutter | number,
+    transition: 'fade' | 'move' | 'fadeMove' | boolean,
   };
 
   stones = [];
@@ -78,6 +80,10 @@ class Masonry extends Component {
     }
     if (positionStyle) {
       positionStyle = { ...positionStyle, opacity: 1 };
+    } else {
+      positionStyle = {
+        opacity: 0,
+      };
     }
 
     return positionStyle;
@@ -121,6 +127,10 @@ class Masonry extends Component {
         ...positionStyle,
         ...visibilityStyle,
       };
+
+      if (this.props.transition === 'fade' || this.props.transition === 'fadeMove') {
+        style.transition = '300ms opacity ease';
+      }
 
       return React.cloneElement(child, {
         ref: (ref) => {
