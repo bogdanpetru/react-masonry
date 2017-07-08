@@ -1,4 +1,19 @@
+body {
+  font-family: 'Lato', sans-serif;
+  background: #fbfbfb;
+  color: #001c25;
+}
+
 img {
   /*width: 100%;*/
   height: auto;
+}
+
+.root {
+  margin: 0 auto;
+  max-width: 768px;
+}
+
+.title {
+  text-align: center;
 }
