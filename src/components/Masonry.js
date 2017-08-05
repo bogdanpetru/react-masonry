@@ -21,6 +21,7 @@ class Masonry extends Component {
   state = {
     loaded: {},
     positions: [],
+    containerHeight: 0,
   };
 
   state: {
@@ -62,7 +63,7 @@ class Masonry extends Component {
     const stones = this.getStones();
     const gutter = normalizeGutter(this.props.gutter);
 
-    const positions = placeStones({
+    const { positions, containerHeight } = placeStones({
       containerSize,
       stones,
       gutter,
@@ -70,6 +71,7 @@ class Masonry extends Component {
 
     this.setState({
       positions,
+      containerHeight,
     });
   }
 
@@ -144,7 +146,7 @@ class Masonry extends Component {
 
   render() {
     return (
-      <div style={{ ...this.props.style, position: 'relative' }} ref={this.setRef}>
+      <div style={{ ...this.props.style, position: 'relative', minHeight: this.state.containerHeight }} ref={this.setRef}>
         {this.renderStones()}
       </div>
     );

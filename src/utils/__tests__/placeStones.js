@@ -69,7 +69,7 @@ describe('paceStones', () => {
       placeStones({
         stones,
         containerSize: 500,
-      }),
+      }.positions),
     ).toEqual(expected);
   });
 });

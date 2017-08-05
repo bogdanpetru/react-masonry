@@ -3,7 +3,8 @@ import type { Gutter } from './types';
 
 function normalizeGutter(gutter: Gutter | number): Gutter {
   if (typeof gutter === 'object') {
-    const normalizedGutter = { ...gutter };
+    const normalizedGutter = { ...gutter }
+
     // make sure no direction is null
     if (!normalizedGutter.left) {
       normalizedGutter.left = 0;

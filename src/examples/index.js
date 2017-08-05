@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import './index.css';
 
 import RelativeWidthsExample from './RelativeWidthsExample';
+import ImagesExample from './ImagesExample';
 
 
 const App = () => (
@@ -26,7 +27,7 @@ const App = () => (
       </p>
 
       <p>
-      Stacking process has the following steps:
+        Stacking process has the following steps:
       </p>
       <ul>
         <li>clone elements, save a reference (ref)</li>
@@ -42,8 +43,16 @@ const App = () => (
       See <a target="_blank" href="https://github.com/bogdanpetru/react-masonry">README.md</a>.
     </p>
     <h2>Examples</h2>
+
+    <h3>Images</h3>
+    <p>
+      Images are placed after they are loaded.
+    </p>
+    <ImagesExample />
+
+    <h3>Percent width:</h3>
     <RelativeWidthsExample />
-  </div>
+  </div >
 );
 
 render(<App />, document.getElementById('main'));

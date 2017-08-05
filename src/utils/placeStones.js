@@ -10,6 +10,8 @@ function placeStones(
     gutter,
   }: { stones: Stone[], containerSize: number, gutter: Gutter },
 ): Position[] | null {
+  // it is calculated on each stone placement
+  let containerHeight = 0;
   if (!stones.length) {
     return null;
   }
@@ -32,6 +34,7 @@ function placeStones(
         height: stone.height + gutter.top + gutter.bottom,
       };
     }
+    
     const {
       position,
       availableSpots: newAvailableSpots,
@@ -50,9 +53,12 @@ function placeStones(
     }
     positions.push(newPosition);
     availableSpots = newAvailableSpots;
+    if (position.top + stone.height > containerHeight) {
+      containerHeight = position.top + stone.height;
+    }
   }
 
-  return positions;
+  return { positions, containerHeight };
 }
 
 export default placeStones;

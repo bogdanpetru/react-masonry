@@ -2,19 +2,17 @@
 
 import type { Spot, Stone } from './types';
 
-function getNewSpot(
-  {
-    availableSpots,
-    optimalSpot,
-    containerSize,
-    stone,
-  }: {
-    availableSpots: Spot[],
-    optimalSpot: Spot,
-    containerSize: number,
-    stone: Stone,
-  },
-): Spot {
+function getNewSpot({
+  availableSpots,
+  optimalSpot,
+  containerSize,
+  stone,
+}: {
+  availableSpots: Spot[],
+  optimalSpot: Spot,
+  containerSize: number,
+  stone: Stone,
+}): Spot {
   const right = containerSize;
   const newSpot = {
     right,
