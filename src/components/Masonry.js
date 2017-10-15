@@ -5,6 +5,21 @@ import placeStones from '../utils/placeStones';
 import normalizeGutter from '../utils/normalizeGutter';
 import type { Position, Stone, Gutter } from '../utils/types';
 
+/**
+ * Transition.
+ * If enabled on first render has the apropriate inline css.
+ */
+
+const initialFadeTransitionStyle = {
+  transition: '300ms opacity ease',
+  opacity: 0,
+}
+
+const finalFadeTransitionStyle = {
+  transition: '300ms opacity ease',
+  opacity: 1,  
+}
+
 class Masonry extends Component {
   constructor(props: any) {
     super(props);
@@ -12,11 +27,14 @@ class Masonry extends Component {
     this.setRef = (ref = null) => {
       this.node = ref;
     };
+
+    this.firstRender = true;
   }
 
   node: HTMLElement | null;
   stoneNodes: Array<HTMLElement>;
   setRef: () => void;
+  firstRender: boolean;
 
   state = {
     loaded: {},
@@ -46,6 +64,7 @@ class Masonry extends Component {
 
   componentDidMount() {
     this.placeStones();
+    this.firstRender = false;
   }
 
   getStones() {
@@ -123,11 +142,22 @@ class Masonry extends Component {
         };
       }
 
+      const { transition } = this.props;
+      let transitionStyle = {};
+      if (transition) {
+        if (transition === 'fade') {
+          transitionStyle = this.firstRender ? 
+            initialFadeTransitionStyle : 
+            finalFadeTransitionStyle
+        } 
+      }
+
       const style = {
         ...child.props.style,
         position: 'absolute',
         ...positionStyle,
         ...visibilityStyle,
+        ...transitionStyle,
       };
 
       if (this.props.transition === 'fade' || this.props.transition === 'fadeMove') {
