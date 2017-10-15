@@ -35,6 +35,7 @@ class Masonry extends Component {
   stoneNodes: Array<HTMLElement>;
   setRef: () => void;
   firstRender: boolean;
+  imageItemsNo: number;  
 
   state = {
     loaded: {},
@@ -49,7 +50,8 @@ class Masonry extends Component {
 
   static defaultProps = {
     gutter: 10,
-    transition: 'fade',
+    transition: false,
+    renderAfterImagesLoaded: true,
   };
 
   props: {
@@ -57,6 +59,7 @@ class Masonry extends Component {
     style: {},
     gutter: Gutter | number,
     transition: 'fade' | 'move' | 'fadeMove' | boolean,
+    renderAfterImagesLoaded: boolean,
   };
 
   stones = [];
@@ -112,14 +115,25 @@ class Masonry extends Component {
 
   handleImageLoad(index: number) {
     // after each image reposition stones
-    this.placeStones();
-    this.setState(prevState => ({
-      ...prevState,
-      loaded: {
-        ...prevState.loaded,
-        [index]: true,
-      },
-    }));
+    const { renderAfterImagesLoaded } = this.props;
+    if (!renderAfterImagesLoaded) {
+      this.placeStones();
+      this.setState(prevState => ({
+        ...prevState,
+        loaded: {
+          ...prevState.loaded,
+          [index]: true,
+        },
+      }));
+    } else {
+      if (this.imageItemsNo) {
+        this.imageItemsNo -= 1;
+      }
+      if (this.imageItemsNo === 0) {
+        this.placeStones();
+        this.imageItemsNo = null;
+      }
+    }
   }
 
   renderStones() {
@@ -131,7 +145,9 @@ class Masonry extends Component {
       // if an image add onLoad
       let visibilityStyle;
       let imageLoadHandler = null;
+      let imageItemsNo = 0;
       if (child.type === 'img') {
+        imageItemsNo += 1;
         imageLoadHandler = {
           onLoad: (event) => {
             this.handleImageLoad(index);
@@ -140,6 +156,15 @@ class Masonry extends Component {
             }
           },
         };
+      }
+
+      const { renderAfterImagesLoaded } = this.props;
+      if (
+        renderAfterImagesLoaded && 
+        imageItemsNo > 0 &&
+        this.firstRender
+      ) {
+        this.imageItemsNo = imageItemsNo;
       }
 
       const { transition } = this.props;

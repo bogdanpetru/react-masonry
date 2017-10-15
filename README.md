@@ -66,7 +66,9 @@ Stacking process has the following steps:
 
 `data-masonry-settings={{ gutter: 20, offset: { bottom: 20 } }}`
 
+#### renderAfterImagesLoaded: boolean - true
 
+Render after all images have loaded
 
 ## Fetures
 
