@@ -43,7 +43,15 @@ const App = () => (
   <div>
     <h1></h1>
     <Masonry gutter={{ bottom: 10, top: 10 }} style={{ border: '1px solid blue', height: 500 }}>
-      {boxes.map(box => <div style={{...box, backgroundColor: randomColor()}}>{`${box.width} - ${box.height}`}</div>)}
+      {boxes.map(
+        (box, index) => (
+          <div 
+            key={index} 
+            style={{...box, backgroundColor: randomColor()}}>
+            {`${box.width} - ${box.height}`}
+          </div>
+        )
+      )}
     </Masonry>
   </div>
 );

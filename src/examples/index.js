@@ -48,7 +48,7 @@ const App = () => (
     <p>
       Images are placed after they are loaded.
     </p>
-    <ImagesExample />
+    {/* <ImagesExample /> */}
 
     <h3>Percent width:</h3>
     <RelativeWidthsExample />

@@ -113,88 +113,21 @@ class Masonry extends Component {
     return positionStyle;
   }
 
-  handleImageLoad(index: number) {
-    // after each image reposition stones
-    const { renderAfterImagesLoaded } = this.props;
-    if (!renderAfterImagesLoaded) {
-      this.placeStones();
-      this.setState(prevState => ({
-        ...prevState,
-        loaded: {
-          ...prevState.loaded,
-          [index]: true,
-        },
-      }));
-    } else {
-      if (this.imageItemsNo) {
-        this.imageItemsNo -= 1;
-      }
-      if (this.imageItemsNo === 0) {
-        this.placeStones();
-        this.imageItemsNo = null;
-      }
-    }
-  }
-
   renderStones() {
     // keep refs
     this.stoneNodes = [];
     return [...this.props.children].map((child, index) => {
       const positionStyle = this.getPositionStyle(index);
-
-      // if an image add onLoad
-      let visibilityStyle;
-      let imageLoadHandler = null;
-      let imageItemsNo = 0;
-      if (child.type === 'img') {
-        imageItemsNo += 1;
-        imageLoadHandler = {
-          onLoad: (event) => {
-            this.handleImageLoad(index);
-            if (typeof child.props.onLoad === 'function') {
-              child.props.onLoad(event);
-            }
-          },
-        };
-      }
-
-      const { renderAfterImagesLoaded } = this.props;
-      if (
-        renderAfterImagesLoaded && 
-        imageItemsNo > 0 &&
-        this.firstRender
-      ) {
-        this.imageItemsNo = imageItemsNo;
-      }
-
-      const { transition } = this.props;
-      let transitionStyle = {};
-      if (transition) {
-        if (transition === 'fade') {
-          transitionStyle = this.firstRender ? 
-            initialFadeTransitionStyle : 
-            finalFadeTransitionStyle
-        } 
-      }
-
       const style = {
         ...child.props.style,
         position: 'absolute',
         ...positionStyle,
-        ...visibilityStyle,
-        ...transitionStyle,
       };
-
-      if (this.props.transition === 'fade' || this.props.transition === 'fadeMove') {
-        style.transition = '300ms opacity ease';
-      }
-
       return React.cloneElement(child, {
         ref: (ref) => {
           this.stoneNodes[index] = ref;
         },
-        style,
-        ...imageLoadHandler,
+        style
       });
     });
   }
