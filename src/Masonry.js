@@ -1,9 +1,9 @@
 // @flow
 
 import React, { Component } from 'react';
-import placeStones from '../utils/placeStones';
-import normalizeGutter from '../utils/normalizeGutter';
-import type { Position, Stone, Gutter } from '../utils/types';
+import placeStones from './utils/placeStones';
+import normalizeGutter from './utils/normalizeGutter';
+import type { Position, Stone, Gutter } from './utils/types';
 
 /**
  * Transition.

@@ -1,8 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
-import Masonry from '../components/Masonry';
-
-import './index.css';
+import Masonry from '../Masonry';
 
 const style = {
   width: '33.33%',

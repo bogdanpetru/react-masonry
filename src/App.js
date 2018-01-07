@@ -1,10 +1,9 @@
 import React from 'react';
-import { render } from 'react-dom';
 
-import './index.css';
+import './App.css';
 
-import RelativeWidthsExample from './RelativeWidthsExample';
-import ImagesExample from './ImagesExample';
+import RelativeWidthsExample from './examples/RelativeWidthsExample';
+import ImagesExample from './examples/ImagesExample';
 
 
 const App = () => (
@@ -55,4 +54,4 @@ const App = () => (
   </div >
 );
 
-render(<App />, document.getElementById('main'));
+export default App;

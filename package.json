@@ -1,59 +1,16 @@
 {
   "name": "react-masonry",
-  "version": "1.0.0",
-  "description": "**This component is in development, any help is welcome :).**",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --watch",
-    "start": "webpack-dev-server --open --config webpack.config.js",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "build": "webpack --config webpack.build.config.js",
-    "cosmos": "NODE_ENV=development cosmos"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bogdanpetru/react-masonry.git"
-  },
-  "keywords": [
-    "masonry",
-    "react",
-    "component"
-  ],
-  "author": "Bogdan Petru Pintican",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bogdanpetru/react-masonry/issues"
-  },
-  "homepage": "https://github.com/bogdanpetru/react-masonry#readme",
-  "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-core": "^6.23.1",
-    "babel-eslint": "^7.1.1",
-    "babel-jest": "^18.0.0",
-    "babel-loader": "^6.3.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-latest": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "css-loader": "^0.26.1",
-    "eslint": "^3.15.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-flowtype": "^2.30.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.0",
-    "flow-bin": "^0.39.0",
-    "jest": "^18.1.0",
-    "react-cosmos-webpack": "^2.1.0",
-    "style-loader": "^0.13.1",
-    "ts-jest": "^18.0.3",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.3.0"
-  },
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
