@@ -13,19 +13,29 @@ const common = {
 }
 
 const boxes = [
+  { ...common, width: '30%', height: 200 },
+  { ...common, width: '40%', height: 320 },
+  { ...common, width: '30%', height: 250 },
   { ...common, width: '20%', height: 100 },
+  { ...common, width: '50%', height: 120 },
+  { ...common, width: '70%', height: 100 },
   { ...common, width: '20%', height: 200 },
-  { ...common, width: '20%', height: 320 },
-  { ...common, width: '20%', height: 250 },
-  { ...common, width: '20%', height: 120 },
-  { ...common, width: '20%', height: 100 },
-  { ...common, width: '20%', height: 200 },
+  { ...common, width: '30%', height: 140 },
+  { ...common, width: '25%', height: 200 },
   { ...common, width: '20%', height: 140 },
-  { ...common, width: '20%', height: 200 },
-  { ...common, width: '20%', height: 140 },
-  { ...common, width: '20%', height: 180 },
-  { ...common, width: '20%', height: 140 },
+  { ...common, width: '40%', height: 180 },
+  { ...common, width: '23%', height: 140 },
 ]
+
+const title = {
+  position: 'absolute',
+  left: 5,
+  top: 5,
+  fontWeight: '700',
+  backgroundColor: '#333',
+  color: '#fff',
+  padding: 5
+}
 
 function random(min, max) {
   return Math.ceil(Math.random() * (max - min) + min)
@@ -49,6 +59,9 @@ const App = () => (
             key={index} 
             style={{...box, backgroundColor: randomColor()}}>
             {`${box.width} - ${box.height}`}
+            <div style={title}>
+              {index}
+            </div>
           </div>
         )
       )}

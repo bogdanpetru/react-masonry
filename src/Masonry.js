@@ -2,23 +2,10 @@
 
 import React, { Component } from 'react';
 import placeStones from './utils/placeStones';
+import placeStone from './utils/placeStone';
 import normalizeGutter from './utils/normalizeGutter';
 import type { Position, Stone, Gutter } from './utils/types';
 
-/**
- * Transition.
- * If enabled on first render has the apropriate inline css.
- */
-
-const initialFadeTransitionStyle = {
-  transition: '300ms opacity ease',
-  opacity: 0,
-}
-
-const finalFadeTransitionStyle = {
-  transition: '300ms opacity ease',
-  opacity: 1,  
-}
 
 class Masonry extends Component {
   constructor(props: any) {
@@ -46,6 +33,14 @@ class Masonry extends Component {
   state: {
     loaded: any,
     positions: Position[] | null,
+    availableSpots: [
+      {
+        top: 0,
+        left: 0,
+        right: containerSize,
+        bottom: null,
+      },
+    ]
   };
 
   static defaultProps = {
@@ -66,7 +61,8 @@ class Masonry extends Component {
   stones: Stone[];
 
   componentDidMount() {
-    this.placeStones();
+    const stones = this.getStones();
+    this.placeStones(stones);
     this.firstRender = false;
   }
 
@@ -77,23 +73,78 @@ class Masonry extends Component {
     }));
   }
 
-  placeStones() {
-    if (this.node === null) {
-      return;
-    }
+  // placeStones() {
+  //   if (this.node === null) {
+  //     return;
+  //   }
+ 
+  //   const { positions, containerHeight } = placeStones({
+  //     containerSize,
+  //     stones,
+  //     gutter,
+  //   });
+
+  //   this.setState({
+  //     positions,
+  //     containerHeight,
+  //   });
+  // }
+
+
+  placeStones(stones, index = 0 ) {
     const containerSize = this.node.offsetWidth;
-    const stones = this.getStones();
+    const { availableSpots } = this.state;
     const gutter = normalizeGutter(this.props.gutter);
 
-    const { positions, containerHeight } = placeStones({
-      containerSize,
-      stones,
-      gutter,
-    });
+    //  it is calculated on each stone placement
+    let containerHeight = 0;
+    if (!stones.length) {
+      return null;
+    }
+
+    const positions = [];
+
+    let stone = stones[index];
+    if (gutter) {
+      stone = {
+        width: stone.width + gutter.left + gutter.right,
+        height: stone.height + gutter.top + gutter.bottom,
+      };
+    }
+
+      const {
+        position,
+        availableSpots: newAvailableSpots,
+    } = placeStone({
+          availableSpots,
+          stone,
+          containerSize,
+      });
+
+      let newPosition = { ...position };
+      if (gutter) {
+        newPosition = {
+          top: position.top + gutter.top,
+          left: position.left + gutter.left,
+        };
+      }
+
+      if (position.top + stone.height > containerHeight) {
+        containerHeight = position.top + stone.height;
+      }
+    } //  end of loop
+
+    // return { positions, containerHeight };  
 
     this.setState({
-      positions,
-      containerHeight,
+      availableSpots: newAvailableSpots,
+      positions: [this.state.positions, newPosition]
+    }, () => {
+      if ((index + 1) < stones.length) {
+        requestAnimationFrame(() => {
+          this.placeStones(stones, index + 1);
+        });
+      }
     });
   }
 

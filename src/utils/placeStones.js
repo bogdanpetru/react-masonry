@@ -7,7 +7,7 @@ function placeStones(
   {
     stones,
     containerSize,
-    gutter,
+    gutter
   }: { stones: Stone[], containerSize: number, gutter: Gutter },
 ): Position[] | null {
   // it is calculated on each stone placement
@@ -56,7 +56,7 @@ function placeStones(
     if (position.top + stone.height > containerHeight) {
       containerHeight = position.top + stone.height;
     }
-  }
+  } //  end of loop
 
   return { positions, containerHeight };
 }
