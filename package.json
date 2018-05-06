@@ -11,6 +11,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cosmos": "cosmos",
+    "cosmos:export": "cosmos-export"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.71.0",
+    "react-cosmos": "^4.0.0"
   }
 }

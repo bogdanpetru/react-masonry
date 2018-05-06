@@ -9,11 +9,17 @@ function placeStones(
     containerSize,
     gutter
   }: { stones: Stone[], containerSize: number, gutter: Gutter },
-): Position[] | null {
+): {
+  positions: Position[],
+  containerHeight: number
+} {
   // it is calculated on each stone placement
   let containerHeight = 0;
   if (!stones.length) {
-    return null;
+    return {
+      positions: [],
+      containerHeight: 0
+    };
   }
 
   const positions = [];
