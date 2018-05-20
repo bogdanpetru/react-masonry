@@ -1,9 +1,9 @@
 // @flow
 
-import placeStone from './placeStone';
+import { placeStone } from './placeStone';
 import type { Stone, Position, Gutter, Spot } from './types';
 
-function placeStones(
+export function placeStones(
   {
     stones,
     containerSize,
@@ -67,4 +67,3 @@ function placeStones(
   return { positions, containerHeight };
 }
 
-export default placeStones;

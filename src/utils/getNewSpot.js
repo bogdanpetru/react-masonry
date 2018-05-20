@@ -2,7 +2,7 @@
 
 import type { Spot, Stone } from './types';
 
-function getNewSpot({
+export function getNewSpot({
   availableSpots,
   optimalSpot,
   containerSize,
@@ -24,7 +24,7 @@ function getNewSpot({
      */
     bottom: optimalSpot.bottom || null,
   };
-  
+
   /**
    * If new spot is on the left and it's top is smaller than one
    * (first found) it should limit right of the current spot.
@@ -41,4 +41,3 @@ function getNewSpot({
   return newSpot;
 }
 
-export default getNewSpot;

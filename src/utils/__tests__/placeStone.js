@@ -1,4 +1,4 @@
-import placeStone from '../placeStone';
+import { placeStone } from '../placeStone';
 
 describe('placeStone', () => {
   it('should place first stone correct', () => {

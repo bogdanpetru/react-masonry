@@ -1,4 +1,4 @@
-import getOptimalSpot from '../getOptimalSpot';
+import { getOptimalSpot } from '../getOptimalSpot';
 
 describe('getOptimalSpot', () => {
   it(`

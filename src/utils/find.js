@@ -1,6 +1,6 @@
 // @flow
 
-function find(func: (item: any) => boolean, list: any[]): any {
+export function find(func: (item: any) => boolean, list: any[]): any {
   for (let i = 0, len = list.length; i < len; i++) {
     const item = list[i];
     const test = func(item);
@@ -11,5 +11,3 @@ function find(func: (item: any) => boolean, list: any[]): any {
 
   return null;
 }
-
-export default find;

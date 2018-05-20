@@ -1,7 +1,7 @@
 // @flow
 import type { Gutter } from './types';
 
-function normalizeGutter(gutter: Gutter | number): Gutter {
+export function normalizeGutter(gutter: Gutter | number): Gutter {
   if (typeof gutter === 'object') {
     const normalizedGutter = { ...gutter }
 
@@ -28,5 +28,3 @@ function normalizeGutter(gutter: Gutter | number): Gutter {
     right: gutter / 2,
   };
 }
-
-export default normalizeGutter;
