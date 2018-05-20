@@ -1,7 +1,8 @@
 // @flow
 
 import React, { Component } from "react";
-import placeStones from "./utils/placeStones";
+// import placeStones from "./utils/placeStones";
+import placeStone from "./utils/placeStone";
 import normalizeGutter from "./utils/normalizeGutter";
 import type { Position, Stone, Gutter, Spot } from "./utils/types";
 
@@ -18,6 +19,80 @@ type Props = {
   transition: "fade" | "move" | "fadeMove" | boolean,
   renderAfterImagesLoaded: boolean
 };
+
+type PositionHistory = {
+  positions: Position[][],
+  availableSpots: Spot[][],
+  containerHeight: number[]
+};
+
+function placeStones({
+  stones,
+  containerSize,
+  gutter
+}: {
+  stones: Stone[],
+  containerSize: number,
+  gutter: Gutter
+}): PositionHistory {
+  // it is calculated on each stone placement
+  let containerHeight = 0;
+  const history = {
+    positions: [],
+    containerHeight: [],
+    availableSpots: []
+  };
+  if (!stones.length) {
+    return history;
+  }
+
+  const positions = [];
+
+  let availableSpots = [
+    {
+      top: 0,
+      left: 0,
+      right: containerSize,
+      bottom: null
+    }
+  ];
+
+  for (let i = 0, len = stones.length; i < len; i += 1) {
+    let stone = stones[i];
+    if (gutter) {
+      stone = {
+        width: stone.width + gutter.left + gutter.right,
+        height: stone.height + gutter.top + gutter.bottom
+      };
+    }
+
+    const { position, availableSpots: newAvailableSpots } = placeStone({
+      availableSpots,
+      stone,
+      containerSize
+    });
+
+    let newPosition = { ...position };
+    if (gutter) {
+      newPosition = {
+        top: position.top + gutter.top,
+        left: position.left + gutter.left
+      };
+    }
+    positions.push(newPosition);
+    availableSpots = newAvailableSpots;
+    if (position.top + stone.height > containerHeight) {
+      containerHeight = position.top + stone.height;
+    }
+
+    history.positions.push([...positions]);
+    history.availableSpots.push([...availableSpots]);
+    history.containerHeight.push(containerHeight);
+  } //  end of loop
+
+  // return { positions, containerHeight };
+  return history;
+}
 
 class Masonry extends Component<Props, State> {
   node: HTMLElement | null;
@@ -37,13 +112,14 @@ class Masonry extends Component<Props, State> {
   static defaultProps = {
     gutter: 10,
     transition: false,
-    renderAfterImagesLoaded: true
+    renderAfterImagesLoaded: true,
+    showAvailableSPots: false // internal
   };
 
   constructor(props: any) {
     super(props);
 
-    this.setRef = (ref) => {
+    this.setRef = ref => {
       this.node = ref;
     };
 
@@ -59,7 +135,7 @@ class Masonry extends Component<Props, State> {
   getStones(): Array<Stone> {
     return this.stoneNodes.map(stone => ({
       width: stone.offsetWidth,
-      height: stone.offsetHeight,
+      height: stone.offsetHeight
     }));
   }
 
@@ -71,15 +147,24 @@ class Masonry extends Component<Props, State> {
     const stones = this.getStones();
     const gutter = normalizeGutter(this.props.gutter);
 
-    const { positions, containerHeight } = placeStones({
+    const history = placeStones({
       containerSize,
       stones,
       gutter
     });
 
+    this.loadStones(history, stones.length - 1);
+  }
+
+  loadStones(history: PositionHistory, index: number) {
+    const positions = history.positions[index];
+    const containerHeight = history.containerHeight[index];
+    const availableSpots = history.availableSpots[index];
+
     this.setState({
       positions,
-      containerHeight
+      containerHeight,
+      availableSpots
     });
   }
 
@@ -117,6 +202,40 @@ class Masonry extends Component<Props, State> {
     });
   }
 
+  remderAvailableSpots() {
+    const { availableSpots } = this.state;
+    return availableSpots.map(spot => (
+      <div
+        style={{
+          zIndex: 3000,
+          position: "absolute",
+          border: "3px solid yellow",
+          background: "rgba(255, 0, 0, 0.3)",
+          top: spot.top,
+          left: spot.left,
+          height: `${this.getHeight(spot)}px`,
+          right: this.getContainerWidth() - spot.right
+        }}
+      >
+        {JSON.stringify(spot)}
+      </div>
+    ));
+  }
+
+  getContainerWidth(): number {
+    return this.node ? this.node.offsetWidth : 0;
+  }
+
+  getContainerHeight(): number {
+    return this.node ? this.node.offsetHeight : 0;
+  }
+
+  getHeight(spot: any): number {
+    return spot.bottom
+      ? spot.bottom - spot.top
+      : this.state.containerHeight - spot.bottom;
+  }
+
   render() {
     return (
       <div
@@ -128,6 +247,7 @@ class Masonry extends Component<Props, State> {
         ref={this.setRef}
       >
         {this.renderStones()}
+        {this.props.showAvailableSPots && this.renderAvialableSpots()}
       </div>
     );
   }

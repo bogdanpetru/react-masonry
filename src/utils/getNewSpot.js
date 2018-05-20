@@ -14,19 +14,19 @@ function getNewSpot({
   stone: Stone,
 }): Spot {
   const right = containerSize;
-  const newSpot = {
+  let newSpot = {
     right,
     top: optimalSpot.top + stone.height,
     left: optimalSpot.left,
     /**
      * New spot should have the same bottom
-     * as the spot the stone ocupied.
+     * as the spot the stone occupied.
      */
     bottom: optimalSpot.bottom || null,
   };
-
+  
   /**
-   * If new spot is on the left and it's top is smaler than one
+   * If new spot is on the left and it's top is smaller than one
    * (first found) it should limit right of the current spot.
    */
   for (let i = 0, len = availableSpots.length; i < len; i += 1) {

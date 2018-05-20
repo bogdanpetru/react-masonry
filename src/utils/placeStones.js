@@ -1,13 +1,13 @@
 // @flow
 
 import placeStone from './placeStone';
-import type { Stone, Position, Gutter } from './types';
+import type { Stone, Position, Gutter, Spot } from './types';
 
 function placeStones(
   {
     stones,
     containerSize,
-    gutter
+    gutter,
   }: { stones: Stone[], containerSize: number, gutter: Gutter },
 ): {
   positions: Position[],
