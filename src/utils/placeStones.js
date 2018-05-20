@@ -23,7 +23,7 @@ function placeStones(
   }
 
   const positions = [];
-  let availableSpots = [
+  let availableSpots : Spot[] = [
     {
       top: 0,
       left: 0,

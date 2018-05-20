@@ -1,44 +1,40 @@
-import React from 'react';
-import Masonry from '../Masonry';
-
-const style = {
-  width: '33.33%',
-};
+import React from "react";
+import Masonry from "../Masonry";
 
 const common = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   fontWeight: 700
-}
+};
 
 const boxes = [
-  { ...common, width: '30%', height: 200 },
-  { ...common, width: '40%', height: 320 },
-  { ...common, width: '30%', height: 250 },
-  { ...common, width: '20%', height: 100 },
-  { ...common, width: '50%', height: 120 },
-  { ...common, width: '70%', height: 100 },
-  { ...common, width: '20%', height: 200 },
-  { ...common, width: '30%', height: 140 },
-  { ...common, width: '25%', height: 200 },
-  { ...common, width: '20%', height: 140 },
-  { ...common, width: '40%', height: 180 },
-  { ...common, width: '23%', height: 140 },
-]
+  { ...common, width: "30%", height: 200 },
+  { ...common, width: "40%", height: 320 },
+  { ...common, width: "30%", height: 250 },
+  { ...common, width: "20%", height: 100 },
+  { ...common, width: "50%", height: 120 },
+  { ...common, width: "70%", height: 100 },
+  { ...common, width: "20%", height: 200 },
+  { ...common, width: "30%", height: 140 },
+  { ...common, width: "25%", height: 200 },
+  { ...common, width: "20%", height: 140 },
+  { ...common, width: "40%", height: 180 },
+  { ...common, width: "23%", height: 140 }
+];
 
-const title = {
-  position: 'absolute',
+const titleStyle = {
+  position: "absolute",
   left: 5,
   top: 5,
-  fontWeight: '700',
-  backgroundColor: '#333',
-  color: '#fff',
+  fontWeight: "700",
+  backgroundColor: "#333",
+  color: "#fff",
   padding: 5
-}
+};
 
 function random(min, max) {
-  return Math.ceil(Math.random() * (max - min) + min)
+  return Math.ceil(Math.random() * (max - min) + min);
 }
 
 function random250() {
@@ -50,23 +46,17 @@ function randomColor() {
 }
 
 const App = () => (
-  <div>
-    <h1></h1>
-    <Masonry gutter={{ bottom: 10, top: 10 }} style={{ border: '1px solid blue', height: 500 }}>
-      {boxes.map(
-        (box, index) => (
-          <div 
-            key={index} 
-            style={{...box, backgroundColor: randomColor()}}>
-            {`${box.width} - ${box.height}`}
-            <div style={title}>
-              {index}
-            </div>
-          </div>
-        )
-      )}
-    </Masonry>
-  </div>
+  <Masonry
+    gutter={{ bottom: 10, top: 10 }}
+    style={{ border: "1px solid blue", height: 500 }}
+  >
+    {boxes.map((box, index) => (
+      <div key={index} style={{ ...box, backgroundColor: randomColor() }}>
+        {`${box.width} - ${box.height}`}
+        <div style={titleStyle}>{index}</div>
+      </div>
+    ))}
+  </Masonry>
 );
 
 export default App;
