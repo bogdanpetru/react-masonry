@@ -19,7 +19,7 @@ type Props = {
   renderAfterImagesLoaded: boolean
 };
 
-class Masonry extends Component<Props, State> {
+export class Masonry extends Component<Props, State> {
   node: HTMLElement | null;
   stoneNodes: Array<HTMLElement>;
   setRef: (ref: HTMLElement | null) => void;
@@ -147,5 +147,3 @@ class Masonry extends Component<Props, State> {
     );
   }
 }
-
-export default Masonry;

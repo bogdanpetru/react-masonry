@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 
 import "./App.css";
 
 import RelativeWidthsExample from "./examples/RelativeWidthsExample";
-// import ImagesExample from './examples/ImagesExample';
+import ImagesExample from "./examples/ImagesExample";
 
-const App = () => (
+const App = ({ activeExample, onActiveExampleChange }) => (
   <div className="root">
     <h1 className="title">React Masonry</h1>
 
@@ -50,19 +50,61 @@ const App = () => (
     <h2>Api</h2>
     <p>
       See{" "}
-      <a target="_blank" rel="noopener noreferrer" href="https://github.com/bogdanpetru/react-masonry">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/bogdanpetru/react-masonry"
+      >
         README.md
       </a>.
     </p>
     <h2>Examples</h2>
 
-    <h3>Images</h3>
-    <p>Images are placed after they are loaded.</p>
-    {/* <ImagesExample /> */}
+    <div style={{ marginBottom: 30 }}>
+      <button
+        className={
+          "btn-default " + (activeExample === "relative" ? "active" : "")
+        }
+        onClick={() => onActiveExampleChange("relative")}
+      >
+        Percent width
+      </button>
+      <button
+        className={"btn-default " + (activeExample === "images" ? "active" : "")}
+        onClick={() => onActiveExampleChange("images")}
+      >
+        Images
+      </button>
+    </div>
 
-    <h3>Percent width:</h3>
-    <RelativeWidthsExample />
+    {
+      {
+        images: <ImagesExample />,
+        relative: <RelativeWidthsExample />
+      }[activeExample]
+    }
   </div>
 );
 
-export default App;
+class SmartApp extends Component {
+  state = {
+    activeExample: "relative"
+  };
+
+  setActiveExample = exampleName => {
+    this.setState({
+      activeExample: exampleName
+    });
+  };
+
+  render() {
+    return (
+      <App
+        activeExample={this.state.activeExample}
+        onActiveExampleChange={this.setActiveExample}
+      />
+    );
+  }
+}
+
+export default SmartApp;

@@ -67,3 +67,8 @@ Space around stones. Specify a `number` for all 4 directions or specify for desi
 
 Render after all images have loaded
 
+## TODO
+
+[ ] update tests where needed
+[ ] add tests for covered cases validate stones
+[ ] fix edge case where an item is bigger than the container

@@ -1,7 +1,22 @@
+h1, h2, h3 {
+  font-family: 'Sunflower', sans-serif;
+}
+
+h2 {
+  margin-bottom: 35px;
+  font-size: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: #2980b9;
+  font-weight: 500;
+}
+
 body {
-  font-family: 'Lato', sans-serif;
-  background: #fbfbfb;
-  color: #001c25;
+  font-family: 'Open Sans', sans-serif;
+  color: #2c3e50;
+  padding-top: 50px;
 }
 
 img {
@@ -15,5 +30,24 @@ img {
 }
 
 .title {
-  text-align: center;
+  font-size: 46px;
+  margin-bottom: 50px;
+}
+
+.btn-default {
+  cursor: pointer;
+  font-family: 'Sunflower', sans-serif;
+  font-size: 18px;
+  margin: 0 3px;
+  padding: 10px;
+  border: 0;
+  background: #8e44ad; 
+  color: #ecf0f1;
+
+  transition: color 300ms ease;
+}
+
+.btn-default.active,
+.btn-default:hover {
+  background: #2980b9;
 }
