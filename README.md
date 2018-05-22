@@ -23,6 +23,12 @@ return <Masonry >
 </Masonry>
 ```
 
+## Install 
+
+Clone project.
+
+> run `yarn install` or `npm install`
+> run `yarn start` or `npm start` - will open in browser the demo (localhost:3000).
 
 ## Api:
 
