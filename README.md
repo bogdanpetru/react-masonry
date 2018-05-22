@@ -16,7 +16,7 @@ Elements rendered inside Masonry must be [DOM elements](https://facebook.github.
 ```jsx
 import Mansonry, { Brick } from 'react-masonry'
 
-return <Masonry >
+return <Masonry>
   <img src="helloWolrd.jpg" />
   <div className="box">some text</div>
   <img src="foo.png" />
@@ -32,40 +32,38 @@ Clone project.
 
 ## Api:
 
-#####  [x] gutter: number|{top, left, right, bottom} - default: 0
+-  [x] `gutter`: number|{top, left, right, bottom} - default: 0
+
 Space around stones. Specify a `number` for all 4 directions or specify for desired directions with an object.
 
-##### transition: fade|fadeMove|false - fade
+- [ ] `transition`: fade|fadeMove|false - fade
 
-- [ ] Whether place stones one after another using an animation.
+ Whether place stones one after another using an animation.
 
-##### transitionDudation: number - 150
+- [ ] `transitionDuration`: number - 150
 
-- [ ] Transition duration in ms.
+ Transition duration in ms.
 
-##### enterOneAfterAnother: bool - true
+- [ ] `enterOneAfterAnother`: bool - true
 
-- [ ] Whether stones are placed one after another with a delay (oneAfterAnotherDelay) between them.
+ Whether stones are placed one after another with a delay (oneAfterAnotherDelay) between them.
 
-##### oneAfterAnotherDelay: number - 100
+- [ ] `oneAfterAnotherDelay`: number - 100
 
-- [ ] Speed with which stones are placed when `enterOneAfterAnother=true`
+ Speed with which stones are placed when `enterOneAfterAnother=true`
 
-##### updateOnWindowResize: bool - true
+- [ ] `updateOnWindowResize`: bool - true
 
-- [ ] Whether to calculate again positions when Windows changes size.
+ Whether to calculate again positions when Windows changes size.
 
-##### updatePositions: method
 
-- [ ] Call to reposition stones.
+- [ ] Customize specific stones in different way
 
-#### Customize specific stones in different way
-
-- [ ] These props can be also added on div element like so:
+ These props can be also added on div element like so:
 
 `data-masonry-settings={{ gutter: 20, offset: { bottom: 20 } }}`
 
-#### renderAfterImagesLoaded: boolean - true
+- [ ] `renderAfterImagesLoaded`: boolean - true
 
 Render after all images have loaded
 
