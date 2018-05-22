@@ -28,6 +28,7 @@ return <Masonry>
 Clone project.
 
 > run `yarn install` or `npm install`
+
 > run `yarn start` or `npm start` - will open in browser the demo (localhost:3000).
 
 ## Api:
@@ -69,6 +70,6 @@ Render after all images have loaded
 
 ## TODO
 
-[ ] update tests where needed
-[ ] add tests for covered cases validate stones
-[ ] fix edge case where an item is bigger than the container
+- [ ] update tests where needed
+- [ ] add tests for covered cases validate stones
+- [ ] fix edge case where an item is bigger than the container
