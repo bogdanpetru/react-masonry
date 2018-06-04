@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { placeStones } from "./utils/placeStones";
 import { normalizeGutter } from "./utils/normalizeGutter";
 import type { Position, Stone, Gutter, Spot } from "./utils/types";
@@ -16,10 +16,25 @@ type Props = {
   style: any,
   gutter: Gutter | number,
   transition: "fade" | "move" | "fadeMove" | boolean,
+  transitionDuration: number,
+  transitionStep: number,
   renderAfterImagesLoaded: boolean
 };
 
-export class Masonry extends Component<Props, State> {
+const transitionStyles = (transitionDuration) => ({
+  fade: `${transitionDuration}ms opacity ease`,
+  fadeMove: `
+    ${transitionDuration}ms opacity ease,
+    ${transitionDuration}ms top ease,
+    ${transitionDuration}ms left ease
+  `,
+  move: `
+    ${transitionDuration}ms top ease,
+    ${transitionDuration}ms left ease
+  `,
+});
+
+export class Masonry extends PureComponent<Props, State> {
   node: HTMLElement | null;
   stoneNodes: Array<HTMLElement>;
   setRef: (ref: HTMLElement | null) => void;
@@ -36,6 +51,8 @@ export class Masonry extends Component<Props, State> {
 
   static defaultProps = {
     gutter: 10,
+    transitionDuration: 300,
+    transitionStep: 50,
     transition: false,
     renderAfterImagesLoaded: true,
     showAvailableSPots: false // internal
@@ -57,6 +74,10 @@ export class Masonry extends Component<Props, State> {
     this.firstRender = false;
   }
 
+
+  /**
+   * Reads with/height of each DOM element
+   */
   getStones(): Array<Stone> {
     return this.stoneNodes.map(stone => ({
       width: stone.offsetWidth,
@@ -64,6 +85,10 @@ export class Masonry extends Component<Props, State> {
     }));
   }
 
+  /**
+   * Runs the layout algorithm
+   * and sets on state the current stone positions 
+   */
   placeStones() {
     if (this.node === null) {
       return;
@@ -78,22 +103,57 @@ export class Masonry extends Component<Props, State> {
       gutter
     });
 
+
+    const { transition } = this.props;
+    if (transition) {
+      this.placeStonesForTransition(positions);
+      this.setState({
+        containerHeight,
+      });
+    } else {
+      // set all stone on one render 
+      this.setState({
+        positions,
+        containerHeight
+      });
+    }
+  }
+
+  placeStonesForTransition(positions: Position[], currentStone: number = 0) {
+    const { transitionStep } = this.props;
     this.setState({
-      positions,
-      containerHeight
+      positions: positions.slice(0, currentStone),
+    }, () => {
+      setTimeout(() => {
+        this.placeStonesForTransition(positions, currentStone + 1);
+      }, transitionStep);
     });
   }
 
-  getPositionStyle(index: number) {
+  getTransitionStyle() {
+    const { transition, transitionDuration } = this.props;
+
+    if (!transition) {
+      return null;
+    }
+
+    return {
+      transition: transitionStyles(transitionDuration)[transition],
+    }
+  }
+
+  getStoneStyle(index: number): Object {
     let positionStyle;
     if (this.state.positions) {
       positionStyle = this.state.positions[index];
     }
     if (positionStyle) {
-      positionStyle = { ...positionStyle, opacity: 1 };
+      positionStyle = { ...positionStyle, opacity: 1,};
     } else {
       positionStyle = {
-        opacity: 0
+        opacity: 0,
+        top: 0,
+        left: 0,
       };
     }
 
@@ -101,13 +161,13 @@ export class Masonry extends Component<Props, State> {
   }
 
   renderStones() {
-    // keep refs
     return [...this.props.children].map((child, index) => {
-      const positionStyle = this.getPositionStyle(index);
+      const stoneStyle = this.getStoneStyle(index);
       const style = {
         ...child.props.style,
         position: "absolute",
-        ...positionStyle
+        ...stoneStyle,
+        ...this.getTransitionStyle()
       };
       return React.cloneElement(child, {
         ref: ref => {
@@ -116,20 +176,6 @@ export class Masonry extends Component<Props, State> {
         style
       });
     });
-  }
-
-  getContainerWidth(): number {
-    return this.node ? this.node.offsetWidth : 0;
-  }
-
-  getContainerHeight(): number {
-    return this.node ? this.node.offsetHeight : 0;
-  }
-
-  getHeight(spot: any): number {
-    return spot.bottom
-      ? spot.bottom - spot.top
-      : this.state.containerHeight - spot.bottom;
   }
 
   render() {

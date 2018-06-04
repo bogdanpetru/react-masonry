@@ -49,6 +49,7 @@ const App = () => (
   <Masonry
     gutter={{ bottom: 10, top: 10 }}
     style={{ border: '1px solid blue', height: 500 }}
+    transition="move"
   >
     {boxes.map((box, index) => (
       <div key={index} style={{ ...box, backgroundColor: randomColor() }}>

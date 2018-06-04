@@ -32,6 +32,7 @@ const children = boxes.map((box, index) => (
 export default {
   component: Masonry,
   props: {
-    children
+    children,
+    gutter: 0,
   }
 };

@@ -37,11 +37,13 @@ Clone project.
 
 Space around stones. Specify a `number` for all 4 directions or specify for desired directions with an object.
 
-- [ ] `transition`: fade|fadeMove|false - fade
+- [x] `transition`: fade|fadeMove|false - fade
 
  Whether place stones one after another using an animation.
 
-- [ ] `transitionDuration`: number - 150
+- [x] `transitionStep`: number - 50 - in ms, time in between each stone placement, this is relevant if `transition` prop is not `false`.
+
+- [x] `transitionDuration`: number - 300
 
  Transition duration in ms.
 
@@ -73,3 +75,5 @@ Render after all images have loaded
 - [ ] update tests where needed
 - [ ] add tests for covered cases validate stones
 - [ ] fix edge case where an item is bigger than the container
+- [ ] add tests for props
+- [ ] add prettier
