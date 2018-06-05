@@ -13,13 +13,13 @@ const App = ({ activeExample, onActiveExampleChange }) => (
       <h2>Introduction</h2>
 
       <p>
-        React Masonry, like{" "}
+        ReactJs layout library inspired by{" "}
         <a
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/desandro/masonry"
         >
-          Masonry but in React.
+          Masonry.
         </a>
       </p>
 

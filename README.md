@@ -1,9 +1,10 @@
 # react masonry
 
-[Masonry](https://github.com/desandro/masonry)  like  component implemented in react.
-Places elements in optimal positions by stacking them from left to right and from top to bottom.
+ReactJs layout library inspired by [Masonry](https://github.com/desandro/masonry).
+
+It places elements in optimal positions by stacking them from left to right and from top to bottom.
  
- See [Demo](https://bogdanpetru.github.io/react-masonry/)
+See [Demo](https://bogdanpetru.github.io/react-masonry/).
  
 
 **This component is in development, any help is welcome :).**
