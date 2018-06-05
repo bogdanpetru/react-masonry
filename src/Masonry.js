@@ -39,14 +39,12 @@ export class Masonry extends PureComponent<Props, State> {
   stoneNodes: Array<HTMLElement>;
   setRef: (ref: HTMLElement | null) => void;
   firstRender: boolean;
-  imageItemsNo: number;
-  stones = [];
-  stones: Stone[];
+  loadingImagesIndexes: number[] = [];
 
   state = {
     positions: [],
     availableSpots: [],
-    containerHeight: 0
+    containerHeight: 0,
   };
 
   static defaultProps = {
@@ -70,7 +68,9 @@ export class Masonry extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    this.placeStones();
+    if (!this.areImagesLoading()) {
+      this.placeStones();
+    }
     this.firstRender = false;
   }
 
@@ -169,13 +169,39 @@ export class Masonry extends PureComponent<Props, State> {
         ...stoneStyle,
         ...this.getTransitionStyle()
       };
-      return React.cloneElement(child, {
+      const stoneProps = {
+        style,
         ref: ref => {
           this.stoneNodes[index] = ref;
         },
-        style
+      };
+
+      if (this.props.renderAfterImagesLoaded && child.type === 'img') {
+        this.loadingImagesIndexes.push(index);
+        stoneProps.onLoad = (event) => {
+          this.loadingImagesIndexes = this.loadingImagesIndexes.filter(i => i !== index);
+          this.checkIfImagesAreLoading();
+          if (child.props.onLoad) {
+            child.props.onLoad(event);
+          }
+        };
+      }
+
+      return React.cloneElement(child, {
+        ...child.props,
+        ...stoneProps
       });
     });
+  }
+
+  areImagesLoading(): boolean {
+    return !!this.loadingImagesIndexes.length;
+  }
+
+  checkIfImagesAreLoading() {
+    if (!this.areImagesLoading()) {
+      this.placeStones();
+    }
   }
 
   render() {

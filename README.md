@@ -37,7 +37,7 @@ Clone project.
 
 Space around stones. Specify a `number` for all 4 directions or specify for desired directions with an object.
 
-- [x] `transition`: fade|fadeMove|false - fade
+- [x] `transition`: fade|fadeMove|false - fade - if different than false, each item will appear one after another with an interval of `transitionStep` in between.
 
  Whether place stones one after another using an animation.
 
@@ -46,12 +46,6 @@ Space around stones. Specify a `number` for all 4 directions or specify for desi
 - [x] `transitionDuration`: number - 300
 
  Transition duration in ms.
-
-- [ ] `enterOneAfterAnother`: bool - true
-
- Whether stones are placed one after another with a delay (oneAfterAnotherDelay) between them.
-
-- [ ] `oneAfterAnotherDelay`: number - 100
 
  Speed with which stones are placed when `enterOneAfterAnother=true`
 
@@ -66,7 +60,7 @@ Space around stones. Specify a `number` for all 4 directions or specify for desi
 
 `data-masonry-settings={{ gutter: 20, offset: { bottom: 20 } }}`
 
-- [ ] `renderAfterImagesLoaded`: boolean - true
+- [x] `renderAfterImagesLoaded`: boolean - true
 
 Render after all images have loaded
 
