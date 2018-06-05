@@ -1,6 +1,6 @@
 {
   "name": "react-masonry",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "private": false,
   "dependencies": {
     "react": "^16.4.0",
@@ -13,10 +13,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "cosmos": "cosmos",
-    "cosmos:export": "cosmos-export",    
+    "cosmos:export": "cosmos-export",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-
   },
   "devDependencies": {
     "babel-preset-flow": "^6.23.0",
