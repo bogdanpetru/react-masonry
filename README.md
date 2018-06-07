@@ -63,9 +63,13 @@ Space around stones. Specify a `number` for all 4 directions or specify for desi
 
 `data-masonry-settings={{ gutter: 20, offset: { bottom: 20 } }}`
 
-- [x] `renderAfterImagesLoaded`: boolean - true
+- [x] `renderAfterImagesLoaded`: boolean - false
 
 Render after all images have loaded
+
+- [ ] `renderOnEachImageLoad`: boolean - true
+
+When `true` and `renderAfterImagesLoaded` is `false`, each image is placed as it is loaded. 
 
 ## TODO
 

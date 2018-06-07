@@ -15,13 +15,14 @@ type Props = {
   children: any,
   style: any,
   gutter: Gutter | number,
-  transition: "fade" | "move" | "fadeMove" | boolean,
+  transition: "fade" | "move" | "fadeMove" | false,
   transitionDuration: number,
   transitionStep: number,
-  renderAfterImagesLoaded: boolean
+  renderAfterImagesLoaded: boolean,
+  renderOnEachImageLoad: boolean
 };
 
-const transitionStyles = (transitionDuration) => ({
+const transitionStyles = transitionDuration => ({
   fade: `${transitionDuration}ms opacity ease`,
   fadeMove: `
     ${transitionDuration}ms opacity ease,
@@ -31,7 +32,12 @@ const transitionStyles = (transitionDuration) => ({
   move: `
     ${transitionDuration}ms top ease,
     ${transitionDuration}ms left ease
-  `,
+  `
+});
+
+const getStoneSize = stone => ({
+  width: stone.offsetWidth,
+  height: stone.offsetHeight,
 });
 
 export class Masonry extends PureComponent<Props, State> {
@@ -44,16 +50,16 @@ export class Masonry extends PureComponent<Props, State> {
   state = {
     positions: [],
     availableSpots: [],
-    containerHeight: 0,
+    containerHeight: 0
   };
 
   static defaultProps = {
-    gutter: 10,
+    gutter: 0,
     transitionDuration: 300,
     transitionStep: 50,
     transition: false,
-    renderAfterImagesLoaded: true,
-    showAvailableSPots: false // internal
+    renderAfterImagesLoaded: false,
+    renderOnEachImageLoad: true
   };
 
   constructor(props: any) {
@@ -74,27 +80,23 @@ export class Masonry extends PureComponent<Props, State> {
     this.firstRender = false;
   }
 
-
   /**
    * Reads with/height of each DOM element
    */
   getStones(): Array<Stone> {
-    return this.stoneNodes.map(stone => ({
-      width: stone.offsetWidth,
-      height: stone.offsetHeight
-    }));
+    return this.stoneNodes.map(getStoneSize);
   }
 
   /**
    * Runs the layout algorithm
-   * and sets on state the current stone positions 
+   * and sets on state the current stone positions
    */
-  placeStones() {
+  placeStones(stones?: Stone[]) {
     if (this.node === null) {
       return;
     }
     const containerSize = this.node.offsetWidth;
-    const stones = this.getStones();
+    stones = stones || this.getStones();
     const gutter = normalizeGutter(this.props.gutter);
 
     const { positions, containerHeight } = placeStones({
@@ -103,15 +105,14 @@ export class Masonry extends PureComponent<Props, State> {
       gutter
     });
 
-
     const { transition } = this.props;
     if (transition) {
       this.placeStonesForTransition(positions);
       this.setState({
-        containerHeight,
+        containerHeight
       });
     } else {
-      // set all stone on one render 
+      // set all stone on one render
       this.setState({
         positions,
         containerHeight
@@ -121,13 +122,16 @@ export class Masonry extends PureComponent<Props, State> {
 
   placeStonesForTransition(positions: Position[], currentStone: number = 0) {
     const { transitionStep } = this.props;
-    this.setState({
-      positions: positions.slice(0, currentStone),
-    }, () => {
-      setTimeout(() => {
-        this.placeStonesForTransition(positions, currentStone + 1);
-      }, transitionStep);
-    });
+    this.setState(
+      {
+        positions: positions.slice(0, currentStone)
+      },
+      () => {
+        setTimeout(() => {
+          this.placeStonesForTransition(positions, currentStone + 1);
+        }, transitionStep);
+      }
+    );
   }
 
   getTransitionStyle() {
@@ -138,22 +142,22 @@ export class Masonry extends PureComponent<Props, State> {
     }
 
     return {
-      transition: transitionStyles(transitionDuration)[transition],
-    }
+      transition: transitionStyles(transitionDuration)[transition]
+    };
   }
 
-  getStoneStyle(index: number): Object {
+  getPositionStyle(index: number): Object {
     let positionStyle;
     if (this.state.positions) {
       positionStyle = this.state.positions[index];
     }
     if (positionStyle) {
-      positionStyle = { ...positionStyle, opacity: 1,};
+      positionStyle = { ...positionStyle, opacity: 1 };
     } else {
       positionStyle = {
         opacity: 0,
         top: 0,
-        left: 0,
+        left: 0
       };
     }
 
@@ -162,24 +166,29 @@ export class Masonry extends PureComponent<Props, State> {
 
   renderStones() {
     return [...this.props.children].map((child, index) => {
-      const stoneStyle = this.getStoneStyle(index);
       const style = {
         ...child.props.style,
-        position: "absolute",
-        ...stoneStyle,
+        position: 'absolute',
+        ...this.getPositionStyle(index),
         ...this.getTransitionStyle()
       };
-      const stoneProps = {
+      const stoneProps: any = {
         style,
         ref: ref => {
           this.stoneNodes[index] = ref;
-        },
+        }
       };
 
-      if (this.props.renderAfterImagesLoaded && child.type === 'img') {
+      if (
+        (this.props.renderOnEachImageLoad ||
+          this.props.renderAfterImagesLoaded) &&
+        child.type === "img"
+      ) {
         this.loadingImagesIndexes.push(index);
-        stoneProps.onLoad = (event) => {
-          this.loadingImagesIndexes = this.loadingImagesIndexes.filter(i => i !== index);
+        stoneProps.onLoad = event => {
+          this.loadingImagesIndexes = this.loadingImagesIndexes.filter(
+            i => i !== index
+          );
           this.checkIfImagesAreLoading();
           if (child.props.onLoad) {
             child.props.onLoad(event);
@@ -199,8 +208,10 @@ export class Masonry extends PureComponent<Props, State> {
   }
 
   checkIfImagesAreLoading() {
-    if (!this.areImagesLoading()) {
+    if (this.props.renderAfterImagesLoaded && !this.areImagesLoading()) {
       this.placeStones();
+    } else {
+      this.placeStones();  
     }
   }
 

@@ -47,7 +47,6 @@ export function randomColor() {
 
 const App = () => (
   <Masonry
-    gutter={{ bottom: 10, top: 10 }}
     style={{  border: '1px solid blue', height: 500 }}
     transition="fadeMove"
   >
