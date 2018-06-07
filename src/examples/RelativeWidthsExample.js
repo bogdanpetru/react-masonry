@@ -47,7 +47,7 @@ export function randomColor() {
 
 const App = () => (
   <Masonry
-    style={{  border: '1px solid blue', height: 500 }}
+    style={{ height: 500 }}
     transition="fadeMove"
   >
     {boxes.map((box, index) => (

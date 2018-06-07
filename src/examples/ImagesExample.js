@@ -4,7 +4,7 @@ import { Masonry } from '../Masonry';
 const App = () => (
   <React.Fragment>
     <h1>Images</h1>
-    <Masonry transition="fade" style={{ heiht: 700, border: '1px solid blue' }}>
+    <Masonry transition="fade" style={{ height: 700 }}>
       <img key="img1" style={{ width: 500 / 2 - 10 }} src="http://pipsum.com/600x400.jpg" />
       <img key="img2" style={{ width: 500 / 2 - 10 }} src="http://pipsum.com/500x400.jpg" />
       <img key="img3" style={{ width: 490 }} src="http://pipsum.com/600x470.jpg" />
