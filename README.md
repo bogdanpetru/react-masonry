@@ -3,9 +3,9 @@
 ReactJs layout library inspired by [Masonry](https://github.com/desandro/masonry).
 
 It places elements in optimal positions by stacking them from left to right and from top to bottom.
- 
+
 See [Demo](https://bogdanpetru.github.io/react-masonry/).
- 
+
 
 **This component is in development, any help is welcome :).**
 
@@ -26,7 +26,7 @@ return <Masonry>
 </Masonry>
 ```
 
-## Install 
+## Install
 
 Clone project.
 
@@ -69,12 +69,14 @@ Render after all images have loaded
 
 - [ ] `renderOnEachImageLoad`: boolean - true
 
-When `true` and `renderAfterImagesLoaded` is `false`, each image is placed as it is loaded. 
+When `true` and `renderAfterImagesLoaded` is `false`, each image is placed as it is loaded.
 
 ## TODO
 
+- [ ] update source code to ts
 - [ ] update tests where needed
 - [ ] add tests for covered cases validate stones
 - [ ] fix edge case where an item is bigger than the container
 - [ ] add tests for props
 - [ ] add prettier
+- [ ] update stone positions on props change that influence positioning

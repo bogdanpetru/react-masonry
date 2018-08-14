@@ -21,7 +21,7 @@
     "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.71.0",
     "gh-pages": "^1.2.0",
-    "react-cosmos": "^4.4.0"
+    "react-cosmos": "4.6.4"
   },
   "homepage": "http://bogdanpetru.github.io/react-masonry"
 }

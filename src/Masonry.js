@@ -80,6 +80,16 @@ export class Masonry extends PureComponent<Props, State> {
     this.firstRender = false;
   }
 
+  handleStoneLoad = (child, index) => event => {
+    this.loadingImagesIndexes = this.loadingImagesIndexes.filter(i => i !== index);
+
+    requestAnimationFrame(this.checkIfImagesAreLoading);
+
+    if (child.props.onLoad) {
+      child.props.onLoad(event);
+    }
+  }
+
   /**
    * Reads with/height of each DOM element
    */
@@ -95,6 +105,7 @@ export class Masonry extends PureComponent<Props, State> {
     if (this.node === null) {
       return;
     }
+
     const containerSize = this.node.offsetWidth;
     stones = stones || this.getStones();
     const gutter = normalizeGutter(this.props.gutter);
@@ -164,65 +175,68 @@ export class Masonry extends PureComponent<Props, State> {
     return positionStyle;
   }
 
-  renderStones() {
-    return [...this.props.children].map((child, index) => {
-      const style = {
-        ...child.props.style,
-        position: 'absolute',
-        ...this.getPositionStyle(index),
-        ...this.getTransitionStyle()
-      };
-      const stoneProps: any = {
-        style,
-        ref: ref => {
-          this.stoneNodes[index] = ref;
-        }
-      };
+  setStoneRef = index => ref => this.stoneNodes[index] = ref
 
-      if (
-        (this.props.renderOnEachImageLoad ||
-          this.props.renderAfterImagesLoaded) &&
-        child.type === "img"
-      ) {
-        this.loadingImagesIndexes.push(index);
-        stoneProps.onLoad = event => {
-          this.loadingImagesIndexes = this.loadingImagesIndexes.filter(
-            i => i !== index
-          );
-          this.checkIfImagesAreLoading();
-          if (child.props.onLoad) {
-            child.props.onLoad(event);
-          }
-        };
-      }
+  getStoneStyle(childStyle, index) {
+    return {
+      ...childStyle,
+      position: 'absolute',
+      ...this.getPositionStyle(index),
+      ...this.getTransitionStyle()
+    };
+  }
 
-      return React.cloneElement(child, {
-        ...child.props,
-        ...stoneProps
-      });
+  renderStone = (child, index) => {
+    const stoneProps: any = {
+      style: this.getStoneStyle(child.props.style, index),
+      ref: this.setStoneRef(index),
+      key: child.props.key || index,
+    };
+
+    if (
+      (this.props.renderOnEachImageLoad || this.props.renderAfterImagesLoaded)
+        &&
+      child.type === "img"
+    ) {
+      stoneProps.onLoad = this.handleStoneLoad(child, index);
+    }
+
+    return React.cloneElement(child, {
+      ...child.props,
+      ...stoneProps
     });
+  }
+
+  renderStones() {
+    return this.props.children.map(this.renderStone);
+  }
+
+  addImageToLoadingList(index) {
+    this.loadingImagesIndexes.push(index);
   }
 
   areImagesLoading(): boolean {
     return !!this.loadingImagesIndexes.length;
   }
 
-  checkIfImagesAreLoading() {
+  checkIfImagesAreLoading = () => {
     if (this.props.renderAfterImagesLoaded && !this.areImagesLoading()) {
       this.placeStones();
     } else {
-      this.placeStones();  
+      this.placeStones();
     }
   }
 
   render() {
+    const style = {
+      ...this.props.style,
+      position: "relative",
+      minHeight: this.state.containerHeight
+    };
+
     return (
       <div
-        style={{
-          ...this.props.style,
-          position: "relative",
-          minHeight: this.state.containerHeight
-        }}
+        style={style}
         ref={this.setRef}
       >
         {this.renderStones()}
