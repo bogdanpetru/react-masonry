@@ -3,24 +3,8 @@
 import React, { PureComponent } from "react";
 import { placeStones } from "./utils/placeStones";
 import { normalizeGutter } from "./utils/normalizeGutter";
-import type { Position, Stone, Gutter, Spot } from "./utils/types";
-
-type State = {
-  positions: Position[],
-  availableSpots: Spot[],
-  containerHeight: number
-};
-
-type Props = {
-  children: any,
-  style: any,
-  gutter: Gutter | number,
-  transition: "fade" | "move" | "fadeMove" | false,
-  transitionDuration: number,
-  transitionStep: number,
-  renderAfterImagesLoaded: boolean,
-  renderOnEachImageLoad: boolean
-};
+import type { Position, Stone } from "./utils/types";
+import type { State, Props } from "./utils/types";
 
 const transitionStyles = transitionDuration => ({
   fade: `${transitionDuration}ms opacity ease`,
@@ -42,10 +26,7 @@ const getStoneSize = stone => ({
 
 export class Masonry extends PureComponent<Props, State> {
   node: HTMLElement | null;
-  stoneNodes: Array<HTMLElement>;
-  setRef: (ref: HTMLElement | null) => void;
-  firstRender: boolean;
-  loadingImagesIndexes: number[] = [];
+  stoneNodes: Array<HTMLElement> = [];
 
   state = {
     positions: [],
@@ -62,33 +43,16 @@ export class Masonry extends PureComponent<Props, State> {
     renderOnEachImageLoad: true
   };
 
-  constructor(props: any) {
-    super(props);
-
-    this.setRef = ref => {
-      this.node = ref;
-    };
-
-    this.firstRender = true;
-    this.stoneNodes = [];
-  }
-
   componentDidMount() {
-    if (!this.areImagesLoading()) {
-      this.placeStones();
-    }
-    this.firstRender = false;
+    this.placeStones();
   }
 
-  handleStoneLoad = (child, index) => event => {
-    this.loadingImagesIndexes = this.loadingImagesIndexes.filter(i => i !== index);
-
-    requestAnimationFrame(this.checkIfImagesAreLoading);
-
-    if (child.props.onLoad) {
-      child.props.onLoad(event);
-    }
+  setRef = ref => {
+    this.node = ref;
   }
+
+  setStoneRef = index => ref =>
+    this.stoneNodes[index] = ref
 
   /**
    * Reads with/height of each DOM element
@@ -133,6 +97,7 @@ export class Masonry extends PureComponent<Props, State> {
 
   placeStonesForTransition(positions: Position[], currentStone: number = 0) {
     const { transitionStep } = this.props;
+
     this.setState(
       {
         positions: positions.slice(0, currentStone)
@@ -175,8 +140,6 @@ export class Masonry extends PureComponent<Props, State> {
     return positionStyle;
   }
 
-  setStoneRef = index => ref => this.stoneNodes[index] = ref
-
   getStoneStyle(childStyle, index) {
     return {
       ...childStyle,
@@ -193,39 +156,12 @@ export class Masonry extends PureComponent<Props, State> {
       key: child.props.key || index,
     };
 
-    if (
-      (this.props.renderOnEachImageLoad || this.props.renderAfterImagesLoaded)
-        &&
-      child.type === "img"
-    ) {
-      stoneProps.onLoad = this.handleStoneLoad(child, index);
-    }
-
     return React.cloneElement(child, {
       ...child.props,
       ...stoneProps
     });
   }
 
-  renderStones() {
-    return this.props.children.map(this.renderStone);
-  }
-
-  addImageToLoadingList(index) {
-    this.loadingImagesIndexes.push(index);
-  }
-
-  areImagesLoading(): boolean {
-    return !!this.loadingImagesIndexes.length;
-  }
-
-  checkIfImagesAreLoading = () => {
-    if (this.props.renderAfterImagesLoaded && !this.areImagesLoading()) {
-      this.placeStones();
-    } else {
-      this.placeStones();
-    }
-  }
 
   render() {
     const style = {
@@ -239,7 +175,7 @@ export class Masonry extends PureComponent<Props, State> {
         style={style}
         ref={this.setRef}
       >
-        {this.renderStones()}
+        {this.props.children.map(this.renderStone)}
       </div>
     );
   }

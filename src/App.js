@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import "./App.css";
 
 import RelativeWidthsExample from "./examples/RelativeWidthsExample";
-import ImagesExample from "./examples/ImagesExample";
 
 const App = ({ activeExample, onActiveExampleChange }) => (
   <div className="root">
@@ -60,29 +59,7 @@ const App = ({ activeExample, onActiveExampleChange }) => (
     </p>
     <h2>Examples</h2>
 
-    <div style={{ marginBottom: 30 }}>
-      <button
-        className={
-          "btn-default " + (activeExample === "relative" ? "active" : "")
-        }
-        onClick={() => onActiveExampleChange("relative")}
-      >
-        Percent width
-      </button>
-      <button
-        className={"btn-default " + (activeExample === "images" ? "active" : "")}
-        onClick={() => onActiveExampleChange("images")}
-      >
-        Images
-      </button>
-    </div>
-
-    {
-      {
-        images: <ImagesExample />,
-        relative: <RelativeWidthsExample />
-      }[activeExample]
-    }
+    <RelativeWidthsExample />
   </div>
 );
 

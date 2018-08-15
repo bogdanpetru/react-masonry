@@ -1,4 +1,4 @@
-Laying stones algorithm.
+## Laying stones algorithm.
 
 Algorithm v2.
 

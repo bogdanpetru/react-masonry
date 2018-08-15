@@ -63,20 +63,11 @@ Space around stones. Specify a `number` for all 4 directions or specify for desi
 
 `data-masonry-settings={{ gutter: 20, offset: { bottom: 20 } }}`
 
-- [x] `renderAfterImagesLoaded`: boolean - false
-
-Render after all images have loaded
-
-- [ ] `renderOnEachImageLoad`: boolean - true
-
-When `true` and `renderAfterImagesLoaded` is `false`, each image is placed as it is loaded.
 
 ## TODO
 
-- [ ] update source code to ts
-- [ ] update tests where needed
+- [x] simplify and remove img logic
 - [ ] add tests for covered cases validate stones
 - [ ] fix edge case where an item is bigger than the container
-- [ ] add tests for props
 - [ ] add prettier
 - [ ] update stone positions on props change that influence positioning
