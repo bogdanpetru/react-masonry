@@ -17,7 +17,7 @@ Elements rendered inside Masonry must be [DOM elements](https://facebook.github.
 
 
 ```jsx
-import Mansonry, { Brick } from 'react-masonry'
+import Mansonry from 'react-masonry'
 
 return <Masonry>
   <img src="helloWolrd.jpg" />
@@ -36,28 +36,31 @@ Clone project.
 
 ## Api:
 
--  [x] `gutter`: number|{top, left, right, bottom} - default: 0
+###  [x] `gutter`: number|{top, left, right, bottom} - 0
 
 Space around stones. Specify a `number` for all 4 directions or specify for desired directions with an object.
 
-- [x] `transition`: fade|fadeMove|false - fade - if different than false, each item will appear one after another with an interval of `transitionStep` in between.
+### [-] `transition`: fade|fadeMove|false - fade
+
+if different than false, each item will appear one after another with an interval of `transitionStep` in between.
 
  Whether place stones one after another using an animation.
 
-- [x] `transitionStep`: number - 50 - in ms, time in between each stone placement, this is relevant if `transition` prop is not `false`.
+### [x] `transitionStep`: number - 50
+in ms, time in between each stone placement, this is relevant if `transition` prop is not `false`.
 
-- [x] `transitionDuration`: number - 300
+### [x] `transitionDuration`: number - 300
 
  Transition duration in ms.
 
  Speed with which stones are placed when `enterOneAfterAnother=true`
 
-- [ ] `updateOnWindowResize`: bool - true
+### [ ] `updateOnWindowResize`: bool - true
 
  Whether to calculate again positions when Windows changes size.
 
 
-- [ ] Customize specific stones in different way
+### [ ] Customize specific stones in different way
 
  These props can be also added on div element like so:
 
@@ -71,3 +74,4 @@ Space around stones. Specify a `number` for all 4 directions or specify for desi
 - [ ] fix edge case where an item is bigger than the container
 - [ ] add prettier
 - [ ] update stone positions on props change that influence positioning
+- [ ] add possibility to stack in different ways

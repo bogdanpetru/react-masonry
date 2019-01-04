@@ -54,20 +54,20 @@ export function placeStones({
       const { positions, availableSpots, containerHeight } = acc;
       const preparedStone = addGutterToStone(stone);
 
-      const { position, availableSpots: newAvailableSpots } = placeStone({
+      const { position, availableSpots } = placeStone({
         availableSpots,
         stone: preparedStone,
         containerSize
       });
 
-      const newPosition = addGutterToPosition(position, gutter);
+      const preparedPosition = addGutterToPosition(position, gutter);
 
-      acc.positions.push(newPosition);
-      acc.availableSpots = newAvailableSpots;
+      acc.positions.push(preparedPosition);
+      acc.availableSpots = availableSpots;
       acc.containerHeight = getContainerHeight(
         containerHeight,
         preparedStone,
-        newPosition
+        preparedPosition
       );
 
       return acc;
