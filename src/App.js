@@ -4,7 +4,42 @@ import "./App.css";
 
 import RelativeWidthsExample from "./examples/RelativeWidthsExample";
 
-const App = ({ activeExample, onActiveExampleChange }) => (
+const options = [
+  {
+    id: "bottom-left",
+    label: "bottom, left"
+  },
+  {
+    id: "bottom-right",
+    label: "bottom, right"
+  },
+  {
+    id: "top-left",
+    label: "top, left"
+  },
+  {
+    id: "top-right",
+    label: "top, right"
+  },
+  {
+    id: "left-top",
+    label: "left, top"
+  },
+  {
+    id: "left-bottom",
+    label: "left, bottom"
+  },
+  {
+    id: "right-top",
+    label: "right, top"
+  },
+  {
+    id: "right-bottom",
+    label: "right, bottom"
+  },
+];
+
+const App = ({ activeExample, onActiveExampleChange, onSelect, stacking }) => (
   <div className="root">
     <h1 className="title">React Masonry</h1>
 
@@ -35,7 +70,8 @@ const App = ({ activeExample, onActiveExampleChange }) => (
           href="https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html#dom-elements"
         >
           DOM elements
-        </a>.
+        </a>
+        .
       </p>
 
       <p>Stacking process has the following steps:</p>
@@ -55,11 +91,16 @@ const App = ({ activeExample, onActiveExampleChange }) => (
         href="https://github.com/bogdanpetru/react-masonry"
       >
         README.md
-      </a>.
+      </a>
+      .
     </p>
     <h2>Examples</h2>
-
-    <RelativeWidthsExample />
+    <select onChange={onSelect}>
+      {options.map((item, key) => (
+        <option value={item.id}>{item.label}</option>
+      ))}
+    </select>
+    <RelativeWidthsExample stacking={stacking} />
   </div>
 );
 
@@ -79,6 +120,8 @@ class SmartApp extends Component {
       <App
         activeExample={this.state.activeExample}
         onActiveExampleChange={this.setActiveExample}
+        onSelect={event => this.setState({ stacking: event.target.value })}
+        stacking={this.state.stacking}
       />
     );
   }
