@@ -4,9 +4,11 @@ const isSpotConsumed = spot =>
   // height
   (spot.bottom && spot.bottom - spot.top < 5);
 
-// constrained spot must not overlap with an existing spot
-// this happens when is constrained and another includes it
 /*
+
+  constrained spot must not overlap with an existing spot
+  this happens when is constrained and another includes it
+
   +--------------------------------------+
   |                   +------------------|
   |                   |                 ||

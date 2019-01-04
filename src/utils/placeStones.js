@@ -3,67 +3,83 @@
 import { placeStone } from './placeStone';
 import type { Stone, Position, Gutter, Spot } from './types';
 
-export function placeStones(
-  {
-    stones,
-    containerSize,
-    gutter,
-  }: { stones: Stone[], containerSize: number, gutter: Gutter },
-): {
-  positions: Position[],
-  containerHeight: number
+const addGutterToStone = (stone: Stone, gutter: Gutter): Stone =>
+	gutter
+		? {
+				width: stone.width + gutter.left + gutter.right,
+				height: stone.height + gutter.top + gutter.bottom
+			}
+		: stone;
+
+const addGutterToPosition = (position: Position, gutter: Gutter): Position =>
+	gutter
+		? {
+				top: position.top + gutter.top,
+				left: position.left + gutter.left
+			}
+		: position;
+
+const getContainerHeight = (containerHeight: number, stone: Stone, position: Position): number =>
+	position.top + stone.height > containerHeight ? position.top + stone.height : containerHeight;
+
+export function placeStones({
+	stones,
+	containerSize,
+	gutter
+}: {
+	stones: Stone[],
+	containerSize: number,
+	gutter: Gutter
+}): {
+	positions: Position[],
+	containerHeight: number
 } {
-  // it is calculated on each stone placement
-  let containerHeight = 0;
-  if (!stones.length) {
-    return {
-      positions: [],
-      containerHeight: 0
-    };
-  }
+	// it is calculated on each stone placement
+	let containerHeight = 0;
+	if (!stones.length) {
+		return {
+			positions: [],
+			containerHeight: 0
+		};
+	}
 
-  const positions = [];
-  let availableSpots : Spot[] = [
-    {
-      top: 0,
-      left: 0,
-      right: containerSize,
-      bottom: null,
-    },
-  ];
+	return stones.reduce(
+		(acc, stone) => {
+      const {
+        positions,
+        availableSpots,
+        containerHeight
+      } = acc;
+			const preparedStone = addGutterToStone(stone);
 
-  for (let i = 0, len = stones.length; i < len; i += 1) {
-    let stone = stones[i];
-    if (gutter) {
-      stone = {
-        width: stone.width + gutter.left + gutter.right,
-        height: stone.height + gutter.top + gutter.bottom,
-      };
-    }
-    
-    const {
-      position,
-      availableSpots: newAvailableSpots,
-    } = placeStone({
-      availableSpots,
-      stone,
-      containerSize,
-    });
+			const {
+        position,
+        availableSpots: newAvailableSpots
+      } = placeStone({
+				availableSpots,
+				stone: preparedStone,
+				containerSize
+			});
 
-    let newPosition = { ...position };
-    if (gutter) {
-      newPosition = {
-        top: position.top + gutter.top,
-        left: position.left + gutter.left,
-      };
-    }
-    positions.push(newPosition);
-    availableSpots = newAvailableSpots;
-    if (position.top + stone.height > containerHeight) {
-      containerHeight = position.top + stone.height;
-    }
-  } //  end of loop
+			const newPosition = addGutterToPosition(position, gutter);
 
-  return { positions, containerHeight };
+			acc.positions.push(newPosition);
+			acc.availableSpots = newAvailableSpots;
+			acc.containerHeight = getContainerHeight(containerHeight, preparedStone, newPosition);
+
+      return acc;
+		},
+		{
+			positions: [],
+      containerHeight,
+			availableSpots: [
+				{
+					top: 0,
+					left: 0,
+					right: containerSize,
+					bottom: null
+				}
+			]
+		}
+	);
 }
-
