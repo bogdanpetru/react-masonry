@@ -6,24 +6,8 @@ import RelativeWidthsExample from "./examples/RelativeWidthsExample";
 
 const options = [
   {
-    id: "bottom-left",
-    label: "bottom, left"
-  },
-  {
-    id: "bottom-right",
-    label: "bottom, right"
-  },
-  {
-    id: "top-left",
-    label: "top, left"
-  },
-  {
-    id: "top-right",
-    label: "top, right"
-  },
-  {
-    id: "left-top",
-    label: "left, top"
+    id: "right-bottom",
+    label: "right, bottom"
   },
   {
     id: "left-bottom",
@@ -34,9 +18,9 @@ const options = [
     label: "right, top"
   },
   {
-    id: "right-bottom",
-    label: "right, bottom"
-  },
+    id: "left-top",
+    label: "left, top"
+  }
 ];
 
 const App = ({ activeExample, onActiveExampleChange, onSelect, stacking }) => (

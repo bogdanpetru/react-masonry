@@ -60,8 +60,8 @@ export class Masonry extends PureComponent<Props, State> {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (this.props.stacking !== nextProps.stacking) {
+  componentDidUpdate(prevProps) {
+    if (this.props.stacking !== prevProps.stacking) {
       this.placeStones();
     }
   }
@@ -93,11 +93,7 @@ export class Masonry extends PureComponent<Props, State> {
     return this.stoneNodes.map(getStoneSize);
   }
 
-  /**
-   * Runs the layout algorithm
-   * and sets on state the current stone positions
-   */
-  placeStones = (stones?: Stone[]) => {
+  getPositions(stones?: Stone[]) {
     if (this.node === null) {
       return;
     }
@@ -105,6 +101,7 @@ export class Masonry extends PureComponent<Props, State> {
     const { gutter, stacking } = this.props;
     const containerSize = this.node.offsetWidth;
     stones = stones || this.getStones();
+
     let { positions, containerHeight } = placeStones({
       containerSize,
       stones,
@@ -112,6 +109,16 @@ export class Masonry extends PureComponent<Props, State> {
     });
 
     positions = translatePositions({ positions, stacking });
+
+    return { positions, containerHeight };
+  }
+
+  /**
+   * Runs the layout algorithm
+   * and sets on state the current stone positions
+   */
+  placeStones = (stones?: Stone[]) => {
+    const { positions, containerHeight } = this.getPositions(stones);
 
     const { transition } = this.props;
     if (transition && this.isFirstRender) {
