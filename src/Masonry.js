@@ -1,8 +1,10 @@
 // @flow
 
 import React, { PureComponent } from "react";
+import debounce from "lodash.debounce";
+
 import { placeStones } from "./utils/placeStones";
-import { normalizeGutter } from "./utils/normalizeGutter";
+
 import type { Position, Stone } from "./utils/types";
 import type { State, Props } from "./utils/types";
 
@@ -21,38 +23,61 @@ const transitionStyles = transitionDuration => ({
 
 const getStoneSize = stone => ({
   width: stone.offsetWidth,
-  height: stone.offsetHeight,
+  height: stone.offsetHeight
 });
 
 export class Masonry extends PureComponent<Props, State> {
   node: HTMLElement | null;
   stoneNodes: Array<HTMLElement> = [];
 
-  state = {
-    positions: [],
-    availableSpots: [],
-    containerHeight: 0
-  };
+  state = { positions: [], availableSpots: [], containerHeight: 0 };
+  transitionTimeoutId = null;
+  isFirstRender = true;
 
   static defaultProps = {
     gutter: 0,
+    renderAfterImagesLoaded: false,
+    renderOnEachImageLoad: true,
+    transition: false,
     transitionDuration: 300,
     transitionStep: 50,
-    transition: false,
-    renderAfterImagesLoaded: false,
-    renderOnEachImageLoad: true
+    updateOnWindowResize: true,
+    updateOnWindowResizeDebounceWait: 300
   };
 
   componentDidMount() {
     this.placeStones();
+    this.handleUpdateOnWindowResize();
+    this.isFirstRender = false;
+  }
+
+  componentWillUnmount() {
+    const { updateOnWindowResize } = this.props;
+
+    if (updateOnWindowResize) {
+      window.removeEventListener("resize", this.debouncedPlaceStones);
+    }
+  }
+
+  handleUpdateOnWindowResize() {
+    const {
+      updateOnWindowResize,
+      updateOnWindowResizeDebounceWait
+    } = this.props;
+    if (updateOnWindowResize) {
+      this.debouncedPlaceStones = debounce(
+        () => this.placeStones(),
+        updateOnWindowResizeDebounceWait
+      );
+      window.addEventListener("resize", this.debouncedPlaceStones);
+    }
   }
 
   setRef = ref => {
     this.node = ref;
-  }
+  };
 
-  setStoneRef = index => ref =>
-    this.stoneNodes[index] = ref
+  setStoneRef = index => ref => (this.stoneNodes[index] = ref);
 
   /**
    * Reads with/height of each DOM element
@@ -65,15 +90,14 @@ export class Masonry extends PureComponent<Props, State> {
    * Runs the layout algorithm
    * and sets on state the current stone positions
    */
-  placeStones(stones?: Stone[]) {
+  placeStones = (stones?: Stone[]) => {
     if (this.node === null) {
       return;
     }
 
+    const { gutter } = this.props;
     const containerSize = this.node.offsetWidth;
     stones = stones || this.getStones();
-    const gutter = normalizeGutter(this.props.gutter);
-
     const { positions, containerHeight } = placeStones({
       containerSize,
       stones,
@@ -81,19 +105,19 @@ export class Masonry extends PureComponent<Props, State> {
     });
 
     const { transition } = this.props;
-    if (transition) {
-      this.placeStonesForTransition(positions);
-      this.setState({
-        containerHeight
-      });
+    if (transition && this.isFirstRender) {
+      if (this.transitionTimeoutId) {
+        clearTimeout(this.transitionTimeoutId);
+        this.transitionTimeoutId = null;
+      }
+      this.setState({ containerHeight }, () =>
+        this.placeStonesForTransition(positions)
+      );
     } else {
       // set all stone on one render
-      this.setState({
-        positions,
-        containerHeight
-      });
+      this.setState({ positions, containerHeight, stones });
     }
-  }
+  };
 
   placeStonesForTransition(positions: Position[], currentStone: number = 0) {
     const { transitionStep } = this.props;
@@ -103,7 +127,10 @@ export class Masonry extends PureComponent<Props, State> {
         positions: positions.slice(0, currentStone)
       },
       () => {
-        setTimeout(() => {
+        if (currentStone === positions.length + 1) {
+          return;
+        }
+        this.transitionTimeoutId = setTimeout(() => {
           this.placeStonesForTransition(positions, currentStone + 1);
         }, transitionStep);
       }
@@ -117,9 +144,7 @@ export class Masonry extends PureComponent<Props, State> {
       return null;
     }
 
-    return {
-      transition: transitionStyles(transitionDuration)[transition]
-    };
+    return { transition: transitionStyles(transitionDuration)[transition] };
   }
 
   getPositionStyle(index: number): Object {
@@ -130,11 +155,7 @@ export class Masonry extends PureComponent<Props, State> {
     if (positionStyle) {
       positionStyle = { ...positionStyle, opacity: 1 };
     } else {
-      positionStyle = {
-        opacity: 0,
-        top: 0,
-        left: 0
-      };
+      positionStyle = { opacity: 0, top: 0, left: 0 };
     }
 
     return positionStyle;
@@ -143,7 +164,7 @@ export class Masonry extends PureComponent<Props, State> {
   getStoneStyle(childStyle, index) {
     return {
       ...childStyle,
-      position: 'absolute',
+      position: "absolute",
       ...this.getPositionStyle(index),
       ...this.getTransitionStyle()
     };
@@ -153,17 +174,17 @@ export class Masonry extends PureComponent<Props, State> {
     const stoneProps: any = {
       style: this.getStoneStyle(child.props.style, index),
       ref: this.setStoneRef(index),
-      key: child.props.key || index,
+      key: child.props.key || index
     };
 
     return React.cloneElement(child, {
       ...child.props,
       ...stoneProps
     });
-  }
-
+  };
 
   render() {
+    const { children } = this.props;
     const style = {
       ...this.props.style,
       position: "relative",
@@ -171,11 +192,8 @@ export class Masonry extends PureComponent<Props, State> {
     };
 
     return (
-      <div
-        style={style}
-        ref={this.setRef}
-      >
-        {this.props.children.map(this.renderStone)}
+      <div style={style} ref={this.setRef}>
+        {children.map(this.renderStone)}
       </div>
     );
   }

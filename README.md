@@ -40,7 +40,7 @@ Clone project.
 
 Space around stones. Specify a `number` for all 4 directions or specify for desired directions with an object.
 
-### [-] `transition`: fade|fadeMove|false - fade
+### [x] `transition`: fade|fadeMove|false - fade
 
 if different than false, each item will appear one after another with an interval of `transitionStep` in between.
 
@@ -55,10 +55,14 @@ in ms, time in between each stone placement, this is relevant if `transition` pr
 
  Speed with which stones are placed when `enterOneAfterAnother=true`
 
-### [ ] `updateOnWindowResize`: bool - true
+### [x] `updateOnWindowResize`: bool - true
 
  Whether to calculate again positions when Windows changes size.
 
+### [x] `updateOnWindowResizeDebounceWait`: number - 300
+
+Related to `updateOnWindowResize`.
+Window resize listener is debouced, this sets the wait time.
 
 ### [ ] Customize specific stones in different way
 

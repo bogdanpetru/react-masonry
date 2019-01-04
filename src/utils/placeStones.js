@@ -1,6 +1,7 @@
 // @flow
 
 import { placeStone } from "./placeStone";
+import { normalizeGutter } from "./normalizeGutter";
 import type { Stone, Position, Gutter, Spot } from "./types";
 
 const addGutterToStone = (stone: Stone, gutter: Gutter): Stone =>
@@ -49,21 +50,22 @@ export function placeStones({
     };
   }
 
+  const preparedGutter = normalizeGutter(gutter);
   return stones.reduce(
     (acc, stone) => {
       const { positions, availableSpots, containerHeight } = acc;
-      const preparedStone = addGutterToStone(stone);
+      const preparedStone = addGutterToStone(stone, preparedGutter);
 
-      const { position, availableSpots } = placeStone({
+      const { position, availableSpots: newAvailableSpots } = placeStone({
         availableSpots,
         stone: preparedStone,
         containerSize
       });
 
-      const preparedPosition = addGutterToPosition(position, gutter);
+      const preparedPosition = addGutterToPosition(position, preparedGutter);
 
       acc.positions.push(preparedPosition);
-      acc.availableSpots = availableSpots;
+      acc.availableSpots = newAvailableSpots;
       acc.containerHeight = getContainerHeight(
         containerHeight,
         preparedStone,
