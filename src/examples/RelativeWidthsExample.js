@@ -9,18 +9,18 @@ export const common = {
 };
 
 export const boxes = [
-  { ...common, width: '30%', height: 200 },
-  { ...common, width: '40%', height: 320 },
-  { ...common, width: '30%', height: 250 },
-  { ...common, width: '20%', height: 100 },
-  { ...common, width: '50%', height: 120 },
-  { ...common, width: '70%', height: 100 },
   { ...common, width: '20%', height: 200 },
-  { ...common, width: '30%', height: 140 },
-  { ...common, width: '25%', height: 200 },
+  { ...common, width: '20%', height: 320 },
+  { ...common, width: '20%', height: 250 },
+  { ...common, width: '20%', height: 100 },
+  { ...common, width: '20%', height: 120 },
+  { ...common, width: '20%', height: 100 },
+  { ...common, width: '20%', height: 200 },
   { ...common, width: '20%', height: 140 },
-  { ...common, width: '40%', height: 180 },
-  { ...common, width: '23%', height: 140 }
+  { ...common, width: '20%', height: 200 },
+  { ...common, width: '20%', height: 140 },
+  { ...common, width: '20%', height: 180 },
+  { ...common, width: '20%', height: 140 }
 ];
 
 export const titleStyle = {
@@ -45,11 +45,8 @@ export function randomColor() {
   return `rgb(${random250()},${random(0, 100)},${random(0, 120)})`;
 }
 
-const App = () => (
-  <Masonry
-    style={{ height: 500 }}
-    transition="fadeMove"
-  >
+const App = ({ stacking }) => (
+  <Masonry style={{ height: 500 }} stacking={stacking} transition="fadeMove">
     {boxes.map((box, index) => (
       <div key={index} style={{ ...box, backgroundColor: randomColor() }}>
         {`${box.width} - ${box.height}`}

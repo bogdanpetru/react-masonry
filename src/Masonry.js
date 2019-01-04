@@ -4,6 +4,7 @@ import React, { PureComponent } from "react";
 import debounce from "lodash.debounce";
 
 import { placeStones } from "./utils/placeStones";
+import { translatePositions } from "./utils/translatePositions";
 
 import type { Position, Stone } from "./utils/types";
 import type { State, Props } from "./utils/types";
@@ -59,6 +60,12 @@ export class Masonry extends PureComponent<Props, State> {
     }
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.stacking !== nextProps.stacking) {
+      this.placeStones();
+    }
+  }
+
   handleUpdateOnWindowResize() {
     const {
       updateOnWindowResize,
@@ -95,14 +102,16 @@ export class Masonry extends PureComponent<Props, State> {
       return;
     }
 
-    const { gutter } = this.props;
+    const { gutter, stacking } = this.props;
     const containerSize = this.node.offsetWidth;
     stones = stones || this.getStones();
-    const { positions, containerHeight } = placeStones({
+    let { positions, containerHeight } = placeStones({
       containerSize,
       stones,
       gutter
     });
+
+    positions = translatePositions({ positions, stacking });
 
     const { transition } = this.props;
     if (transition && this.isFirstRender) {
