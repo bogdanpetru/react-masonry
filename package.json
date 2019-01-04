@@ -4,7 +4,6 @@
   "private": false,
   "dependencies": {
     "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4"
