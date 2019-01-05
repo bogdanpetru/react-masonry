@@ -100,11 +100,6 @@ export function validateSpots({
       return usedSpot;
     }
 
-    // check if it used this spot also
-    if (spot.top === position.top) {
-      return null;
-    }
-
     const rightConstrained = constrainRight({position, spot, stone});
     if (rightConstrained) {
       return rightConstrained;
