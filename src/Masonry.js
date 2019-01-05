@@ -22,10 +22,17 @@ const transitionStyles = transitionDuration => ({
   `
 });
 
-const getStoneSize = stone => ({
-  width: stone.offsetWidth,
-  height: stone.offsetHeight
-});
+const getStoneSize = stone => {
+  if (!stone) {
+    return null;
+  }
+
+  const rect = stone.getBoundingClientRect();
+  return {
+    width: rect.width,
+    height: rect.height
+  };
+};
 
 export class Masonry extends PureComponent<Props, State> {
   node: HTMLElement | null;
@@ -61,7 +68,10 @@ export class Masonry extends PureComponent<Props, State> {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.stacking !== prevProps.stacking) {
+    if (
+      this.props.stacking !== prevProps.stacking ||
+      this.props.children !== prevProps.children
+    ) {
       this.placeStones();
     }
   }
@@ -90,7 +100,7 @@ export class Masonry extends PureComponent<Props, State> {
    * Reads with/height of each DOM element
    */
   getStones(): Array<Stone> {
-    return this.stoneNodes.map(getStoneSize);
+    return this.stoneNodes.map(getStoneSize).filter(Boolean);
   }
 
   getPositions(stones?: Stone[]) {
@@ -102,7 +112,7 @@ export class Masonry extends PureComponent<Props, State> {
     const containerSize = this.node.offsetWidth;
     stones = stones || this.getStones();
 
-    let { positions, containerHeight } = placeStones({
+    let { positions, containerHeight, availableSpots } = placeStones({
       containerSize,
       stones,
       gutter
@@ -110,7 +120,7 @@ export class Masonry extends PureComponent<Props, State> {
 
     positions = translatePositions({ positions, stacking });
 
-    return { positions, containerHeight };
+    return { positions, containerHeight, availableSpots };
   }
 
   /**
@@ -118,7 +128,9 @@ export class Masonry extends PureComponent<Props, State> {
    * and sets on state the current stone positions
    */
   placeStones = (stones?: Stone[]) => {
-    const { positions, containerHeight } = this.getPositions(stones);
+    const { positions, containerHeight, availableSpots } = this.getPositions(
+      stones
+    );
 
     const { transition } = this.props;
     if (transition && this.isFirstRender) {
@@ -126,12 +138,12 @@ export class Masonry extends PureComponent<Props, State> {
         clearTimeout(this.transitionTimeoutId);
         this.transitionTimeoutId = null;
       }
-      this.setState({ containerHeight }, () =>
+      this.setState({ containerHeight, availableSpots }, () =>
         this.placeStonesForTransition(positions)
       );
     } else {
       // set all stone on one render
-      this.setState({ positions, containerHeight, stones });
+      this.setState({ positions, containerHeight, stones, availableSpots });
     }
   };
 
@@ -201,6 +213,7 @@ export class Masonry extends PureComponent<Props, State> {
 
   render() {
     const { children } = this.props;
+    const { availableSpots, containerHeight } = this.state;
     const style = {
       ...this.props.style,
       position: "relative",
