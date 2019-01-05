@@ -1,35 +1,22 @@
-import React from 'react';
-import { Masonry } from '../Masonry';
+import React from "react";
+import { Masonry } from "../Masonry";
 
-export const common = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+const common = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
   fontWeight: 700
 };
 
-export const boxes = [
-  { ...common, width: '20%', height: 200 },
-  { ...common, width: '20%', height: 320 },
-  { ...common, width: '20%', height: 250 },
-  { ...common, width: '20%', height: 100 },
-  { ...common, width: '20%', height: 120 },
-  { ...common, width: '20%', height: 100 },
-  { ...common, width: '20%', height: 200 },
-  { ...common, width: '20%', height: 140 },
-  { ...common, width: '20%', height: 200 },
-  { ...common, width: '20%', height: 140 },
-  { ...common, width: '20%', height: 180 },
-  { ...common, width: '20%', height: 140 }
-];
+const boxes = [getBox()];
 
-export const titleStyle = {
-  position: 'absolute',
+const titleStyle = {
+  position: "absolute",
   left: 5,
   top: 5,
-  fontWeight: '700',
-  backgroundColor: '#333',
-  color: '#fff',
+  fontWeight: "700",
+  backgroundColor: "#333",
+  color: "#fff",
   padding: 5
 };
 
@@ -41,21 +28,36 @@ function random250() {
   return random(0, 255);
 }
 
-export function randomColor() {
+function getBox() {
+  return {
+    ...common,
+    width: "20%",
+    height: random(10, 300),
+    backgroundColor: randomColor()
+  };
+}
+
+function randomColor() {
   return `rgb(${random250()},${random(0, 100)},${random(0, 120)})`;
 }
 
-const colors = boxes.map(() => randomColor());
+const App = ({ stacking, numberOfBoxes = 1 }) => {
+  const numberOfBoxesInt = parseInt(numberOfBoxes, 10);
 
-const App = ({ stacking }) => (
-  <Masonry style={{ height: 500 }} stacking={stacking} transition="fadeMove">
-    {boxes.map((box, index) => (
-      <div key={index} style={{ ...box, backgroundColor: colors[index]}}>
-        {`${box.width} - ${box.height}`}
-        <div style={titleStyle}>{index}</div>
-      </div>
-    ))}
-  </Masonry>
-);
+  if (numberOfBoxesInt > boxes.length) {
+    boxes.push(getBox());
+  }
+
+  return (
+    <Masonry style={{ height: 500 }} stacking={stacking} transition="fadeMove">
+      {boxes.slice(0, numberOfBoxesInt).map((box, index) => (
+        <div key={index} style={box}>
+          {`${box.width} - ${box.height}`}
+          <div style={titleStyle}>{index}</div>
+        </div>
+      ))}
+    </Masonry>
+  );
+};
 
 export default App;

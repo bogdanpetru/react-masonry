@@ -23,7 +23,14 @@ const options = [
   }
 ];
 
-const App = ({ activeExample, onActiveExampleChange, onSelect, stacking }) => (
+const App = ({
+  activeExample,
+  onActiveExampleChange,
+  onSelect,
+  stacking,
+  onNoChange,
+  numberOfBoxes
+}) => (
   <div className="root">
     <h1 className="title">React Masonry</h1>
 
@@ -84,13 +91,15 @@ const App = ({ activeExample, onActiveExampleChange, onSelect, stacking }) => (
         <option value={item.id}>{item.label}</option>
       ))}
     </select>
-    <RelativeWidthsExample stacking={stacking} />
+    <input type="number" defaultValue={1} onChange={onNoChange} />
+    <RelativeWidthsExample stacking={stacking} numberOfBoxes={numberOfBoxes} />
   </div>
 );
 
 class SmartApp extends Component {
   state = {
-    activeExample: "relative"
+    activeExample: "relative",
+    numberOfBoxes: 1,
   };
 
   setActiveExample = exampleName => {
@@ -104,7 +113,13 @@ class SmartApp extends Component {
       <App
         activeExample={this.state.activeExample}
         onActiveExampleChange={this.setActiveExample}
+        numberOfBoxes={this.state.numberOfBoxes}
         onSelect={event => this.setState({ stacking: event.target.value })}
+        onNoChange={event =>
+          this.setState({
+            numberOfBoxes: event.target.value
+          })
+        }
         stacking={this.state.stacking}
       />
     );
