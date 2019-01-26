@@ -1,5 +1,5 @@
 import React from "react";
-import { Masonry } from "../Masonry";
+import { Masonry } from "../lib";
 
 const common = {
   display: "flex",

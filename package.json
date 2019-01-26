@@ -1,25 +1,49 @@
 {
   "name": "react-masonry",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "private": false,
-  "dependencies": {
-    "lodash.debounce": "^4.0.8",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-scripts": "1.1.4"
+  "author": "Bogdan Petru Pintican",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bogdanpetru/react-masonry.git"
+  },
+  "main": "lib",
+  "keywords": [
+    "react",
+    "grid",
+    "layout",
+    "masonry"
+  ],
+  "peerDependencies": {
+    "lodash.debounce": "4.x",
+    "react": "16.x",
+    "react-dom": "16.x"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "build": "rm -rf ./lib && NODE_ENV=production ./node_modules/.bin/webpack --mode=production"
   },
   "devDependencies": {
-    "babel-preset-flow": "^6.23.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0-beta",
+    "babel-preset-react-app": "^7.0.0",
     "flow-bin": "^0.71.0",
-    "gh-pages": "^1.2.0"
+    "gh-pages": "^1.2.0",
+    "lodash.debounce": "4.x",
+    "parcel-bundler": "^1.11.0",
+    "react": "16.x",
+    "react-dom": "16.x",
+    "react-scripts": "1.1.4",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-node-externals": "^1.7.2"
   },
-  "homepage": "http://bogdanpetru.github.io/react-masonry"
+  "homepage": "http://bogdanpetru.github.io/react-masonry",
+  "license": "MIT"
 }

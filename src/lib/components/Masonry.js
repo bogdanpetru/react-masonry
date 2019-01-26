@@ -3,11 +3,11 @@
 import React, { PureComponent } from "react";
 import debounce from "lodash.debounce";
 
-import { placeStones } from "./utils/placeStones";
-import { translatePositions } from "./utils/translatePositions";
+import { placeStones } from "../utils/placeStones";
+import { translatePositions } from "../utils/translatePositions";
 
-import type { Position, Stone } from "./utils/types";
-import type { State, Props } from "./utils/types";
+import type { Position, Stone } from "../utils/types";
+import type { State, Props } from "../utils/types";
 
 const transitionStyles = transitionDuration => ({
   fade: `${transitionDuration}ms opacity ease`,
