@@ -17,7 +17,7 @@ Elements rendered inside Masonry must be [DOM elements](https://facebook.github.
 
 
 ```jsx
-import Mansonry from 'react-masonry'
+import {Masonry} from 'react-masonry'
 
 return <Masonry>
   <img src="helloWolrd.jpg" />
