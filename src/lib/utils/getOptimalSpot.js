@@ -1,8 +1,6 @@
-// @flow
-import type { Spot, Stone } from "./types";
 import { find } from "./find";
 
-const doesBoxFit = (spot: Spot, stone: Stone): boolean => {
+const doesBoxFit = (spot, stone) => {
   const fitsWidth = spot.right - spot.left >= stone.width;
   if (!spot.bottom) {
     return fitsWidth;
@@ -12,13 +10,5 @@ const doesBoxFit = (spot: Spot, stone: Stone): boolean => {
   return fitsWidth && fitsHeight;
 };
 
-export function getOptimalSpot({
-  availableSpots,
-  stone
-}: {
-  availableSpots: Spot[],
-  stone: Stone
-}): Spot {
-  // iterate over each position and check where it fits
-  return find(spot => doesBoxFit(spot, stone), availableSpots);
-}
+export const getOptimalSpot = ({ availableSpots, stone }) =>
+  find(spot => doesBoxFit(spot, stone), availableSpots);

@@ -1,5 +1,5 @@
 import React, { cloneElement, useRef } from "react";
-import {usePositions} from './usePositions';
+import { usePositions } from "./usePositions";
 
 const getPositionStyle = position => {
   if (!position) {
@@ -43,14 +43,14 @@ const Masonry = ({ children, gutter, style }) => {
     children
   });
 
-  const prepareStyle = {
+  const preparedStyle = {
     minHeight: containerHeight,
     position: "relative",
     ...style
   };
 
   return (
-    <div ref={wrapperRef} style={prepareStyle}>
+    <div ref={wrapperRef} style={preparedStyle}>
       {children.map(placeBoxes(boxesRefs, positions))}
     </div>
   );

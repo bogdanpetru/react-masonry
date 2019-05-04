@@ -1,13 +1,9 @@
-// @flow
-
 import { filter } from "./filter";
 import type { Stone, Spot, Position } from "./types";
 import { sortByTopFirstLeftSecond } from "./sortByTopFirstLeftSecond";
 import { getNewSpot } from "./getNewSpot";
 import { getOptimalSpot } from "./getOptimalSpot";
 import { validateSpots } from "./validateSpots";
-
-const filterNullSPots = (spot: Spot): boolean => !!spot;
 
 export function placeStone({
   stone,
@@ -44,7 +40,7 @@ export function placeStone({
     optimalSpot,
     stone
   });
-  newAvailableSpots = [...filter(filterNullSPots, newAvailableSpots)];
+  newAvailableSpots = [...filter(Boolean, newAvailableSpots)];
   newAvailableSpots = sortByTopFirstLeftSecond(newAvailableSpots);
 
   return {

@@ -1,3 +1,1 @@
-export function sort(func, list) {
-  return [...list].sort(func);
-}
+export const sort = (func, list) => [...list].sort(func);

@@ -1,18 +1,9 @@
-// @flow
-
-import type { Spot, Stone } from './types';
-
-export function getNewSpot({
+export const getNewSpot = ({
   availableSpots,
   optimalSpot,
   containerSize,
-  stone,
-}: {
-  availableSpots: Spot[],
-  optimalSpot: Spot,
-  containerSize: number,
-  stone: Stone,
-}): Spot {
+  stone
+}) => {
   const right = containerSize;
   let newSpot = {
     right,
@@ -22,7 +13,7 @@ export function getNewSpot({
      * New spot should have the same bottom
      * as the spot the stone occupied.
      */
-    bottom: optimalSpot.bottom || null,
+    bottom: optimalSpot.bottom || null
   };
 
   /**
@@ -39,5 +30,4 @@ export function getNewSpot({
   }
 
   return newSpot;
-}
-
+};

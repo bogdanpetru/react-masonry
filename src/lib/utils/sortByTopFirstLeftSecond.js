@@ -1,9 +1,6 @@
-// @flow
-
 import { sort } from "./sort";
-import type { Spot } from "./types";
 
-const sortByTop = (current: Spot, next: Spot) => {
+const sortByTop = (current, next) => {
   if (current.top === next.top) {
     return current.left < next.left ? -1 : 1;
   }
@@ -15,5 +12,4 @@ const sortByTop = (current: Spot, next: Spot) => {
  * First sorts by top, and then if top is the same
  * the one with the smallest left will win
  */
-export const sortByTopFirstLeftSecond = (list: any[]): any[] =>
-  sort(sortByTop, list);
+export const sortByTopFirstLeftSecond = list => sort(sortByTop, list);

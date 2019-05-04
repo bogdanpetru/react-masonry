@@ -1,7 +1,4 @@
-// @flow
-import type { Gutter } from './types';
-
-export function normalizeGutter(gutter: Gutter | number): Gutter {
+export function normalizeGutter(gutter) {
   if (typeof gutter === 'object') {
     const normalizedGutter = { ...gutter }
 

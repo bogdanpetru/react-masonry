@@ -1,5 +1,1 @@
-// @flow
-
-export function filter(func: (item: any) => boolean, list: any[]): any[] {
-  return list.filter(func);
-}
+export const filter = (func, list) => list.filter(func);
