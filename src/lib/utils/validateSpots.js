@@ -73,7 +73,7 @@ const constrainBottom = ({ position, stone, spot }) => {
 };
 
 // handle spot that was occupied, it might be consumed or restricted
-const getConsumedSpot = ({stone, position, spotsList, optimalSpot}) => {
+const getConsumedSpot = ({ stone, position, spotsList, optimalSpot }) => {
   // restrict used spot
   let usedSpot = { ...optimalSpot };
   usedSpot.left = position.left + stone.width;
@@ -92,7 +92,7 @@ const getConsumedSpot = ({stone, position, spotsList, optimalSpot}) => {
 export const validateSpots = ({ spots, position, optimalSpot, stone }) =>
   spots.map((spot: Spot, index, spotsList) => {
     if (spot === optimalSpot) {
-      return getConsumedSpot({stone, position, optimalSpot, spotsList})
+      return getConsumedSpot({ stone, position, optimalSpot, spotsList });
     }
 
     const rightConstrained = constrainRight({ position, spot, stone });
