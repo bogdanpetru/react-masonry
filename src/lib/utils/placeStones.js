@@ -32,7 +32,7 @@ const getContainerHeight = (
 export function placeStones({
   stones,
   containerSize,
-  gutter
+  gutter = 0
 }: {
   stones: Stone[],
   containerSize: number,

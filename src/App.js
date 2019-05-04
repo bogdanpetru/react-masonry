@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 
 import "./App.css";
 
@@ -23,15 +23,11 @@ const options = [
   }
 ];
 
-const App = ({
-  activeExample,
-  onActiveExampleChange,
-  onSelect,
-  stacking,
-  onNoChange,
-  numberOfBoxes
-}) => (
-  <div className="root">
+const App = () => {
+  const [numberOfBoxes, setCardsNumber] = useState(3);
+  const [stacking, setStacking] = useState(3);
+
+ return <div className="root">
     <h1 className="title">React Masonry</h1>
 
     <div>
@@ -86,44 +82,15 @@ const App = ({
       .
     </p>
     <h2>Examples</h2>
-    <select onChange={onSelect}>
+    <select onChange={(event) => setStacking(event.target.value)}>
       {options.map((item, key) => (
         <option value={item.id}>{item.label}</option>
       ))}
     </select>
-    <input type="number" defaultValue={1} onChange={onNoChange} />
+    <input type="number" value={numberOfBoxes} onChange={(event) => setCardsNumber(event.target.value)} />
     <RelativeWidthsExample stacking={stacking} numberOfBoxes={numberOfBoxes} />
-  </div>
-);
+  </div>;
+};
 
-class SmartApp extends Component {
-  state = {
-    activeExample: "relative",
-    numberOfBoxes: 1,
-  };
 
-  setActiveExample = exampleName => {
-    this.setState({
-      activeExample: exampleName
-    });
-  };
-
-  render() {
-    return (
-      <App
-        activeExample={this.state.activeExample}
-        onActiveExampleChange={this.setActiveExample}
-        numberOfBoxes={this.state.numberOfBoxes}
-        onSelect={event => this.setState({ stacking: event.target.value })}
-        onNoChange={event =>
-          this.setState({
-            numberOfBoxes: event.target.value
-          })
-        }
-        stacking={this.state.stacking}
-      />
-    );
-  }
-}
-
-export default SmartApp;
+export default App;

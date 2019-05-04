@@ -14,36 +14,35 @@
     "layout",
     "masonry"
   ],
-  "peerDependencies": {
-    "lodash.debounce": "4.x",
-    "react": "16.x",
-    "react-dom": "16.x"
-  },
+  "homepage": "http://bogdanpetru.github.io/react-masonry",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom",
-    "build": "rm -rf ./lib && NODE_ENV=production ./node_modules/.bin/webpack --mode=production"
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.0",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-flow": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.0-beta",
-    "babel-preset-react-app": "^7.0.0",
-    "flow-bin": "^0.71.0",
-    "gh-pages": "^1.2.0",
-    "lodash.debounce": "4.x",
-    "parcel-bundler": "^1.11.0",
-    "react": "16.x",
-    "react-dom": "16.x",
-    "react-scripts": "1.1.4",
-    "webpack": "^4.29.0",
-    "webpack-cli": "^3.2.1",
-    "webpack-node-externals": "^1.7.2"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.0"
   },
-  "homepage": "http://bogdanpetru.github.io/react-masonry",
-  "license": "MIT"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "lodash.debounce": "^4.0.0"
+  }
 }
