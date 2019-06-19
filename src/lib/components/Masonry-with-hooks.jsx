@@ -1,14 +1,12 @@
-import React, { cloneElement, useRef } from "react";
+import React, { cloneElement, useRef, useState, useEffect } from "react";
 import { usePositions } from "./usePositions";
 
 import { getStoneStyle } from "./style";
 
-const placeBoxes = ({
-  boxesRefs,
-  positions,
-  transition,
-  transitionDuration
-}) => (child, index) => {
+const placeBox = ({ boxesRefs, positions, transition, transitionDuration }) => (
+  child,
+  index
+) => {
   const stoneProps = {
     style: getStoneStyle({
       style: child.props.style,
@@ -24,6 +22,30 @@ const placeBoxes = ({
     ...child.props,
     ...stoneProps
   });
+};
+
+const usePositionsOneAtATime = (positions, transitionStep = 300) => {
+  const [oneAtATimePositions, setPositions] = useState([]);
+  const timeoutRef = useRef();
+
+  const placeStone = (positions, currentStone = 0) => {
+    setPositions(positions.slice(0, currentStone));
+
+    timeoutRef.current = setTimeout(
+      () => placeStone(positions, currentStone + 1),
+      transitionStep
+    );
+  };
+
+  useEffect(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    placeStone(positions);
+  }, [positions]);
+
+  return oneAtATimePositions;
 };
 
 const Masonry = ({
@@ -44,6 +66,8 @@ const Masonry = ({
     children
   });
 
+  const preparedPositions = usePositionsOneAtATime(positions);
+
   const preparedStyle = {
     minHeight: containerHeight,
     position: "relative",
@@ -52,7 +76,14 @@ const Masonry = ({
 
   return (
     <div ref={wrapperRef} style={preparedStyle} {...rest}>
-      {children.map(placeBoxes({boxesRefs, positions, transition, transitionDuration}))}
+      {children.map(
+        placeBox({
+          boxesRefs,
+          positions: preparedPositions,
+          transition,
+          transitionDuration
+        })
+      )}
     </div>
   );
 };

@@ -33,7 +33,7 @@ const usePositions = ({ boxesRefs, wrapperRef, gutter, children }) => {
     });
 
     setPositionsSpec(spec);
-  }, [children, gutter, boxesRefs, wrapperRef, setPositionsSpec]);
+  }, [children, gutter, boxesRefs, wrapperRef]);
 
   return { positions, containerHeight };
 };
