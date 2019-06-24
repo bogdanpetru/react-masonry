@@ -24,7 +24,7 @@ const options = [
 ];
 
 const App = () => {
-  const [numberOfBoxes, setCardsNumber] = useState(3);
+  const [numberOfBoxes, setCardsNumber] = useState(10);
   const [stacking, setStacking] = useState(3);
 
  return <div className="root">

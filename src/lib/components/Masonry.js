@@ -213,7 +213,7 @@ export class Masonry extends PureComponent<Props, State> {
 
   render() {
     const { children } = this.props;
-    const { availableSpots, containerHeight } = this.state;
+    const { containerHeight } = this.state;
     const style = {
       ...this.props.style,
       position: "relative",

@@ -8,7 +8,40 @@ const common = {
   fontWeight: 700
 };
 
-const boxes = [getBox()];
+const boxes = [
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+  getBox(),
+];
 
 const titleStyle = {
   position: "absolute",

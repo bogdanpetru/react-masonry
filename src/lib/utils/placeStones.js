@@ -45,6 +45,11 @@ export const placeStones = ({ stones, containerSize, gutter = 0 }) => {
       containerSize
     });
 
+    const stoneBottom = spec.position.top + stone.height;
+    if (containerHeight < stoneBottom) {
+      containerHeight = stoneBottom;
+    }
+
     positions.push(spec.position);
     availableSpots = spec.availableSpots;
   }

@@ -1,5 +1,6 @@
 import React, { cloneElement, useRef, useState, useEffect } from "react";
 import { usePositions } from "./usePositions";
+import { translatePositions } from "../utils/translatePositions";
 
 import { getStoneStyle } from "./style";
 
@@ -24,11 +25,15 @@ const placeBox = ({ boxesRefs, positions, transition, transitionDuration }) => (
   });
 };
 
-const usePositionsOneAtATime = (positions, transitionStep = 300) => {
+const usePositionsOneAtATime = (positions, transitionStep = 100) => {
   const [oneAtATimePositions, setPositions] = useState([]);
   const timeoutRef = useRef();
 
   const placeStone = (positions, currentStone = 0) => {
+    if (positions.length + 1 < currentStone) {
+      return;
+    }
+
     setPositions(positions.slice(0, currentStone));
 
     timeoutRef.current = setTimeout(
@@ -54,6 +59,8 @@ const Masonry = ({
   style,
   transition = false,
   transitionDuration = 300,
+  transitionStep = 100,
+  stacking,
   ...rest
 }) => {
   const boxesRefs = useRef([]);
@@ -66,7 +73,10 @@ const Masonry = ({
     children
   });
 
-  const preparedPositions = usePositionsOneAtATime(positions);
+  const preparedPositions = translatePositions({
+    positions: usePositionsOneAtATime(positions, transitionStep),
+    stacking
+  });
 
   const preparedStyle = {
     minHeight: containerHeight,
