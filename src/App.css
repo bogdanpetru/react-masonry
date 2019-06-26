@@ -1,5 +1,7 @@
-h1, h2, h3 {
-  font-family: 'Sunflower', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Sunflower", sans-serif;
 }
 
 h2 {
@@ -14,7 +16,7 @@ a {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #2c3e50;
   padding-top: 50px;
 }
@@ -36,12 +38,12 @@ img {
 
 .btn-default {
   cursor: pointer;
-  font-family: 'Sunflower', sans-serif;
+  font-family: "Sunflower", sans-serif;
   font-size: 18px;
   margin: 0 3px;
   padding: 10px;
   border: 0;
-  background: #8e44ad; 
+  background: #8e44ad;
   color: #ecf0f1;
 
   transition: color 300ms ease;
@@ -50,4 +52,16 @@ img {
 .btn-default.active,
 .btn-default:hover {
   background: #2980b9;
+}
+
+@media (min-width: 400px) {
+  .box {
+    width: 50%;
+  }
+}
+
+@media (min-width: 800px) {
+  .box {
+    width: 30%;
+  }
 }

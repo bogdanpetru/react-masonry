@@ -1,3 +1,3 @@
-import { Masonry } from "./components/Masonry-with-hooks";
+import { Masonry } from "./components/masonry.jsx";
 
 export { Masonry };

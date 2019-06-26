@@ -64,7 +64,6 @@ function random250() {
 function getBox() {
   return {
     ...common,
-    width: "20%",
     height: random(10, 300),
     backgroundColor: randomColor()
   };
@@ -84,7 +83,7 @@ const App = ({ stacking, numberOfBoxes = 1 }) => {
   return (
     <Masonry style={{ height: 500 }} stacking={stacking} transition="fadeMove">
       {boxes.slice(0, numberOfBoxesInt).map((box, index) => (
-        <div key={index} style={box}>
+        <div className="box" key={index} style={box}>
           {`${box.width} - ${box.height}`}
           <div style={titleStyle}>{index}</div>
         </div>

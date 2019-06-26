@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from "react";
 import { placeStones } from "../utils/placeStones";
 
 const getStones = stoneNodes => {
@@ -17,7 +17,13 @@ const getStones = stoneNodes => {
     .filter(Boolean);
 };
 
-const usePositions = ({ boxesRefs, wrapperRef, gutter, children }) => {
+const usePositions = ({
+  boxesRefs,
+  wrapperRef,
+  gutter,
+  children,
+  windowWidth
+}) => {
   const [{ positions, containerHeight }, setPositionsSpec] = useState({
     positions: [],
     containerHeight: null
@@ -33,7 +39,7 @@ const usePositions = ({ boxesRefs, wrapperRef, gutter, children }) => {
     });
 
     setPositionsSpec(spec);
-  }, [children, gutter, boxesRefs, wrapperRef]);
+  }, [children, gutter, boxesRefs, wrapperRef, windowWidth]);
 
   return { positions, containerHeight };
 };
