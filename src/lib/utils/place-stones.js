@@ -1,33 +1,12 @@
-import { placeStone } from "./placeStone";
-import { normalizeGutter } from "./normalizeGutter";
-
-const addGutterToStone = (stone, gutter) =>
-  gutter
-    ? {
-        width: stone.width + gutter.left + gutter.right,
-        height: stone.height + gutter.top + gutter.bottom
-      }
-    : stone;
-
-const addGutterToPosition = (position, gutter) =>
-  gutter
-    ? {
-        top: position.top + gutter.top,
-        left: position.left + gutter.left
-      }
-    : position;
-
-const getContainerHeight = (containerHeight, stone, position) =>
-  position.top + stone.height > containerHeight
-    ? position.top + stone.height
-    : containerHeight;
-
-const defaultPositions = {
-  positions: [],
-  containerHeight: 0
-};
+import { placeStone } from './place-stone';
+import { addGutterToStone, normalizeGutter } from './gutter-utils';
 
 export const placeStones = ({ stones, containerSize, gutter = 0 }) => {
+  const defaultPositions = {
+    positions: [],
+    containerHeight: 0
+  };
+
   if (!stones.length) return defaultPositions;
 
   let containerHeight = 0;

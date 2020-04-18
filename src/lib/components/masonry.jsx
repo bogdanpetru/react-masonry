@@ -1,10 +1,10 @@
 import React, { cloneElement, useRef, useState, useEffect } from "react";
-import { translatePositions } from "../utils/translatePositions";
 
 import { usePositions } from "./use-positions.js";
 import { usePositionsOneAtATime } from "./use-positions-one-at-a-time";
 
 import { getStoneStyle } from "./style";
+import { translatePositions } from '../utils/position-utils';
 
 
 const useWindowWidth = () => {
@@ -12,12 +12,12 @@ const useWindowWidth = () => {
 
   useEffect(() => {
     const onResize = () => { // todo add throttle
-      setWidth(window.innerWidth);
+      setWidth(global.innerWidth);
     }
-    window.addEventListener('resize', onResize);
+    global.addEventListener('resize', onResize);
 
     return () => {
-      window.removeEventListener('resize', onResize);
+      global.removeEventListener('resize', onResize);
     }
   }, [])
 

@@ -1,4 +1,4 @@
-import { sort } from "./sort";
+import { sort } from './array-utils';
 
 const sortByTop = (current, next) => {
   if (current.top === next.top) {
@@ -7,6 +7,8 @@ const sortByTop = (current, next) => {
 
   return current.top < next.top ? -1 : 1;
 };
+
+
 
 /**
  * First sorts by top, and then if top is the same

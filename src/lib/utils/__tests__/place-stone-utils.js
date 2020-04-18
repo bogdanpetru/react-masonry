@@ -1,4 +1,4 @@
-import { sortByTopFirstLeftSecond } from '../sortByTopFirstLeftSecond';
+import { sortByTopFirstLeftSecond } from '../place-stone-utils';
 
 describe('sortByTopFirstLeftSecond', () => {
   it('should sort first by top and then by left, when top is the same', () => {

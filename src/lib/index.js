@@ -1,3 +1,3 @@
-import { Masonry } from "./components/masonry.jsx";
+import { Masonry } from "./components/masonry";
 
 export { Masonry };

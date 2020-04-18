@@ -89,8 +89,8 @@ const getConsumedSpot = ({ stone, position, spotsList, optimalSpot }) => {
   return usedSpot;
 };
 
-export const validateSpots = ({ spots, position, optimalSpot, stone }) =>
-  spots.map((spot: Spot, index, spotsList) => {
+export const spotAdjustUtils = ({ spots, position, optimalSpot, stone }) =>
+  spots.map((spot, index, spotsList) => {
     if (spot === optimalSpot) {
       return getConsumedSpot({ stone, position, optimalSpot, spotsList });
     }

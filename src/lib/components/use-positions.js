@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { placeStones } from "../utils/placeStones";
+import { placeStones } from "../utils/place-stones";
 
 const getStones = stoneNodes => {
   return stoneNodes

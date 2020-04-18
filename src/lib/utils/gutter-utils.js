@@ -1,3 +1,24 @@
+export const addGutterToStone = (stone, gutter) =>
+  gutter
+    ? {
+      width: stone.width + gutter.left + gutter.right,
+      height: stone.height + gutter.top + gutter.bottom
+    }
+    : stone;
+
+export const addGutterToPosition = (position, gutter) =>
+  gutter
+    ? {
+      top: position.top + gutter.top,
+      left: position.left + gutter.left
+    }
+    : position;
+
+export const getContainerHeight = (containerHeight, stone, position) =>
+  position.top + stone.height > containerHeight
+    ? position.top + stone.height
+    : containerHeight;
+
 export function normalizeGutter(gutter) {
   if (typeof gutter === 'object') {
     const normalizedGutter = { ...gutter }

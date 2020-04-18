@@ -1,20 +1,20 @@
 /**
-  right-bottom - default
-  left-bottom - right = left
-  right-top - bottom-top
-  left-top - bottomtop / right=left
+ right-bottom - default
+ left-bottom - right = left
+ right-top - bottom-top
+ left-top - bottomtop / right=left
 
  */
 function translatePositions({ positions, stacking }) {
-  if (stacking === "left-bottom") {
+  if (stacking === 'left-bottom') {
     return positions.map(({ top, left }) => ({ top, right: left }));
   }
 
-  if (stacking === "right-top") {
+  if (stacking === 'right-top') {
     return positions.map(({ top, left }) => ({ bottom: top, left }));
   }
 
-  if (stacking === "left-top") {
+  if (stacking === 'left-top') {
     return positions.map(({ top, left }) => ({ bottom: top, right: left }));
   }
 
