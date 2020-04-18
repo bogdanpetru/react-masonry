@@ -1,26 +1,13 @@
-// @flow
-
-import { filter } from "./filter";
-import type { Stone, Spot, Position } from "./types";
-import { sortByTopFirstLeftSecond } from "./sortByTopFirstLeftSecond";
-import { getNewSpot } from "./getNewSpot";
-import { getOptimalSpot } from "./getOptimalSpot";
-import { validateSpots } from "./validateSpots";
-
-const filterNullSPots = (spot: Spot): boolean => !!spot;
+import { spotAdjustUtils } from "./spot-adjust-utils";
+import { filter } from './array-utils';
+import { sortByTopFirstLeftSecond } from './place-stone-utils';
+import { getNewSpot, getOptimalSpot } from './spot-utils';
 
 export function placeStone({
   stone,
   availableSpots,
   containerSize
-}: {
-  stone: Stone,
-  availableSpots: Spot[],
-  containerSize: number
-}): {
-  position: Position,
-  availableSpots: Spot[]
-} {
+}) {
   // place stone
   const optimalSpot = getOptimalSpot({ availableSpots, stone });
   const position = {
@@ -38,13 +25,13 @@ export function placeStone({
 
   let newAvailableSpots = [...availableSpots, newSpot];
 
-  newAvailableSpots = validateSpots({
+  newAvailableSpots = spotAdjustUtils({
     spots: newAvailableSpots,
     position,
     optimalSpot,
     stone
   });
-  newAvailableSpots = [...filter(filterNullSPots, newAvailableSpots)];
+  newAvailableSpots = [...filter(Boolean, newAvailableSpots)];
   newAvailableSpots = sortByTopFirstLeftSecond(newAvailableSpots);
 
   return {
