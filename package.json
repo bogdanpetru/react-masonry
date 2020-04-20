@@ -22,6 +22,8 @@
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -b master -d build",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -30,6 +32,7 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
+    "gh-pages": "^2.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-scripts": "3.4.1"
