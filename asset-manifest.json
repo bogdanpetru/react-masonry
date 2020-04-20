@@ -1,6 +1,22 @@
 {
-  "main.css": "static/css/main.616afff8.css",
-  "main.css.map": "static/css/main.616afff8.css.map",
-  "main.js": "static/js/main.8f453fa3.js",
-  "main.js.map": "static/js/main.8f453fa3.js.map"
+  "files": {
+    "main.css": "/react-masonry/static/css/main.8a38e5ca.chunk.css",
+    "main.js": "/react-masonry/static/js/main.1df3a88a.chunk.js",
+    "main.js.map": "/react-masonry/static/js/main.1df3a88a.chunk.js.map",
+    "runtime-main.js": "/react-masonry/static/js/runtime-main.92cc9ddd.js",
+    "runtime-main.js.map": "/react-masonry/static/js/runtime-main.92cc9ddd.js.map",
+    "static/js/2.bead0e91.chunk.js": "/react-masonry/static/js/2.bead0e91.chunk.js",
+    "static/js/2.bead0e91.chunk.js.map": "/react-masonry/static/js/2.bead0e91.chunk.js.map",
+    "index.html": "/react-masonry/index.html",
+    "precache-manifest.ab7786378e1d4b9be55a94f9c1764032.js": "/react-masonry/precache-manifest.ab7786378e1d4b9be55a94f9c1764032.js",
+    "service-worker.js": "/react-masonry/service-worker.js",
+    "static/css/main.8a38e5ca.chunk.css.map": "/react-masonry/static/css/main.8a38e5ca.chunk.css.map",
+    "static/js/2.bead0e91.chunk.js.LICENSE.txt": "/react-masonry/static/js/2.bead0e91.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.92cc9ddd.js",
+    "static/js/2.bead0e91.chunk.js",
+    "static/css/main.8a38e5ca.chunk.css",
+    "static/js/main.1df3a88a.chunk.js"
+  ]
 }
