@@ -18,17 +18,16 @@ a {
 body {
   font-family: "Open Sans", sans-serif;
   color: #2c3e50;
-  padding-top: 50px;
+  padding-top: 150px;
 }
 
-img {
-  /*width: 100%;*/
-  height: auto;
+main {
+  max-width: 768px;
+  margin: 0 auto 40px;
 }
 
 .root {
   margin: 0 auto 50px;
-  max-width: 768px;
 }
 
 .title {
@@ -54,14 +53,25 @@ img {
   background: #2980b9;
 }
 
-@media (min-width: 400px) {
-  .box {
-    width: 50%;
-  }
+.box {
+  background-size: cover;
+  width: 50%;
 }
 
 @media (min-width: 800px) {
   .box {
-    width: 30%;
+    width: 33.333%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .box {
+    width: 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .box {
+    width: 20%;
   }
 }

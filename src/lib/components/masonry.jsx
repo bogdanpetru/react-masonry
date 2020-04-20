@@ -1,45 +1,27 @@
-import React, { cloneElement, useRef, useState, useEffect } from "react";
+import React, { cloneElement, useRef } from 'react';
 
-import { usePositions } from "./use-positions.js";
-import { usePositionsOneAtATime } from "./use-positions-one-at-a-time";
+import { usePositions } from './use-positions.js';
+import { usePositionsOneAtATime } from './use-positions-one-at-a-time';
 
-import { getStoneStyle } from "./style";
+import { getStoneStyle } from './style';
 import { translatePositions } from '../utils/position-utils';
-
-
-const useWindowWidth = () => {
-  const [width, setWidth] = useState();
-
-  useEffect(() => {
-    const onResize = () => { // todo add throttle
-      setWidth(global.innerWidth);
-    }
-    global.addEventListener('resize', onResize);
-
-    return () => {
-      global.removeEventListener('resize', onResize);
-    }
-  }, [])
-
-  return width;
-}
+import { useWindowWidth } from './use-window-width';
 
 const Masonry = ({
   children,
   gutter,
   style,
-  transition = false,
-  transitionDuration = 300,
-  transitionStep = 100,
+  transition,
+  transitionDuration,
+  transitionStep,
   stacking,
   ...rest
 }) => {
   const boxesRefs = useRef([]);
   const wrapperRef = useRef();
-
   const windowWidth = useWindowWidth();
 
-  const { positions, containerHeight } = usePositions({
+  const { positions, containerHeight, stones } = usePositions({
     boxesRefs,
     wrapperRef,
     gutter,
@@ -79,6 +61,12 @@ const Masonry = ({
       })}
     </div>
   );
+};
+
+Masonry.defaultProps = {
+  transition: false,
+  transitionDuration: 800,
+  transitionStep: 100,
 };
 
 export { Masonry };

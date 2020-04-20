@@ -24,9 +24,10 @@ const usePositions = ({
   children,
   windowWidth
 }) => {
-  const [{ positions, containerHeight }, setPositionsSpec] = useState({
+  const [{ positions, containerHeight, stones }, setPositionsSpec] = useState({
     positions: [],
-    containerHeight: null
+    containerHeight: null,
+    stones: [],
   });
 
   useEffect(() => {
@@ -38,10 +39,10 @@ const usePositions = ({
       containerSize
     });
 
-    setPositionsSpec(spec);
+    setPositionsSpec({ ...spec, stones }); // TODO refactor spec
   }, [children, gutter, boxesRefs, wrapperRef, windowWidth]);
 
-  return { positions, containerHeight };
+  return { positions, containerHeight, stones };
 };
 
 export { usePositions };
