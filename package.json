@@ -7,7 +7,11 @@
     "type": "git",
     "url": "https://github.com/bogdanpetru/react-masonry.git"
   },
-  "main": "lib",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "keywords": [
     "react",
     "grid",
@@ -18,13 +22,16 @@
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-scripts": "3.4.1"
   },
   "eslintConfig": {
@@ -41,8 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "dependencies": {
-    "lodash.debounce": "^4.0.0"
   }
 }
