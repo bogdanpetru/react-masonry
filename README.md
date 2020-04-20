@@ -77,3 +77,4 @@ Window resize listener is debouced, this sets the wait time.
 - [ ] add prettier
 - [ ] update stone positions on props change that influence positioning
 - [ ] add possibility to stack in different ways
+- [ ] add typescript
