@@ -1,0 +1,23 @@
+{
+  "name": "react-masonry",
+  "private": true,
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "yarn clean && cross-env NODE_ENV=production babel src -d dist --ignore \"**/*.test.js\"",
+    "test": "jest ./src --passWithNoTests",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "cross-env": "^7.0.3",
+    "lodash.debounce": "^4.0.8"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.13.0",
+    "@babel/core": "7.13.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}

@@ -1,8 +1,9 @@
 {
-  "name": "react-masonry",
+  "name": "@react-masonry/root",
   "version": "0.1.6",
-  "private": false,
+  "private": true,
   "author": "Bogdan Petru Pintican",
+  "workspaces": ["packages/*"],
   "repository": {
     "type": "git",
     "url": "https://github.com/bogdanpetru/react-masonry.git"
@@ -21,38 +22,14 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn workspace @react-masonry/examples start",
     "predeploy": "react-scripts build",
     "deploy": "gh-pages -d build",
-    "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files",
-    "test": "react-scripts test",
+    "build": "yarn workspace react-masonry build",
+    "test": "yarn workspace @react-masonry/examples test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "gh-pages": "^2.2.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-scripts": "3.4.1"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "dependencies": {
-    "lodash.debounce": "^4.0.8"
+    "gh-pages": "3.2.3"
   }
 }
