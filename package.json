@@ -1,18 +1,14 @@
 {
-  "name": "@react-masonry/root",
-  "version": "0.1.6",
   "private": true,
   "author": "Bogdan Petru Pintican",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "./packages/examples",
+    "./packages/react-masonry"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/bogdanpetru/react-masonry.git"
   },
-  "main": "dist/index.js",
-  "files": [
-    "dist",
-    "README.md"
-  ],
   "keywords": [
     "react",
     "grid",
@@ -22,11 +18,11 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "start": "yarn workspace @react-masonry/examples start",
+    "start": "yarn workspace examples start",
     "predeploy": "react-scripts build",
     "deploy": "gh-pages -d build",
     "build": "yarn workspace react-masonry build",
-    "test": "yarn workspace @react-masonry/examples test",
+    "test": "yarn workspace examples test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

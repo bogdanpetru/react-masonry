@@ -1,12 +1,13 @@
-import React from 'react';
-import { Masonry } from 'react-masonry';
+import React from 'react'
+import { Masonry } from 'react-masonry'
 
 const common = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   fontWeight: 700,
-};
+  width: '33%',
+}
 
 const titleStyle = {
   position: 'absolute',
@@ -16,14 +17,14 @@ const titleStyle = {
   backgroundColor: '#333',
   color: '#fff',
   padding: 5,
-};
+}
 
 function random(min, max) {
-  return Math.ceil(Math.random() * (max - min) + min);
+  return Math.ceil(Math.random() * (max - min) + min)
 }
 
 function random250() {
-  return random(0, 255);
+  return random(0, 255)
 }
 
 function getBox() {
@@ -31,11 +32,11 @@ function getBox() {
     ...common,
     height: random(160, 640),
     backgroundColor: randomColor(),
-  };
+  }
 }
 
 function randomColor() {
-  return `rgb(${random250()},${random(0, 100)},${random(0, 120)})`;
+  return `rgb(${random250()},${random(0, 100)},${random(0, 120)})`
 }
 
 function getImageSrc(height) {
@@ -45,27 +46,34 @@ function getImageSrc(height) {
       'https://www.fillmurray.com/230/',
       'https://placebeard.it/230x',
       'https://www.placecage.com/230/',
-    ][random(0, 2)] + height
-  );
+    ][random(0, 3)] + height
+  )
 }
 
-const App = ({ stacking, numberOfBoxes = 1 }) => {
-  const numberOfBoxesInt = parseInt(numberOfBoxes, 10);
-  const boxes = [...Array(numberOfBoxesInt)].map(getBox);
+const App = ({ stacking, gutter = 0, numberOfBoxes = 1 }) => {
+  const numberOfBoxesInt = numberOfBoxes
+  const boxes = [...Array(numberOfBoxesInt)].map(getBox)
 
   return (
-    <Masonry style={{ height: 500 }} stacking={stacking} transition="fadeMove">
+    <Masonry
+      gutter={gutter}
+      style={{ height: 500 }}
+      stacking={stacking}
+      transition="fadeMove"
+    >
       {boxes.slice(0, numberOfBoxesInt).map((box, index) => (
         <div
           className="box"
           key={index}
           style={{ ...box, backgroundImage: `url(${getImageSrc(box.height)})` }}
         >
-          <div style={titleStyle}>{index}</div>
+          <div key={index} style={titleStyle}>
+            {index}
+          </div>
         </div>
       ))}
     </Masonry>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -1,11 +1,11 @@
-import React, { cloneElement, useRef } from 'react';
+import React, { cloneElement, useRef } from 'react'
 
-import { usePositions } from './use-positions.js';
-import { usePositionsOneAtATime } from './use-positions-one-at-a-time';
+import { usePositions } from './use-positions.js'
+import { usePositionsOneAtATime } from './use-positions-one-at-a-time'
 
-import { getStoneStyle } from './style';
-import { translatePositions } from '../utils/position-utils';
-import { useWindowWidth } from './use-window-width';
+import { getStoneStyle } from './style'
+import { translatePositions } from '../utils/position-utils'
+import { useWindowWidth } from './use-window-width'
 
 const Masonry = ({
   children,
@@ -17,9 +17,9 @@ const Masonry = ({
   stacking,
   ...rest
 }) => {
-  const boxesRefs = useRef([]);
-  const wrapperRef = useRef();
-  const windowWidth = useWindowWidth();
+  const boxesRefs = useRef([])
+  const wrapperRef = useRef()
+  const windowWidth = useWindowWidth()
 
   const { positions, containerHeight, stones } = usePositions({
     boxesRefs,
@@ -27,18 +27,18 @@ const Masonry = ({
     gutter,
     children,
     windowWidth,
-  });
+  })
 
   const preparedPositions = translatePositions({
     positions: usePositionsOneAtATime(positions, transitionStep),
-    stacking
-  });
+    stacking,
+  })
 
   const preparedStyle = {
     minHeight: containerHeight,
-    position: "relative",
-    ...style
-  };
+    position: 'relative',
+    ...style,
+  }
 
   return (
     <div ref={wrapperRef} style={preparedStyle} {...rest}>
@@ -48,25 +48,25 @@ const Masonry = ({
             style: child.props.style,
             position: positions[index],
             transition,
-            transitionDuration
+            transitionDuration,
           }),
-          ref: ref => (boxesRefs.current[index] = ref),
-          key: child.props.key || index
-        };
+          ref: (ref) => (boxesRefs.current[index] = ref),
+          key: child.props.key || index,
+        }
 
         return cloneElement(child, {
           ...child.props,
-          ...stoneProps
-        });
+          ...stoneProps,
+        })
       })}
     </div>
-  );
-};
+  )
+}
 
 Masonry.defaultProps = {
   transition: false,
   transitionDuration: 800,
   transitionStep: 100,
-};
+}
 
-export { Masonry };
+export { Masonry }

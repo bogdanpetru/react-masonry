@@ -12,4 +12,4 @@ export function find(func, list) {
 
 export const filter = (func, list) => list.filter(func);
 
-export const sort = (func, list) => [ ...list ].sort(func);
+export const sort = (func, list) => [...list].sort(func);

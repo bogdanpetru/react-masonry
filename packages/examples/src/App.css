@@ -1,8 +1,4 @@
-h1,
-h2,
-h3 {
-  font-family: "Sunflower", sans-serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
 h2 {
   margin-bottom: 35px;
@@ -16,9 +12,9 @@ a {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
   color: #2c3e50;
   padding-top: 150px;
+  font-family: "Roboto", sans-serif;
 }
 
 main {

@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-import './App.css';
-
-import RelativeWidthsExample from './RelativeWidthsExample';
+import RelativeWidthsExample from './RelativeWidthsExample'
 
 const options = [
   {
@@ -21,11 +19,12 @@ const options = [
     id: 'left-top',
     label: 'left, top',
   },
-];
+]
 
 const App = () => {
-  const [numberOfBoxes, setCardsNumber] = useState(30);
-  const [stacking, setStacking] = useState(3);
+  const [numberOfBoxes, setCardsNumber] = useState(30)
+  const [gutter, setGutter] = useState(0)
+  const [stacking, setStacking] = useState(3)
 
   return (
     <div className="root">
@@ -94,13 +93,19 @@ const App = () => {
           value={numberOfBoxes}
           onChange={(event) => setCardsNumber(event.target.value)}
         />
+        <input
+          type="number"
+          value={gutter}
+          onChange={(event) => setGutter(event.target.value)}
+        />
       </main>
       <RelativeWidthsExample
         stacking={stacking}
+        gutter={gutter}
         numberOfBoxes={numberOfBoxes}
       />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

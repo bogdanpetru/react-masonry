@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "es6",
+    "esModuleInterop": true
+  }
+}

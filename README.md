@@ -6,7 +6,6 @@ It places elements in optimal positions by stacking them from left to right and 
 
 See [Demo](https://bogdanpetru.github.io/react-masonry/).
 
-
 **This component is in development, any help is welcome :).**
 
 ## Usage
@@ -15,15 +14,16 @@ Place any elements inside the Masonry component. They will be cloned, measured a
 
 Elements rendered inside Masonry must be [DOM elements](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html#dom-elements).
 
-
 ```jsx
-import {Masonry} from 'react-masonry'
+import { Masonry } from "react-masonry";
 
-return <Masonry>
-  <img src="helloWolrd.jpg" />
-  <div className="box">some text</div>
-  <img src="foo.png" />
-</Masonry>
+return (
+  <Masonry>
+    <img src="helloWolrd.jpg" />
+    <div className="box">some text</div>
+    <img src="foo.png" />
+  </Masonry>
+);
 ```
 
 ## Install
@@ -49,13 +49,13 @@ Whether place stones one after another using an animation.
 - [x] `transitionStep`: number - 50in ms, time in between each stone placement, this is relevant if `transition` prop is not `false`.
 
 - [x] `transitionDuration`: number - 300
- Transition duration in ms.
+      Transition duration in ms.
 
- Speed with which stones are placed when `enterOneAfterAnother=true`
+Speed with which stones are placed when `enterOneAfterAnother=true`
 
 - [x] `updateOnWindowResize`: bool - true
 
- Whether to calculate again positions when Windows changes size.
+Whether to calculate again positions when Windows changes size.
 
 - [x] `updateOnWindowResizeDebounceWait`: number - 300
 
@@ -64,17 +64,6 @@ Window resize listener is debouced, this sets the wait time.
 
 - [ ] Customize specific stones in different way
 
- These props can be also added on div element like so:
+These props can be also added on div element like so:
 
 `data-masonry-settings={{ gutter: 20, offset: { bottom: 20 } }}`
-
-
-## TODO
-
-- [x] simplify and remove img logic
-- [ ] add tests for covered cases validate stones
-- [ ] fix edge case where an item is bigger than the container
-- [ ] add prettier
-- [ ] update stone positions on props change that influence positioning
-- [ ] add possibility to stack in different ways
-- [ ] add typescript
