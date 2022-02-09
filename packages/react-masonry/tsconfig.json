@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "target": "es6",
+    "esModuleInterop": true
+  },
+  "typedocOptions": {
+    "entryPoints": ["src/types.ts"],
+
+    "json": "./api.json"
+  }
+}

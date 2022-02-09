@@ -2,7 +2,7 @@
   "private": true,
   "author": "Bogdan Petru Pintican",
   "workspaces": [
-    "./packages/examples",
+    "./packages/site",
     "./packages/react-masonry"
   ],
   "repository": {
@@ -18,7 +18,7 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "start": "yarn workspace examples start",
+    "start": "yarn workspace site start",
     "predeploy": "react-scripts build",
     "deploy": "gh-pages -d build",
     "build": "yarn workspace react-masonry build",

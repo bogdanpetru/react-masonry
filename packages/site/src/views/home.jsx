@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-
-import RelativeWidthsExample from './RelativeWidthsExample'
+import RelativeWidthsExample from './examples/RelativeWidthsExample'
 
 const options = [
   {
@@ -21,7 +20,7 @@ const options = [
   },
 ]
 
-const App = () => {
+export const Home = () => {
   const [numberOfBoxes, setCardsNumber] = useState(30)
   const [gutter, setGutter] = useState(0)
   const [stacking, setStacking] = useState(3)
@@ -29,8 +28,6 @@ const App = () => {
   return (
     <div className="root">
       <main>
-        <h1 className="title">React Masonry</h1>
-
         <div>
           <h2>Introduction</h2>
 
@@ -107,5 +104,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App

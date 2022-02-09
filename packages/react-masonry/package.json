@@ -4,19 +4,29 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "build": "yarn clean && cross-env NODE_ENV=production babel src -d dist --ignore \"**/*.test.js\"",
+    "build": "NODE_ENV=production babel src -d dist --ignore \"*/.test.js\" --extensions \".ts,.js\" && tsc",
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist"
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8",
-    "react": "^17.0.0"
+    "react": "^17.0.0",
+    "typedoc": "^0.22.11"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.15.6",
-    "@babel/preset-react": "^7.14.5",
-    "cross-env": "^7.0.3",
     "@babel/cli": "7.13.0",
-    "@babel/core": "7.13.1"
+    "@babel/core": "7.13.1",
+    "@babel/runtime": "7.13.8",
+    "@babel/plugin-proposal-export-default-from": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.13.8",
+    "@babel/preset-env": "7.13.5"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ]
   }
 }
