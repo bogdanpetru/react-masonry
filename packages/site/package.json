@@ -8,6 +8,9 @@
     ]
   },
   "dependencies": {
+    "@vanilla-extract/babel-plugin": "^1.1.4",
+    "@vanilla-extract/css": "^1.6.8",
+    "@vanilla-extract/webpack-plugin": "^2.1.5",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-masonry": "1.0.0",
