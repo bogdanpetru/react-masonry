@@ -79,7 +79,11 @@ const getImages = async (numberOfImages) => {
   return images
 }
 
-const App = ({ stacking, gutter = 0, numberOfBoxes = 1 }) => {
+export const RelativeWidthsExample = ({
+  stacking,
+  gutter = 0,
+  numberOfBoxes = 1,
+}) => {
   const [images, setImages] = useState()
 
   const boxes = useMemo(() => {
@@ -109,7 +113,6 @@ const App = ({ stacking, gutter = 0, numberOfBoxes = 1 }) => {
         console.log(img.url)
         return (
           <div
-            className="box"
             key={index}
             style={{
               ...box,
@@ -126,5 +129,3 @@ const App = ({ stacking, gutter = 0, numberOfBoxes = 1 }) => {
     </Masonry>
   )
 }
-
-export default App

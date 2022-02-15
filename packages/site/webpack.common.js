@@ -1,7 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-
+const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin')
 module.exports = {
   entry: './src/index.jsx',
   module: {
@@ -30,16 +29,9 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: `react-masonry`,
-    //       to: 'target',
-    //     },
-    //   ],
-    // }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
+    new VanillaExtractPlugin(),
   ],
 }
