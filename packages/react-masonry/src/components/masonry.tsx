@@ -1,19 +1,17 @@
 import React, { cloneElement, useRef } from 'react'
 
 import { usePositions } from './use-positions.js'
-import { usePositionsOneAtATime } from './use-positions-one-at-a-time'
-
 import { getStoneStyle } from './style'
-import { translatePositions } from '../utils/position-utils'
 import { useWindowWidth } from './use-window-width'
+import { MasonryProps } from '../types.js'
 
-const Masonry = ({
+export const Masonry: React.FunctionComponent<MasonryProps> = ({
   children,
   gutter,
   style,
-  transition,
-  transitionDuration,
-  transitionStep,
+  transition = false,
+  transitionDuration = 500,
+  transitionStep = 50,
   stacking,
   ...rest
 }) => {
@@ -21,7 +19,7 @@ const Masonry = ({
   const wrapperRef = useRef()
   const windowWidth = useWindowWidth()
 
-  const { positions, containerHeight, stones } = usePositions({
+  const { positions, containerHeight } = usePositions({
     boxesRefs,
     wrapperRef,
     gutter,
@@ -29,12 +27,7 @@ const Masonry = ({
     windowWidth,
   })
 
-  const preparedPositions = translatePositions({
-    positions: usePositionsOneAtATime(positions, transitionStep),
-    stacking,
-  })
-
-  const preparedStyle = {
+  const preparedStyle: React.CSSProperties = {
     minHeight: containerHeight,
     position: 'relative',
     ...style,
@@ -42,7 +35,13 @@ const Masonry = ({
 
   return (
     <div ref={wrapperRef} style={preparedStyle} {...rest}>
-      {children.map((child, index) => {
+      {React.Children.map(children, (child, index) => {
+        if (
+          typeof child !== 'object' || !('type' in child)
+        ) {
+          return child;
+        }
+
         const stoneProps = {
           style: getStoneStyle({
             style: child.props.style,
@@ -50,7 +49,7 @@ const Masonry = ({
             transition,
             transitionDuration,
           }),
-          ref: (ref) => (boxesRefs.current[index] = ref),
+          ref: (ref: Element) => (boxesRefs.current[index] = ref),
           key: child.props.key || index,
         }
 
@@ -63,10 +62,3 @@ const Masonry = ({
   )
 }
 
-Masonry.defaultProps = {
-  transition: false,
-  transitionDuration: 800,
-  transitionStep: 100,
-}
-
-export { Masonry }

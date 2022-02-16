@@ -1,11 +1,19 @@
+import { Spot, Stone } from '../internal-types';
 import { find } from './array-utils';
 
-export const getNewSpot = ({
-  availableSpots,
-  optimalSpot,
-  containerSize,
-  stone
-}) => {
+export const getNewSpot = (
+  {
+    availableSpots,
+    optimalSpot,
+    containerSize,
+    stone
+  } :  {
+    availableSpots: Spot[],
+    optimalSpot: Spot,
+    containerSize: number,
+    stone: Stone
+  }
+): Spot => {
   const right = containerSize;
   let newSpot = {
     right,
@@ -33,7 +41,9 @@ export const getNewSpot = ({
 
   return newSpot;
 };
-const doesBoxFit = (spot, stone) => {
+
+
+const doesBoxFit = (spot: Spot, stone: Stone) => {
   const fitsWidth = spot.right - spot.left >= stone.width;
   if (!spot.bottom) {
     return fitsWidth;
@@ -42,5 +52,6 @@ const doesBoxFit = (spot, stone) => {
   const fitsHeight = spot.bottom - spot.top >= stone.height;
   return fitsWidth && fitsHeight;
 };
-export const getOptimalSpot = ({ availableSpots, stone }) =>
+
+export const getOptimalSpot = ({ availableSpots, stone }: { availableSpots: Spot[], stone: Stone }) =>
   find(spot => doesBoxFit(spot, stone), availableSpots);

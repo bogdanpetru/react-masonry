@@ -2,7 +2,7 @@
   "name": "react-masonry",
   "private": false,
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "scripts": {
     "build": "NODE_ENV=production babel src -d dist --ignore \"*/.test.js\" --extensions \".ts,.js\" && tsc",
     "test": "jest ./src --passWithNoTests",

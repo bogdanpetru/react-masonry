@@ -1,4 +1,7 @@
-export const addGutterToStone = (stone, gutter) =>
+import { Stone } from "../internal-types";
+import { Gutter, GutterFullSpecified, Position } from "../types";
+
+export const addGutterToStone = (stone: Stone, gutter: GutterFullSpecified) =>
   gutter
     ? {
       width: stone.width + gutter.left + gutter.right,
@@ -6,7 +9,7 @@ export const addGutterToStone = (stone, gutter) =>
     }
     : stone;
 
-export const addGutterToPosition = (position, gutter) =>
+export const addGutterToPosition = (position: Position, gutter: GutterFullSpecified) =>
   gutter
     ? {
       top: position.top + gutter.top,
@@ -14,12 +17,12 @@ export const addGutterToPosition = (position, gutter) =>
     }
     : position;
 
-export const getContainerHeight = (containerHeight, stone, position) =>
+export const getContainerHeight = (containerHeight: number, stone: Stone, position: Position) =>
   position.top + stone.height > containerHeight
     ? position.top + stone.height
     : containerHeight;
 
-export function normalizeGutter(gutter) {
+export function normalizeGutter(gutter: Gutter): GutterFullSpecified {
   if (typeof gutter === 'object') {
     const normalizedGutter = { ...gutter }
 

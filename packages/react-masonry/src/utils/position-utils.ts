@@ -1,3 +1,5 @@
+import { Position, Stacking } from "../types";
+
 /**
  right-bottom - default
  left-bottom - right = left
@@ -5,7 +7,7 @@
  left-top - bottomtop / right=left
 
  */
-function translatePositions({ positions, stacking }) {
+function translatePositions({ positions, stacking }: { positions: Position[], stacking: Stacking }) {
   if (stacking === 'left-bottom') {
     return positions.map(({ top, left }) => ({ top, right: left }));
   }

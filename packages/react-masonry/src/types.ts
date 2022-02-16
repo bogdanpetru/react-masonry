@@ -1,6 +1,17 @@
+export type Stacking =  'right-top' | 'right-bottom'| 'left-bottom'  | 'top-left' | 'left-top'
+
+export type Position = {
+  top: number
+  left: number
+}
+
+export type GutterFullSpecified = { top?: number; bottom?: number; left?: number; right?: number }
+
+export type GutterNumber = number
+
 export type Gutter =
-  | number
-  | { top?: number; bottom?: number; left?: number; right?: number }
+  | GutterNumber
+  | GutterFullSpecified
 
 export interface MasonryProps {
   /**
@@ -42,4 +53,8 @@ export interface MasonryProps {
    * @default 300
    */
   updateOnWindowResizeDebounceWait: number
+
+  style: React.CSSProperties
+
+  stacking: Stacking
 }
