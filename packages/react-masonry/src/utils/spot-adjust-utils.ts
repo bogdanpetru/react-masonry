@@ -1,4 +1,7 @@
-const isSpotConsumed = spot =>
+import { Spot, Stone } from "../internal-types";
+import { Position } from "../types";
+
+const isSpotConsumed = (spot: Spot) =>
   // width
   spot.right - spot.left < 5 ||
   // height
@@ -24,13 +27,13 @@ const isSpotConsumed = spot =>
   |                   +------------------|
   +--------------------------------------+
 */
-const isSpotContained = ({ spotsList, usedSpot }) =>
+const isSpotContained = ({ spotsList, usedSpot }: { spotsList: Spot[], usedSpot: Spot }) =>
   spotsList.some(
     currentSpot =>
       currentSpot !== usedSpot && usedSpot.left === currentSpot.left
   );
 
-const constrainRight = ({ position, spot, stone }) => {
+const constrainRight = ({ position, spot, stone }: { position: Position, spot: Spot, stone: Stone }) => {
   // if spot is above and restricts it's right
   if (
     position.left > spot.left && // make sure it is to the left
@@ -50,7 +53,7 @@ const constrainRight = ({ position, spot, stone }) => {
   return null;
 };
 
-const constrainBottom = ({ position, stone, spot }) => {
+const constrainBottom = ({ position, stone, spot }: { position: Position, stone:Stone, spot: Spot }) => {
   // check if it was placed above this spot
   if (position.left + stone.width > spot.left && position.top >= spot.top) {
     // if it has already a bottom, must check if it really below it
@@ -73,7 +76,10 @@ const constrainBottom = ({ position, stone, spot }) => {
 };
 
 // handle spot that was occupied, it might be consumed or restricted
-const getConsumedSpot = ({ stone, position, spotsList, optimalSpot }) => {
+const getConsumedSpot = (
+  { stone, position, spotsList, optimalSpot }: 
+  { stone: Stone, position: Position, spotsList: Spot[], optimalSpot: Spot }
+): Spot => {
   // restrict used spot
   let usedSpot = { ...optimalSpot };
   usedSpot.left = position.left + stone.width;
@@ -89,7 +95,10 @@ const getConsumedSpot = ({ stone, position, spotsList, optimalSpot }) => {
   return usedSpot;
 };
 
-export const spotAdjustUtils = ({ spots, position, optimalSpot, stone }) =>
+export const spotAdjustUtils = (
+  { spots, position, optimalSpot, stone }:
+  { spots: Spot[], position: Position, optimalSpot: Spot, stone: Stone }
+): Spot[] =>
   spots.map((spot, index, spotsList) => {
     if (spot === optimalSpot) {
       return getConsumedSpot({ stone, position, optimalSpot, spotsList });

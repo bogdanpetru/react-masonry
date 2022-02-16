@@ -1,4 +1,6 @@
-const transitionStyles = transitionDuration => ({
+import { MasonryProps, Position } from "../types";
+
+const transitionStyles = (transitionDuration: number) => ({
   fade: `${transitionDuration}ms opacity ease`,
   fadeMove: `
     ${transitionDuration}ms opacity ease,
@@ -11,7 +13,10 @@ const transitionStyles = transitionDuration => ({
   `
 });
 
-const getTransitionStyle = ({ transition, transitionDuration }) => {
+const getTransitionStyle = (
+    { transition, transitionDuration }: 
+    { transition: MasonryProps['transition'], transitionDuration: number }
+  ) => {
   if (!transition) {
     return null;
   }
@@ -19,7 +24,7 @@ const getTransitionStyle = ({ transition, transitionDuration }) => {
   return { transition: transitionStyles(transitionDuration)[transition] };
 };
 
-const getPositionStyle = position => {
+const getPositionStyle = (position: Position) => {
   if (!position) {
     return { opacity: 0, top: 0, left: 0 };
   }
@@ -27,7 +32,10 @@ const getPositionStyle = position => {
   return { ...position, opacity: 1 };
 };
 
-const getStoneStyle = ({ style, position, transition, transitionDuration }) => {
+const getStoneStyle = (
+    { style, position, transition, transitionDuration }:
+    { style: React.CSSProperties, position: Position, transition: MasonryProps['transition'], transitionDuration: number }
+  ) => {
   return {
     ...style,
     position: "absolute",
