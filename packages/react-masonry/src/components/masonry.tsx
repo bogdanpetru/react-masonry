@@ -1,9 +1,9 @@
 import React, { cloneElement, useRef } from 'react'
 
-import { usePositions } from './use-positions.js'
+import { usePositions } from './use-positions'
 import { getStoneStyle } from './style'
 import { useWindowWidth } from './use-window-width'
-import { MasonryProps } from '../types.js'
+import { MasonryProps } from '../types'
 
 export const Masonry: React.FunctionComponent<MasonryProps> = ({
   children,
@@ -49,8 +49,7 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
             transition,
             transitionDuration,
           }),
-          ref: (ref: Element) => (boxesRefs.current[index] = ref),
-          key: child.props.key || index,
+          ref: (ref: Element) => (boxesRefs.current[index] = ref)
         }
 
         return cloneElement(child, {

@@ -110,7 +110,6 @@ export const RelativeWidthsExample = ({
     >
       {boxes.slice(0, numberOfBoxes).map((box, index) => {
         const img = images[index]
-        console.log(img.url)
         return (
           <div
             key={index}
@@ -120,7 +119,7 @@ export const RelativeWidthsExample = ({
               backgroundImage: `url(${img.url})`,
             }}
           >
-            <div key={index} style={titleStyle}>
+            <div style={titleStyle}>
               {index}
             </div>
           </div>
