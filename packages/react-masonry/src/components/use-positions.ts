@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Stone } from "../internal-types";
+import { Gutter, Position } from "../types";
 import { placeStones } from "../utils/place-stones";
 
-const getStones = stoneNodes => {
+const getStones = (stoneNodes: HTMLElement[]): Stone[] => {
   return stoneNodes
-    .map(stone => {
+    .map((stone) => {
       if (!stone) {
         return null;
       }
@@ -23,8 +25,18 @@ const usePositions = ({
   gutter,
   children,
   windowWidth
+}: {
+  boxesRefs: React.MutableRefObject<HTMLElement[]>,
+  wrapperRef: React.MutableRefObject<HTMLElement>,
+  gutter: Gutter,
+  children: React.ReactNode,
+  windowWidth: number
 }) => {
-  const [{ positions, containerHeight, stones }, setPositionsSpec] = useState({
+  const [{ positions, containerHeight, stones }, setPositionsSpec] = useState<{
+    positions: Position[],
+    containerHeight: number,
+    stones: Stone[]
+  }>({
     positions: [],
     containerHeight: null,
     stones: [],

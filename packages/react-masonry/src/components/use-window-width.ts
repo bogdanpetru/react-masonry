@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 
 export const useWindowWidth = () => {
-  const [ width, setWidth ] = useState();
+  const [ width, setWidth ] = useState<number>();
   const debounceRef = useRef(debounce(setWidth, 300));
 
   useEffect(() => {

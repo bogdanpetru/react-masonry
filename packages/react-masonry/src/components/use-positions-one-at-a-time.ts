@@ -1,8 +1,8 @@
 import {useRef, useState, useEffect} from 'react';
 
-const usePositionsOneAtATime = (positions, transitionStep = 100) => {
+const usePositionsOneAtATime = (positions: Position[], transitionStep = 100) => {
   const [oneAtATimePositions, setPositions] = useState([]);
-  const timeoutRef = useRef();
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   const placeStone = (positions, currentStone = 0) => {
     if (positions.length + 1 < currentStone) {
