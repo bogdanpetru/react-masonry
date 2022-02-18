@@ -6,7 +6,8 @@
   "scripts": {
     "build": "echo \"TODO\"",
     "test": "jest ./src --passWithNoTests",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "clean:deps": "rm -rf node_modules"
   },
   "dependencies": {
     "react": "^17.0.0"

@@ -36,7 +36,8 @@
     "workbox-webpack-plugin": "6.4.2"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack serve --config webpack.dev.js"
+    "start": "NODE_ENV=development webpack serve --config webpack.dev.js",
+    "clean:deps": "rm -rf node_modules"
   },
   "browserslist": {
     "production": [
