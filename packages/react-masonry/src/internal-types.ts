@@ -7,5 +7,5 @@ export interface Spot {
   top: number
   left: number
   right: number
-  bottom: number
+  bottom?: number
 }

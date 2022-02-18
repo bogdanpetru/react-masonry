@@ -1,10 +1,11 @@
+import { Spot } from '../../internal-types';
 import { placeStone } from '../place-stone';
 
 describe('placeStone', () => {
   it('should place first stone correct', () => {
     const stone = { width: 50, height: 50 };
-    const availableSpots = [{ top: 0, left: 0, right: 100, bottom: null }];
-    const expected = {
+    const availableSpots: Spot[] = [{ top: 0, left: 0, right: 100, bottom: null }];
+    const expected: ReturnType<typeof placeStone> = {
       position: { top: 0, left: 0 },
       availableSpots: [
         { top: 0, left: 50, right: 100, bottom: null },
@@ -22,11 +23,11 @@ describe('placeStone', () => {
   });
   it('should place the 2nd stone correct', () => {
     const stone = { width: 30, height: 30 };
-    const availableSpots = [
+    const availableSpots: Spot[] = [
       { top: 0, left: 50, right: 100, bottom: null },
       { top: 50, left: 0, right: 100, bottom: null },
     ];
-    const expected = {
+    const expected: ReturnType<typeof placeStone> = {
       position: { top: 0, left: 50 },
       availableSpots: [
         { top: 0, left: 80, right: 100, bottom: null },
@@ -45,11 +46,11 @@ describe('placeStone', () => {
   });
   it('sould place second stone correct, when the stone fill the entire available space', () => {
     const stone = { width: 50, height: 30 };
-    const availableSpots = [
+    const availableSpots: Spot[] = [
       { top: 0, left: 50, right: 100, bottom: null },
       { top: 50, left: 0, right: 100, bottom: null },
     ];
-    const expected = {
+    const expected: ReturnType<typeof placeStone> = {
       position: { top: 0, left: 50 },
       availableSpots: [
         { top: 30, left: 50, right: 100, bottom: null },
@@ -67,12 +68,12 @@ describe('placeStone', () => {
   });
   it('should place first stone on second row correct', () => {
     const stone = { width: 30, height: 30 };
-    const availableSpots = [
+    const availableSpots: Spot[] = [
       { top: 9, left: 80, right: 100, bottom: null },
       { top: 10, left: 0, right: 50, bottom: null },
       { top: 20, left: 50, right: 100, bottom: null },
     ];
-    const expected = {
+    const expected: ReturnType<typeof placeStone> = {
       position: { top: 10, left: 0 },
       availableSpots: [
         { top: 9, left: 80, right: 100, bottom: null },
@@ -96,12 +97,12 @@ describe('placeStone', () => {
      the optimal place is not the first and invalidates other available spaces
     `, () => {
     const stone = { width: 20, height: 30 };
-    const availableSpots = [
+    const availableSpots: Spot[] = [
       { top: 9, left: 80, right: 100, bottom: null },
       { top: 10, left: 0, right: 50, bottom: null },
       { top: 20, left: 50, right: 100, bottom: null },
     ];
-    const expected = {
+    const expected: ReturnType<typeof placeStone> = {
       position: { top: 9, left: 80 },
       availableSpots: [
         { top: 10, left: 0, right: 50, bottom: null },
@@ -146,7 +147,7 @@ describe('placeStone', () => {
 
     */
     const stone = { width: 100, height: 20 };
-    const availableSpots = [
+    const availableSpots: Spot[] = [
       {
         top: 0,
         left: 60,
