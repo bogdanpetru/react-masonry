@@ -41,14 +41,14 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
         ) {
           return child;
         }
-
+        const style = getStoneStyle({
+          style: child.props.style,
+          position: positions[index],
+          transition,
+          transitionDuration,
+        })
         const stoneProps = {
-          style: getStoneStyle({
-            style: child.props.style,
-            position: positions[index],
-            transition,
-            transitionDuration,
-          }),
+          style,
           ref: (ref: Element) => (boxesRefs.current[index] = ref)
         }
 

@@ -22,12 +22,12 @@ export const Examples = () => {
   ]
 
   const [numberOfBoxes, setCardsNumber] = useState(30)
-  const [gutter, setGutter] = useState(0)
+  const [gutter, setGutter] = useState(10)
   const [stacking, setStacking] = useState(3)
 
   return (
-    <div>
-      <main>
+    <div style={{ width: 860, margin: '0 auto' }}>
+      <main style={{ marginBottom: 30 }}>
         <select onChange={(event) => setStacking(event.target.value)}>
           {options.map((item, key) => (
             <option value={item.id}>{item.label}</option>
