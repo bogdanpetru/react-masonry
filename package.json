@@ -22,7 +22,7 @@
     "predeploy": "react-scripts build",
     "deploy": "gh-pages -d build",
     "build": "yarn workspace react-masonry build",
-    "test": "yarn workspace examples test",
+    "test": "yarn workspace react-masonry test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
