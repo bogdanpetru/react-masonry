@@ -1,5 +1,5 @@
 import { Navigation } from './Navigation'
-import { headerCassName } from './Header.css';
+import { headerCassName } from './style.css';
 
 export const Header = () => {
   return (

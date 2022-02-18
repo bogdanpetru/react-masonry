@@ -22,7 +22,7 @@ const titleStyle = {
 }
 
 function random(min, max) {
-  return Math.ceil(Math.random() * (max - min) + min)
+  return Math.round(Math.random() * (max - min) + min)
 }
 
 function random250() {
@@ -32,6 +32,7 @@ function random250() {
 function getBox() {
   return {
     ...common,
+    width: 'calc(25% - 20px)',
     backgroundColor: randomColor(),
   }
 }
@@ -43,7 +44,7 @@ function randomColor() {
 function getImageSrc(height, width = 230) {
   return (
     [`https://loremflickr.com/${width}/`, `https://picsum.photos/${width}/`][
-      random(0, 1)
+    random(0, 1)
     ] + height
   )
 }
@@ -60,7 +61,7 @@ const getImages = async (numberOfImages) => {
   }
 
   const promises = [...Array(numberOfImages)].map(async () => {
-    const height = Math.floor(random(300, 800) / 100) * 100
+    const height = [200, 300, 350][random(0, 2)]
     const width = 300
     const img = getImageSrc(height, width)
     const resp = await fetch(img)
@@ -81,7 +82,7 @@ const getImages = async (numberOfImages) => {
 
 export const RelativeWidthsExample = ({
   stacking,
-  gutter = 0,
+  gutter = 10,
   numberOfBoxes = 1,
 }) => {
   const [images, setImages] = useState()
@@ -91,7 +92,7 @@ export const RelativeWidthsExample = ({
   }, [numberOfBoxes])
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const images = await getImages(numberOfBoxes)
       setImages(images)
     })()
@@ -104,7 +105,7 @@ export const RelativeWidthsExample = ({
   return (
     <Masonry
       gutter={gutter}
-      style={{ height: 500 }}
+      style={{ height: 500, }}
       stacking={stacking}
       transition="fadeMove"
     >
