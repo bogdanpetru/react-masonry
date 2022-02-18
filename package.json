@@ -19,11 +19,9 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn workspace site start",
-    "predeploy": "react-scripts build",
-    "deploy": "gh-pages -d build",
     "build": "yarn workspace react-masonry build",
     "test": "yarn workspace react-masonry test",
-    "eject": "react-scripts eject"
+    "clean:deps": "yarn workspace site clean:deps && yarn workspace react-masonry clean:deps"
   },
   "devDependencies": {
     "gh-pages": "3.2.3"
