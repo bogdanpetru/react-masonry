@@ -1,54 +1,50 @@
 import { useState } from 'react'
+import styled from 'styled-components'
 import { RelativeWidthsExample } from './examples/RelativeWidthsExample'
+import { Label } from '@app/components/Label'
+
+
+const ExamplesWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`
+
+const ControlsWrapper = styled.div`
+  margin-bottom: 30px;
+  width: 300px;
+  margin: 0 auto;
+`
+
+console.log({Label})
 
 export const Examples = () => {
-  const options = [
-    {
-      id: 'right-bottom',
-      label: 'right, bottom',
-    },
-    {
-      id: 'left-bottom',
-      label: 'left, bottom',
-    },
-    {
-      id: 'right-top',
-      label: 'right, top',
-    },
-    {
-      id: 'left-top',
-      label: 'left, top',
-    },
-  ]
-
-  const [numberOfBoxes, setCardsNumber] = useState(30)
-  const [gutter, setGutter] = useState(10)
-  const [stacking, setStacking] = useState(3)
+  const [numberOfBoxes, setCardsNumber] = useState(20)
+  const [gutter, setGutter] = useState(50)
 
   return (
-    <div style={{ width: 860, margin: '0 auto' }}>
-      <main style={{ marginBottom: 30 }}>
-        <select onChange={(event) => setStacking(event.target.value)}>
-          {options.map((item, key) => (
-            <option value={item.id}>{item.label}</option>
-          ))}
-        </select>
-        <input
-          type="number"
-          value={numberOfBoxes}
-          onChange={(event) => setCardsNumber(event.target.value)}
-        />
-        <input
-          type="number"
-          value={gutter}
-          onChange={(event) => setGutter(event.target.value)}
-        />
-      </main>
+    <ExamplesWrapper>
+      <ControlsWrapper>
+        <Label>
+          Number of images:
+          <input
+            type="number"
+            value={numberOfBoxes}
+            onChange={(event) => setCardsNumber(event.target.value)}
+          />
+        </Label>
+        <Label>
+          Gutter size:
+          <input
+            type="number"
+            value={gutter}
+            onChange={(event) => setGutter(event.target.value)}
+          />
+        </Label>
+      </ControlsWrapper>
       <RelativeWidthsExample
-        stacking={stacking}
         gutter={gutter}
         numberOfBoxes={numberOfBoxes}
       />
-    </div>
+    </ExamplesWrapper>
   )
 }

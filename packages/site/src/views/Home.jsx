@@ -1,10 +1,17 @@
+import styled from 'styled-components'
+
+const HomeWrapper = styled.div`
+  padding-top: 30px;
+  max-width: 640px;
+  margin: 0 auto;
+`
+
 export const Home = () => {
   return (
-    <div className="root">
+    <HomeWrapper>
       <main>
         <div>
           <h2>Introduction</h2>
-
           <p>
             ReactJs layout library inspired by{' '}
             <a
@@ -15,12 +22,10 @@ export const Home = () => {
               Masonry.
             </a>
           </p>
-
           <p>
             Places stones (elements) in optimal positions by stacking them from
             left to right and from top to bottom.
           </p>
-
           <p>
             Elements rendered inside Masonry must be{' '}
             <a
@@ -32,7 +37,6 @@ export const Home = () => {
             </a>
             .
           </p>
-
           <p>Stacking process has the following steps:</p>
           <ul>
             <li>clone elements, save a reference (ref)</li>
@@ -54,6 +58,6 @@ export const Home = () => {
           .
         </p>
       </main>
-    </div>
+    </HomeWrapper>
   )
 }

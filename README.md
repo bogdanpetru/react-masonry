@@ -8,8 +8,6 @@ No deps besides ReactJs ⚛️.
 
 See [Demo](https://bogdanpetru.github.io/react-masonry/).
 
-**This component is in development, any help is welcome :).**
-
 ## Usage
 
 Place any elements inside the Masonry component. They will be cloned, measured and positioned.

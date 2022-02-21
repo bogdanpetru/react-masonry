@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin')
+
 module.exports = {
   entry: './src/index.jsx',
   module: {
@@ -22,6 +22,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    alias: {
+      '@app': path.resolve(__dirname, 'src'),
+    },
   },
   output: {
     filename: '[name].js',
@@ -32,6 +35,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-    new VanillaExtractPlugin(),
   ],
 }

@@ -1,4 +1,4 @@
-export type Stacking =  'right-top' | 'right-bottom'| 'left-bottom'  | 'top-left' | 'left-top'
+export type Stacking = 'right-top' | 'right-bottom' | 'left-bottom' | 'top-left' | 'left-top'
 
 export type Position = {
   top: number
@@ -45,16 +45,22 @@ export interface MasonryProps {
    * Replaces the stones when windows changes size.
    * @default true
    */
-  updateOnWindowResize: boolean
+  updateOnWindowResize?: boolean
 
   /**
    *  Related to `updateOnWindowResize`.
    *  Window resize listener is debouced, this sets the wait time.
    * @default 300
    */
-  updateOnWindowResizeDebounceWait: number
+  updateOnWindowResizeDebounceWait?: number
 
-  style: React.CSSProperties
+  style?: React.CSSProperties
 
-  stacking: Stacking
+  /**
+   * If the stones should be centered.
+   * Element might not occupy the entire horizontal space.
+   * 
+   * @default true
+   */
+  centerStones?: boolean;
 }

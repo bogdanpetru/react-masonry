@@ -3,6 +3,9 @@
   "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es6",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "@app/*": ["./src/*"]
+    }
   }
 }

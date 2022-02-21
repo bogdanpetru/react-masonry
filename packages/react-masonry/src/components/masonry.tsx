@@ -12,14 +12,14 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
   transition = false,
   transitionDuration = 500,
   transitionStep = 50,
-  stacking,
+  centerStones = true,
   ...rest
 }) => {
   const boxesRefs = useRef([])
   const wrapperRef = useRef()
   const windowWidth = useWindowWidth()
 
-  const { positions, containerHeight } = usePositions({
+  const { positions, containerHeight, } = usePositions({
     boxesRefs,
     wrapperRef,
     gutter,
