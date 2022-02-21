@@ -18,12 +18,14 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "start": "yarn workspace site start",
-    "build": "yarn workspace react-masonry build",
+    "start": "yarn gen-docs && yarn workspace site start",
+    "build": "yarn gen-docs && yarn workspace react-masonry build",
     "test": "yarn workspace react-masonry test",
-    "clean:deps": "yarn workspace site clean:deps && yarn workspace react-masonry clean:deps"
+    "clean:deps": "yarn workspace site clean:deps && yarn workspace react-masonry clean:deps",
+    "gen-docs": "typedoc packages/react-masonry/src/types.ts --json ./packages/site/src/api.json"
   },
   "devDependencies": {
-    "gh-pages": "3.2.3"
+    "gh-pages": "3.2.3",
+    "typedoc": "0.22.12"
   }
 }
