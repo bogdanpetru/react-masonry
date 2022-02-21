@@ -8,19 +8,18 @@
     ]
   },
   "dependencies": {
-    "@vanilla-extract/babel-plugin": "^1.1.4",
-    "@vanilla-extract/css": "^1.6.8",
-    "@vanilla-extract/webpack-plugin": "^2.1.5",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-masonry": "1.0.0",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/node": "^17.0.10",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "5.3.3",
+    "@types/styled-components": "^5.1.23",
     "copy-webpack-plugin": "10.2.4",
     "css-loader": "^6.6.0",
     "html-webpack-plugin": "^5.5.0",

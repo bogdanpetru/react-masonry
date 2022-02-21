@@ -11,7 +11,7 @@ const common = {
   width: '33%',
 }
 
-const titleStyle = {
+const titleStyle: React.CSSProperties = {
   position: 'absolute',
   left: 5,
   top: 5,
@@ -21,7 +21,7 @@ const titleStyle = {
   padding: 5,
 }
 
-function random(min, max) {
+function random(min: number, max: number) {
   return Math.round(Math.random() * (max - min) + min)
 }
 
@@ -29,10 +29,10 @@ function random250() {
   return random(0, 255)
 }
 
-function getBox() {
+function getBox(gutter: number) {
   return {
     ...common,
-    width: 'calc(25% - 20px)',
+    width: `calc(25% - ${gutter}px)`,
     backgroundColor: randomColor(),
   }
 }
@@ -41,7 +41,7 @@ function randomColor() {
   return `rgb(${random250()},${random(0, 100)},${random(0, 120)})`
 }
 
-function getImageSrc(height, width = 230) {
+function getImageSrc(height: number, width = 230) {
   return (
     [`https://loremflickr.com/${width}/`, `https://picsum.photos/${width}/`][
     random(0, 1)
@@ -49,7 +49,7 @@ function getImageSrc(height, width = 230) {
   )
 }
 
-const getImages = async (numberOfImages) => {
+const getImages = async (numberOfImages: number) => {
   const storedImages = localStorage.getItem(IMG_LOCAL_STORAGE_KEY)
   if (storedImages) {
     try {
@@ -81,15 +81,13 @@ const getImages = async (numberOfImages) => {
 }
 
 export const RelativeWidthsExample = ({
-  stacking,
   gutter = 10,
   numberOfBoxes = 1,
 }) => {
-  const [images, setImages] = useState()
-
+  const [images, setImages] = useState<{ url: string, height: number }[]>([])
   const boxes = useMemo(() => {
-    return [...Array(numberOfBoxes)].map(getBox)
-  }, [numberOfBoxes])
+    return [...Array(numberOfBoxes)].map(() => getBox(gutter))
+  }, [numberOfBoxes, gutter])
 
   useEffect(() => {
     ; (async () => {
@@ -98,7 +96,7 @@ export const RelativeWidthsExample = ({
     })()
   }, [numberOfBoxes])
 
-  if (!images) {
+  if (!images?.length) {
     return <div>Loading Images</div>
   }
 
@@ -106,7 +104,6 @@ export const RelativeWidthsExample = ({
     <Masonry
       gutter={gutter}
       style={{ height: 500, }}
-      stacking={stacking}
       transition="fadeMove"
     >
       {boxes.slice(0, numberOfBoxes).map((box, index) => {

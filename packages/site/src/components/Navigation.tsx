@@ -1,21 +1,37 @@
 import React from 'react';
 import { Link, useResolvedPath, useMatch } from 'react-router-dom'
-import { navigationClassName, navigationItemClassName } from './style.css'
+import styled from 'styled-components'
+
+const StyledLink = styled(Link)`
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 18px;
+  color: #114c87;
+
+  &[data-active=true] {
+    font-weight: 500;
+  }
+`
 
 const NavLink: React.FunctionComponent<{ to: string, }> = ({ to, children }) => {
   const resolved = useResolvedPath(to);
   const match = useMatch({ path: resolved.pathname, end: true });
   return (
-    <Link data-active={Boolean(match)} className={navigationItemClassName} to={to}>
+    <StyledLink data-active={Boolean(match)} to={to}>
       {children}
-    </Link>
+    </StyledLink>
   )
 }
 
+const StyledNavigation = styled.nav`
+  flex: 1;
+  text-align: right;
+`
 
 export const Navigation = () => {
   return (
-    <nav className={navigationClassName}>
+    <StyledNavigation >
       <NavLink to="/">
         Home
       </NavLink>
@@ -25,6 +41,6 @@ export const Navigation = () => {
       <NavLink to="/api">
         API
       </NavLink>
-    </nav>
+    </StyledNavigation>
   )
 }
