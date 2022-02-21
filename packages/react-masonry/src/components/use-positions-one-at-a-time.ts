@@ -1,10 +1,11 @@
-import {useRef, useState, useEffect} from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { Position } from '../types';
 
 const usePositionsOneAtATime = (positions: Position[], transitionStep = 100) => {
   const [oneAtATimePositions, setPositions] = useState([]);
   const timeoutRef = useRef<NodeJS.Timeout>();
 
-  const placeStone = (positions, currentStone = 0) => {
+  const placeStone = (positions: Position[], currentStone = 0) => {
     if (positions.length + 1 < currentStone) {
       return;
     }
