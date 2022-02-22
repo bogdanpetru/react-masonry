@@ -14,6 +14,7 @@ export interface MasonryProps {
   gutter?: Gutter
   /**
    * If different than false, each item will appear one after another with an interval of `transitionStep` in between.
+   * @default false
    */
   transition?: 'fade' | 'fadeMove' | false
 
@@ -24,7 +25,8 @@ export interface MasonryProps {
   transitionStep?: number
 
   /**
-   * TODO: add description
+   * When transition is set, stones can appear one after the other.
+   * @default false
    */
   enterOneAfterAnother?: boolean
 
@@ -47,13 +49,9 @@ export interface MasonryProps {
    */
   updateOnWindowResizeDebounceWait?: number
 
-  style?: React.CSSProperties
-
   /**
-   * If the stones should be centered.
-   * Element might not occupy the entire horizontal space.
-   * 
-   * @default true
+   * Style applied on the top element
+   * @default none
    */
-  centerStones?: boolean;
+  style?: React.CSSProperties
 }
