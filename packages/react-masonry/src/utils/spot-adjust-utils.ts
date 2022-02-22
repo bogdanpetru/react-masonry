@@ -1,5 +1,4 @@
-import { Spot, Stone } from "../internal-types";
-import { Position } from "../types";
+import { Spot, Stone, Position } from "../internal-types";
 
 const isSpotConsumed = (spot: Spot) =>
   // width
@@ -53,7 +52,7 @@ const constrainRight = ({ position, spot, stone }: { position: Position, spot: S
   return null;
 };
 
-const constrainBottom = ({ position, stone, spot }: { position: Position, stone:Stone, spot: Spot }) => {
+const constrainBottom = ({ position, stone, spot }: { position: Position, stone: Stone, spot: Spot }) => {
   // check if it was placed above this spot
   if (position.left + stone.width > spot.left && position.top >= spot.top) {
     // if it has already a bottom, must check if it really below it
@@ -77,8 +76,8 @@ const constrainBottom = ({ position, stone, spot }: { position: Position, stone:
 
 // handle spot that was occupied, it might be consumed or restricted
 const getConsumedSpot = (
-  { stone, position, spotsList, optimalSpot }: 
-  { stone: Stone, position: Position, spotsList: Spot[], optimalSpot: Spot }
+  { stone, position, spotsList, optimalSpot }:
+    { stone: Stone, position: Position, spotsList: Spot[], optimalSpot: Spot }
 ): Spot => {
   // restrict used spot
   let usedSpot = { ...optimalSpot };
@@ -97,7 +96,7 @@ const getConsumedSpot = (
 
 export const spotAdjustUtils = (
   { spots, position, optimalSpot, stone }:
-  { spots: Spot[], position: Position, optimalSpot: Spot, stone: Stone }
+    { spots: Spot[], position: Position, optimalSpot: Spot, stone: Stone }
 ): Spot[] =>
   spots.map((spot, index, spotsList) => {
     if (spot === optimalSpot) {

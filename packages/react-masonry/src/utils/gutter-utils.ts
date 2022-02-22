@@ -1,5 +1,5 @@
-import { Stone } from "../internal-types";
-import { Gutter, GutterFullSpecified, Position } from "../types";
+import { Stone, Position } from "../internal-types";
+import { Gutter, GutterFullSpecified, } from "../types";
 
 export const addGutterToStone = (stone: Stone, gutter: GutterFullSpecified) =>
   gutter

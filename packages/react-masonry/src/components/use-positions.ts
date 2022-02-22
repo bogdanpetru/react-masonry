@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Stone } from "../internal-types";
-import { Gutter, Position } from "../types";
+import { Stone, Position } from "../internal-types";
+import { Gutter, } from "../types";
 import { placeStones } from "../utils/place-stones";
 
 const getStones = (stoneNodes: HTMLElement[]): Stone[] => {

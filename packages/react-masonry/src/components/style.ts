@@ -1,4 +1,5 @@
-import { MasonryProps, Position } from "../types";
+import { MasonryProps } from "../types";
+import { Position } from '../internal-types'
 
 const transitionStyles = (transitionDuration: number) => ({
   fade: `${transitionDuration}ms opacity ease`,
@@ -14,9 +15,9 @@ const transitionStyles = (transitionDuration: number) => ({
 });
 
 const getTransitionStyle = (
-    { transition, transitionDuration }: 
+  { transition, transitionDuration }:
     { transition: MasonryProps['transition'], transitionDuration: number }
-  ) => {
+) => {
   if (!transition) {
     return null;
   }
@@ -33,9 +34,9 @@ const getPositionStyle = (position: Position) => {
 };
 
 const getStoneStyle = (
-    { style, position, transition, transitionDuration }:
+  { style, position, transition, transitionDuration }:
     { style: React.CSSProperties, position: Position, transition: MasonryProps['transition'], transitionDuration: number }
-  ) => {
+) => {
   return {
     ...style,
     position: "absolute",

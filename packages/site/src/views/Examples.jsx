@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { RelativeWidthsExample } from './examples/RelativeWidthsExample'
 import { Label } from '@app/components/Label'
 
-
 const ExamplesWrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -15,11 +14,11 @@ const ControlsWrapper = styled.div`
   margin: 0 auto;
 `
 
-console.log({Label})
+console.log({ Label })
 
 export const Examples = () => {
   const [numberOfBoxes, setCardsNumber] = useState(20)
-  const [gutter, setGutter] = useState(50)
+  const [gutter, setGutter] = useState(20)
 
   return (
     <ExamplesWrapper>
@@ -29,7 +28,7 @@ export const Examples = () => {
           <input
             type="number"
             value={numberOfBoxes}
-            onChange={(event) => setCardsNumber(event.target.value)}
+            onChange={(event) => setCardsNumber(parseInt(event.target.value))}
           />
         </Label>
         <Label>
@@ -41,10 +40,7 @@ export const Examples = () => {
           />
         </Label>
       </ControlsWrapper>
-      <RelativeWidthsExample
-        gutter={gutter}
-        numberOfBoxes={numberOfBoxes}
-      />
+      <RelativeWidthsExample gutter={gutter} numberOfBoxes={numberOfBoxes} />
     </ExamplesWrapper>
   )
 }

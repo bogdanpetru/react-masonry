@@ -1,5 +1,4 @@
-import { Spot, Stone } from '../../internal-types';
-import { Position } from '../../types';
+import { Spot, Stone, Position } from '../../internal-types';
 import { getNewSpot } from '../spot-utils';
 
 describe("getNewSpot", () => {

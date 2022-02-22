@@ -1,4 +1,10 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
+}
+
+:root {
+  --primary-color: #114c87;
+  --text-color: rgb(49, 49, 49);
 }
