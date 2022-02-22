@@ -1,10 +1,3 @@
-export type Stacking = 'right-top' | 'right-bottom' | 'left-bottom' | 'top-left' | 'left-top'
-
-export type Position = {
-  top: number
-  left: number
-}
-
 export type GutterFullSpecified = { top?: number; bottom?: number; left?: number; right?: number }
 
 export type GutterNumber = number

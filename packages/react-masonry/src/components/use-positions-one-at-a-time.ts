@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { Position } from '../types';
+import { Position } from '../internal-types';
 
 const usePositionsOneAtATime = (positions: Position[], transitionStep = 100) => {
   const [oneAtATimePositions, setPositions] = useState([]);

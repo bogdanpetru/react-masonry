@@ -1,3 +1,7 @@
+export type Position = {
+  top: number
+  left: number
+}
 export interface Stone {
   width: number
   height: number
