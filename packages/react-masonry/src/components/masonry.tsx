@@ -12,14 +12,13 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
   transition = false,
   transitionDuration = 500,
   transitionStep = 50,
-  centerStones = true,
   ...rest
 }) => {
   const boxesRefs = useRef([])
   const wrapperRef = useRef()
   const windowWidth = useWindowWidth()
 
-  const { positions, containerHeight, } = usePositions({
+  const { positions, containerHeight } = usePositions({
     boxesRefs,
     wrapperRef,
     gutter,
@@ -36,10 +35,8 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
   return (
     <div ref={wrapperRef} style={preparedStyle} {...rest}>
       {React.Children.map(children, (child, index) => {
-        if (
-          typeof child !== 'object' || !('type' in child)
-        ) {
-          return child;
+        if (typeof child !== 'object' || !('type' in child)) {
+          return child
         }
         const style = getStoneStyle({
           style: child.props.style,
@@ -49,7 +46,7 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
         })
         const stoneProps = {
           style,
-          ref: (ref: Element) => (boxesRefs.current[index] = ref)
+          ref: (ref: Element) => (boxesRefs.current[index] = ref),
         }
 
         return cloneElement(child, {
@@ -60,4 +57,3 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
     </div>
   )
 }
-
