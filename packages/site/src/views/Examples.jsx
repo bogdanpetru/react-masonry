@@ -4,6 +4,7 @@ import { RelativeWidthsExample } from './examples/RelativeWidthsExample'
 import { Label } from '@app/components/Label'
 
 const ExamplesWrapper = styled.div`
+  padding: 130px 0 100px;
   max-width: 1200px;
   margin: 0 auto;
 `
@@ -11,10 +12,7 @@ const ExamplesWrapper = styled.div`
 const ControlsWrapper = styled.div`
   margin-bottom: 30px;
   width: 300px;
-  margin: 0 auto;
 `
-
-console.log({ Label })
 
 export const Examples = () => {
   const [numberOfBoxes, setCardsNumber] = useState(20)

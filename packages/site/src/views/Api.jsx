@@ -1,9 +1,9 @@
-import { chdir } from 'process'
 import React from 'react'
 import styled from 'styled-components'
 import apiDescription from '../api.json'
 
 const PropertyWrapper = styled.div`
+  padding-top: 100px;
   margin-bottom: 30px;
 `
 
@@ -125,7 +125,7 @@ const TypeAlias = ({ node }) => {
 
 const Wrapper = styled.div`
   max-width: 860px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
 `
 
 export const Api = () => {

@@ -42,11 +42,7 @@ function randomColor() {
 }
 
 function getImageSrc(height: number, width = 230) {
-  return (
-    [`https://loremflickr.com/${width}/`, `https://picsum.photos/${width}/`][
-      random(0, 1)
-    ] + height
-  )
+  return `https://picsum.photos/${width}/` + height
 }
 
 const getNewImages = (numberOfImages: number) => {

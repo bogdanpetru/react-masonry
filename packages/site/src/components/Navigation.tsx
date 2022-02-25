@@ -3,13 +3,13 @@ import { Link, useResolvedPath, useMatch } from 'react-router-dom'
 import styled from 'styled-components'
 
 const StyledLink = styled(Link)`
-  margin: 0 20px;
+  margin: 0 0 20px;
   text-decoration: none;
   font-weight: 300;
   font-size: 18px;
-  color: var(--primary-color);
 
   &[data-active='true'] {
+    color: var(--primary-color);
     font-weight: 500;
   }
 `
@@ -25,8 +25,9 @@ const NavLink: React.FunctionComponent<{ to: string }> = ({ to, children }) => {
 }
 
 const StyledNavigation = styled.nav`
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  text-align: right;
 `
 
 export const Navigation = () => {
