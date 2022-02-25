@@ -1,10 +1,13 @@
-export type GutterFullSpecified = { top?: number; bottom?: number; left?: number; right?: number }
+export type GutterFullSpecified = {
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
 
 export type GutterNumber = number
 
-export type Gutter =
-  | GutterNumber
-  | GutterFullSpecified
+export type Gutter = GutterNumber | GutterFullSpecified
 
 export interface MasonryProps {
   /**
@@ -12,6 +15,7 @@ export interface MasonryProps {
    * @default 0
    */
   gutter?: Gutter
+
   /**
    * If different than false, each item will appear one after another with an interval of `transitionStep` in between.
    * @default false

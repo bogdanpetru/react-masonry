@@ -2,11 +2,7 @@ import { Navigation } from './Navigation'
 import styled from 'styled-components'
 
 const StyleHeader = styled.header`
-  display: flex;
-  align-items: center;
-  width: 80vw;
-  max-width: 860px;
-  margin: 0 auto;
+  padding: 40px;
   flex-direction: column;
   margin-bottom: 40px;
 `

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const HomeWrapper = styled.div`
-  padding-top: 30px;
+  padding-top: 100px;
   max-width: 640px;
   margin: 0 auto;
 `
