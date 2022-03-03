@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import apiDescription from '../api.json'
 
 const PropertyWrapper = styled.div`
-  padding-top: 100px;
   margin-bottom: 30px;
 `
 
@@ -26,7 +25,7 @@ const PropertyName = styled.span`
   margin-right: 20px;
 `
 
-const PropTitle = styled.div`
+const PropTitle = styled.h2`
   font-weight: 600;
   font-size: 1.5em;
   margin-bottom: 30px;
@@ -123,10 +122,7 @@ const TypeAlias = ({ node }) => {
   )
 }
 
-const Wrapper = styled.div`
-  max-width: 860px;
-  margin: 0 auto 50px;
-`
+const Wrapper = styled.div``
 
 export const Api = () => {
   console.log({ apiDescription })

@@ -2,7 +2,6 @@ import { Navigation } from './Navigation'
 import styled from 'styled-components'
 
 const StyleHeader = styled.header`
-  padding: 40px;
   flex-direction: column;
   margin-bottom: 40px;
 `

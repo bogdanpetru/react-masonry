@@ -4,7 +4,7 @@ import { RelativeWidthsExample } from './examples/RelativeWidthsExample'
 import { Label } from '@app/components/Label'
 
 const ExamplesWrapper = styled.div`
-  padding: 130px 0 100px;
+  padding: 0 0 100px;
   max-width: 1200px;
   margin: 0 auto;
 `
@@ -20,6 +20,7 @@ export const Examples = () => {
 
   return (
     <ExamplesWrapper>
+      <h2>Example</h2>
       <ControlsWrapper>
         <Label>
           Number of images:

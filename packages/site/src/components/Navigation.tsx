@@ -34,7 +34,7 @@ export const Navigation = () => {
   return (
     <StyledNavigation>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/examples">Examples</NavLink>
+      <NavLink to="/example">Example</NavLink>
       <NavLink to="/api">API</NavLink>
     </StyledNavigation>
   )
