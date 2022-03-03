@@ -13,10 +13,13 @@ const AppWrapper = styled.div`
 `
 
 const Main = styled.main`
+  padding-top: 80px;
   flex: 1;
 `
 
 const HeaderWrapper = styled.header`
+  padding-left: 40px;
+  padding-top: 20px;
   width: 300px;
 `
 
@@ -31,7 +34,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/api" element={<Api />} />
-            <Route path="/examples" element={<Examples />} />
+            <Route path="/example" element={<Examples />} />
           </Routes>
         </Main>
       </AppWrapper>
