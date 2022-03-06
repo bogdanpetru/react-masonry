@@ -32,9 +32,9 @@ const App = () => {
         </HeaderWrapper>
         <Main>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/api" element={<Api />} />
-            <Route path="/example" element={<Examples />} />
+            <Route path="/react-masonry/" element={<Home />} />
+            <Route path="/react-masonry/api" element={<Api />} />
+            <Route path="/react-masonry/example" element={<Examples />} />
           </Routes>
         </Main>
       </AppWrapper>

@@ -33,9 +33,9 @@ const StyledNavigation = styled.nav`
 export const Navigation = () => {
   return (
     <StyledNavigation>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/example">Example</NavLink>
-      <NavLink to="/api">API</NavLink>
+      <NavLink to="/react-masonry">Home</NavLink>
+      <NavLink to="/react-masonry/example">Example</NavLink>
+      <NavLink to="/react-masonry/api">API</NavLink>
     </StyledNavigation>
   )
 }

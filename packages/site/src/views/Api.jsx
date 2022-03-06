@@ -125,7 +125,6 @@ const TypeAlias = ({ node }) => {
 const Wrapper = styled.div``
 
 export const Api = () => {
-  console.log({ apiDescription })
   return (
     <Wrapper>
       {apiDescription.children.map((node) => {

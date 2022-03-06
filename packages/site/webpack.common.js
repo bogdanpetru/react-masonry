@@ -28,8 +28,8 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
+    path: path.resolve(__dirname, '../..', 'docs'),
+    publicPath: '/react-masonry',
   },
   plugins: [
     new HtmlWebpackPlugin({

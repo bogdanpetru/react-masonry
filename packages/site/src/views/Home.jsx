@@ -41,18 +41,6 @@ export const Home = () => {
             <li>rerender elements with calculated position</li>
           </ul>
         </div>
-        <h2>Api</h2>
-        <p>
-          See{' '}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/bogdanpetru/react-masonry"
-          >
-            README.md
-          </a>
-          .
-        </p>
       </main>
     </HomeWrapper>
   )
