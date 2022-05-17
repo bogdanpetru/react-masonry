@@ -3,7 +3,8 @@
   "author": "Bogdan Petru Pintican",
   "workspaces": [
     "./packages/site",
-    "./packages/react-masonry"
+    "./packages/react-masonry",
+    "./packages/web"
   ],
   "repository": {
     "type": "git",
@@ -19,10 +20,11 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn gen-docs && yarn workspace site start",
+    "start:next": "yarn gen-docs && yarn workspace web dev",
     "build": "yarn gen-docs && yarn workspace react-masonry build",
     "build:site": "yarn gen-docs && yarn workspace site build",
     "test": "yarn workspace react-masonry test",
-    "clean:deps": "yarn workspace site clean:deps && yarn workspace react-masonry clean:deps",
+    "clean:deps": "yarn workspace site clean:deps && yarn workspace web clean:deps && yarn workspace react-masonry clean:deps",
     "gen-docs": "typedoc packages/react-masonry/src/types.ts --json ./packages/site/src/api.json"
   },
   "devDependencies": {

@@ -1,23 +1,18 @@
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+
 import styled from 'styled-components'
 
 const HomeWrapper = styled.div``
 
-export const Home = () => {
+const Home: NextPage = () => {
   return (
     <HomeWrapper>
       <main>
         <div>
           <h2>Introduction</h2>
-          <p>
-            ReactJs layout library inspired by{' '}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/desandro/masonry"
-            >
-              Masonry.
-            </a>
-          </p>
+          <p>ReactJs layout library.</p>
           <p>
             Places stones (elements) in optimal positions by stacking them from
             left to right and from top to bottom.
@@ -45,3 +40,5 @@ export const Home = () => {
     </HomeWrapper>
   )
 }
+
+export default Home

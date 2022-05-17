@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
-import { RelativeWidthsExample } from './examples/RelativeWidthsExample'
-import { Label } from '@app/components/Label'
+import { RelativeWidthsExample } from '../examples/RelativeWidthsExample'
+import { Label } from '../components/Label'
 
 const ExamplesWrapper = styled.div`
   padding: 0 0 100px;
@@ -14,7 +14,7 @@ const ControlsWrapper = styled.div`
   width: 300px;
 `
 
-export const Examples = () => {
+const Examples = () => {
   const [numberOfBoxes, setCardsNumber] = useState(20)
   const [gutter, setGutter] = useState(20)
 
@@ -35,7 +35,11 @@ export const Examples = () => {
           <input
             type="number"
             value={gutter}
-            onChange={(event) => setGutter(event.target.value)}
+            onChange={(event) => {
+              if (typeof event.target.value === 'number') {
+                setGutter(event.target.value)
+              }
+            }}
           />
         </Label>
       </ControlsWrapper>
@@ -43,3 +47,5 @@ export const Examples = () => {
     </ExamplesWrapper>
   )
 }
+
+export default Examples

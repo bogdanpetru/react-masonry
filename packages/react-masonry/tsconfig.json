@@ -8,7 +8,6 @@
   },
   "typedocOptions": {
     "entryPoints": ["src/types.ts"],
-
     "json": "./api.json"
   }
 }

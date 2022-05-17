@@ -10,7 +10,7 @@
     "clean:deps": "rm -rf node_modules"
   },
   "dependencies": {
-    "react": "^17.0.0"
+    "react": "^18.0.0"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
