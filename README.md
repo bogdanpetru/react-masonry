@@ -1,6 +1,6 @@
 # react masonry
 
-ReactJs layout library inspired by [Masonry](https://github.com/desandro/masonry).
+ReactJs layout library.
 
 It places elements in optimal positions by stacking them from left to right and from top to bottom.
 
