@@ -1,13 +1,17 @@
 {
-  "extends": "../../tsconfig.json",
-  "include": ["./src/**/*"],
-  "exclude": ["node_modules"],
+  "include": ["./src/index.ts"],
+  "exclude": ["node_modules", "./src/utils/__tests__"],
   "compilerOptions": {
-    "target": "es6",
-    "esModuleInterop": true
-  },
-  "typedocOptions": {
-    "entryPoints": ["src/types.ts"],
-    "json": "./api.json"
+    "strict": false,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "jsx": "react",
+    "incremental": true
   }
 }

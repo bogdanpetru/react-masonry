@@ -1,3 +1,3 @@
-import { Masonry } from './components/masonry'
+import { Masonry } from './components/Masonry'
 
 export { Masonry }

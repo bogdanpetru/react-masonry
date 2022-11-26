@@ -1,20 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
-import { debounce } from '../utils/debounce';
+import { useEffect, useRef, useState } from 'react'
+import { debounce } from '../utils/debounce'
 
 export const useWindowWidth = () => {
-  const [width, setWidth] = useState<number>();
-  const debounceRef = useRef(debounce(setWidth, 300));
+  const [width, setWidth] = useState<number>()
+  const debounceRef = useRef(debounce(setWidth, 300))
 
   useEffect(() => {
-    const onResize = () => { // todo add throttle
-      debounceRef.current(global.innerWidth);
+    const onResize = () => {
+      // todo add throttle
+      debounceRef.current(window.innerWidth)
     }
-    global.addEventListener('resize', onResize);
+    window.addEventListener('resize', onResize)
 
     return () => {
-      global.removeEventListener('resize', onResize);
+      window.removeEventListener('resize', onResize)
     }
   }, [])
 
-  return width;
+  return width
 }

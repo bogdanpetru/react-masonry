@@ -1,29 +1,38 @@
 {
   "name": "react-masonry",
-  "private": false,
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "xmain": "dist/index.js",
+  "xtype": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bogdanpetru/react-masonry.git"
+  },
+  "keywords": [
+    "react",
+    "grid",
+    "layout",
+    "masonry"
+  ],
+  "homepage": "http://bogdanpetru.github.io/react-masonry",
+  "license": "MIT",
   "scripts": {
-    "build": "echo \"TODO\"",
+    "build": "tsc",
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist",
-    "clean:deps": "rm -rf node_modules"
+    "gen-docs": "yarn typedoc ./src/types.ts --json ./types.json"
   },
   "dependencies": {
-    "react": "^18.0.0"
+    "react": "^18.2.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.4.0",
-    "@types/lodash.debounce": "^4.0.6",
-    "jest": "27.5.1",
-    "ts-jest": "^27.1.3"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-transform-runtime"
-    ]
+    "@jest/globals": "^29.3.1",
+    "@types/jest": "^29.2.3",
+    "@types/lodash.debounce": "^4.0.7",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "jest": "29.3.1",
+    "ts-jest": "^29.0.3",
+    "typedoc": "^0.23.21",
+    "typescript": "^4.9.3"
   }
 }

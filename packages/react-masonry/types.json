@@ -1,0 +1,617 @@
+{
+	"id": 0,
+	"name": "react-masonry",
+	"kind": 1,
+	"kindString": "Project",
+	"flags": {},
+	"originalName": "",
+	"children": [
+		{
+			"id": 9,
+			"name": "MasonryProps",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 13,
+					"name": "enterOneAfterAnother",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "When transition is set, stones can appear one after the other."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "false"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 37,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L37"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 10,
+					"name": "gutter",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Defines the spacing between stones."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "0"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 19,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L19"
+						}
+					],
+					"type": {
+						"type": "reference",
+						"id": 8,
+						"name": "Gutter"
+					}
+				},
+				{
+					"id": 17,
+					"name": "style",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Style applied on the top element"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "none"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 62,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L62"
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "CSSProperties",
+						"qualifiedName": "React.CSSProperties",
+						"package": "@types/react"
+					}
+				},
+				{
+					"id": 11,
+					"name": "transition",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "If different than false, each item will appear one after another with an interval of "
+							},
+							{
+								"kind": "code",
+								"text": "`transitionStep`"
+							},
+							{
+								"kind": "text",
+								"text": " in between."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "false"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 25,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L25"
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "literal",
+								"value": false
+							},
+							{
+								"type": "literal",
+								"value": "fade"
+							},
+							{
+								"type": "literal",
+								"value": "fadeMove"
+							}
+						]
+					}
+				},
+				{
+					"id": 14,
+					"name": "transitionDuration",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Speed with which stones are placed when "
+							},
+							{
+								"kind": "code",
+								"text": "`enterOneAfterAnother=true`"
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "300"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 43,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L43"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 12,
+					"name": "transitionStep",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Time (in ms) in between each stone placement, this is relevant if "
+							},
+							{
+								"kind": "code",
+								"text": "`transition`"
+							},
+							{
+								"kind": "text",
+								"text": " prop is not "
+							},
+							{
+								"kind": "code",
+								"text": "`false`"
+							},
+							{
+								"kind": "text",
+								"text": "."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "50"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 31,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L31"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 15,
+					"name": "updateOnWindowResize",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Replaces the stones when windows changes size."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "true"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 49,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L49"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 16,
+					"name": "updateOnWindowResizeDebounceWait",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Related to "
+							},
+							{
+								"kind": "code",
+								"text": "`updateOnWindowResize`"
+							},
+							{
+								"kind": "text",
+								"text": ".\n Window resize listener is debouced, this sets the wait time."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@default",
+								"content": [
+									{
+										"kind": "text",
+										"text": "300"
+									}
+								]
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 56,
+							"character": 2,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L56"
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						13,
+						10,
+						17,
+						11,
+						14,
+						12,
+						15,
+						16
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 14,
+					"character": 17,
+					"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L14"
+				}
+			]
+		},
+		{
+			"id": 8,
+			"name": "Gutter",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 12,
+					"character": 12,
+					"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L12"
+				}
+			],
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "reference",
+						"id": 7,
+						"name": "GutterNumber"
+					},
+					{
+						"type": "reference",
+						"id": 1,
+						"name": "GutterFullSpecified"
+					}
+				]
+			}
+		},
+		{
+			"id": 1,
+			"name": "GutterFullSpecified",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 3,
+					"character": 12,
+					"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L3"
+				}
+			],
+			"type": {
+				"type": "reflection",
+				"declaration": {
+					"id": 2,
+					"name": "__type",
+					"kind": 65536,
+					"kindString": "Type literal",
+					"flags": {},
+					"children": [
+						{
+							"id": 4,
+							"name": "bottom",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "types.ts",
+									"line": 5,
+									"character": 2,
+									"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L5"
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 5,
+							"name": "left",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "types.ts",
+									"line": 6,
+									"character": 2,
+									"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L6"
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 6,
+							"name": "right",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "types.ts",
+									"line": 7,
+									"character": 2,
+									"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L7"
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						},
+						{
+							"id": 3,
+							"name": "top",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isOptional": true
+							},
+							"sources": [
+								{
+									"fileName": "types.ts",
+									"line": 4,
+									"character": 2,
+									"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L4"
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "number"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Properties",
+							"children": [
+								4,
+								5,
+								6,
+								3
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "types.ts",
+							"line": 3,
+							"character": 34,
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L3"
+						}
+					]
+				}
+			}
+		},
+		{
+			"id": 7,
+			"name": "GutterNumber",
+			"kind": 4194304,
+			"kindString": "Type alias",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "types.ts",
+					"line": 10,
+					"character": 12,
+					"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L10"
+				}
+			],
+			"type": {
+				"type": "intrinsic",
+				"name": "number"
+			}
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				9
+			]
+		},
+		{
+			"title": "Type Aliases",
+			"children": [
+				8,
+				1,
+				7
+			]
+		}
+	],
+	"sources": [
+		{
+			"fileName": "types.ts",
+			"line": 1,
+			"character": 0,
+			"url": "https://github.com/bogdanpetru/react-masonry/blob/de6d68d/packages/react-masonry/src/types.ts#L1"
+		}
+	]
+}

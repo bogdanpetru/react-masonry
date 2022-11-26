@@ -1,0 +1,33 @@
+{
+  "name": "web-old",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": {
+    "nohoist": [
+      "react-masonry"
+    ]
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "clean:deps": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "next": "12.2.0",
+    "react": "^18.2.0 || ^17.0.0",
+    "react-dom": "^18.2.0 || ^17.0.0",
+    "react-masonry": "1.0.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "18.0.1",
+    "@types/react": "18.0.14",
+    "@types/react-dom": "18.0.5",
+    "@types/styled-components": "5.1.25",
+    "eslint": "8.19.0",
+    "eslint-config-next": "12.2.0",
+    "typescript": "4.7.4"
+  }
+}

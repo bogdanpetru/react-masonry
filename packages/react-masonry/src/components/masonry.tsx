@@ -1,11 +1,20 @@
-import React, { cloneElement, useRef } from 'react'
+import * as React from 'react'
+import {
+  FunctionComponent,
+  cloneElement,
+  useRef,
+  CSSProperties,
+  Children,
+} from 'react'
 
 import { usePositions } from './use-positions'
 import { getStoneStyle } from './style'
 import { useWindowWidth } from './use-window-width'
 import { MasonryProps } from '../types'
 
-export const Masonry: React.FunctionComponent<MasonryProps> = ({
+export const Masonry: FunctionComponent<
+  MasonryProps & React.PropsWithChildren
+> = ({
   children,
   gutter,
   style,
@@ -26,7 +35,7 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
     windowWidth,
   })
 
-  const preparedStyle: React.CSSProperties = {
+  const preparedStyle: CSSProperties = {
     minHeight: containerHeight,
     position: 'relative',
     ...style,
@@ -34,7 +43,7 @@ export const Masonry: React.FunctionComponent<MasonryProps> = ({
 
   return (
     <div ref={wrapperRef} style={preparedStyle} {...rest}>
-      {React.Children.map(children, (child, index) => {
+      {Children.map(children, (child, index) => {
         if (typeof child !== 'object' || !('type' in child)) {
           return child
         }
