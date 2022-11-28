@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.26",
     "next-transpile-modules": "^10.0.0"
   },
   "dependencies": {
