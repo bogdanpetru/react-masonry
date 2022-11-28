@@ -36,9 +36,9 @@ const Examples = () => {
             type="number"
             value={gutter}
             onChange={(event) => {
-              let values = parseInt(event.target.value)
-              if (!isNaN(values) && typeof values === 'number') {
-                setGutter(event.target.value)
+              let value = parseInt(event.target.value)
+              if (!isNaN(value) && typeof value === 'number') {
+                setGutter(value)
               }
             }}
           />

@@ -14,50 +14,50 @@ export type Gutter = GutterNumber | GutterFullSpecified
 export interface MasonryProps {
   /**
    * Defines the spacing between stones.
-   * @default 0
+   * @defaults 0
    */
   gutter?: Gutter
 
   /**
    * If different than false, each item will appear one after another with an interval of `transitionStep` in between.
-   * @default false
+   * @defaults false
    */
   transition?: 'fade' | 'fadeMove' | false
 
   /**
    * Time (in ms) in between each stone placement, this is relevant if `transition` prop is not `false`.
-   * @default 50
+   * @defaults 50
    */
   transitionStep?: number
 
   /**
    * When transition is set, stones can appear one after the other.
-   * @default false
+   * @defaults false
    */
   enterOneAfterAnother?: boolean
 
   /**
    * Speed with which stones are placed when `enterOneAfterAnother=true`
-   * @default 300
+   * @defaults 300
    */
   transitionDuration?: number
 
   /**
    * Replaces the stones when windows changes size.
-   * @default true
+   * @defaults true
    */
   updateOnWindowResize?: boolean
 
   /**
    *  Related to `updateOnWindowResize`.
    *  Window resize listener is debouced, this sets the wait time.
-   * @default 300
+   * @defaults 300
    */
   updateOnWindowResizeDebounceWait?: number
 
   /**
    * Style applied on the top element
-   * @default none
+   * @defaults none
    */
   style?: React.CSSProperties
 }

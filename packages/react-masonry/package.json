@@ -1,8 +1,8 @@
 {
   "name": "react-masonry",
   "version": "1.0.0",
-  "xmain": "dist/index.js",
-  "xtype": "module",
+  "main": "dist/index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/bogdanpetru/react-masonry.git"
@@ -16,7 +16,10 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn types-check && yarn types-gen-dts && yarn bundle",
+    "bundle": "esbuild ./src/index.ts --bundle --outfile=dist/index.js --format=esm --minify --sourcemap --target=es2015",
+    "types-check": "tsc --noEmit",
+    "types-gen-dts": "tsc src/types.ts --emitDeclarationOnly --declaration --outDir dist",
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist",
     "gen-docs": "yarn typedoc ./src/types.ts --json ./types.json"
@@ -30,6 +33,7 @@
     "@types/lodash.debounce": "^4.0.7",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
+    "esbuild": "^0.15.16",
     "jest": "29.3.1",
     "ts-jest": "^29.0.3",
     "typedoc": "^0.23.21",
