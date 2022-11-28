@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Masonry } from 'react-masonry/src'
+import { Masonry } from 'react-masonry'
 
 const IMG_LOCAL_STORAGE_KEY = 'react-masonry/examples-relative-widths'
 
