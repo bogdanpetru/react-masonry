@@ -1,8 +1,7 @@
 {
   "name": "react-masonry",
-  "version": "1.0.0",
-  "TODO: find a way to work both in lib and in web": "",
-  "main": "src",
+  "version": "1.0.0-beta-3",
+  "main": "dist",
   "type": "module",
   "repository": {
     "type": "git",
