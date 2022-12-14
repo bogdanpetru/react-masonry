@@ -16,10 +16,10 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "build": "yarn types-check && yarn types-gen-dts && yarn bundle",
+    "build": "yarn clean  && yarn types-check && yarn types-gen-dts && yarn bundle",
     "bundle": "esbuild ./src/index.ts --bundle --outfile=dist/index.js --format=esm --minify --sourcemap --target=es2015",
     "types-check": "tsc --noEmit",
-    "types-gen-dts": "tsc src/types.ts --emitDeclarationOnly --declaration --outDir dist",
+    "types-gen-dts": "tsc src/index.ts --emitDeclarationOnly --declaration --outDir dist --jsx react-jsx --esModuleInterop",
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist",
     "gen-docs": "yarn typedoc ./src/types.ts --json ./types.json"
