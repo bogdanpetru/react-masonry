@@ -7,7 +7,8 @@
   ],
   "scripts": {
     "dev": "yarn workspace web dev",
-    "build": "yarn workspace react-masonry build",
+    "build": "yarn build:react-masonry && yarn build:site",
+    "build:react-masonry": "yarn workspace react-masonry build",
     "build:site": "yarn gen-docs && yarn workspace web build",
     "test": "yarn workspace react-masonry test",
     "clean:deps": "yarn workspace web clean:deps && yarn workspace react-masonry clean:deps",
