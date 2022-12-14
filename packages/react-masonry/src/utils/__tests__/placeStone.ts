@@ -5,14 +5,12 @@ import { placeStone } from '../place-stone'
 describe('placeStone', () => {
   it('should place first stone correct', () => {
     const stone = { width: 50, height: 50 }
-    const availableSpots: Spot[] = [
-      { top: 0, left: 0, right: 100, bottom: null },
-    ]
+    const availableSpots: Spot[] = [{ top: 0, left: 0, right: 100 }]
     const expected: ReturnType<typeof placeStone> = {
       position: { top: 0, left: 0 },
       availableSpots: [
-        { top: 0, left: 50, right: 100, bottom: null },
-        { top: 50, left: 0, right: 100, bottom: null },
+        { top: 0, left: 50, right: 100 },
+        { top: 50, left: 0, right: 100 },
       ],
     }
     const containerSize = 100
@@ -27,15 +25,15 @@ describe('placeStone', () => {
   it('should place the 2nd stone correct', () => {
     const stone = { width: 30, height: 30 }
     const availableSpots: Spot[] = [
-      { top: 0, left: 50, right: 100, bottom: null },
-      { top: 50, left: 0, right: 100, bottom: null },
+      { top: 0, left: 50, right: 100 },
+      { top: 50, left: 0, right: 100 },
     ]
     const expected: ReturnType<typeof placeStone> = {
       position: { top: 0, left: 50 },
       availableSpots: [
-        { top: 0, left: 80, right: 100, bottom: null },
-        { top: 30, left: 50, right: 100, bottom: null },
-        { top: 50, left: 0, right: 100, bottom: null },
+        { top: 0, left: 80, right: 100 },
+        { top: 30, left: 50, right: 100 },
+        { top: 50, left: 0, right: 100 },
       ],
     }
     const containerSize = 100
@@ -47,17 +45,17 @@ describe('placeStone', () => {
       }),
     ).toEqual(expected)
   })
-  it('sould place second stone correct, when the stone fill the entire available space', () => {
+  it('should place second stone correct, when the stone fill the entire available space', () => {
     const stone = { width: 50, height: 30 }
     const availableSpots: Spot[] = [
-      { top: 0, left: 50, right: 100, bottom: null },
-      { top: 50, left: 0, right: 100, bottom: null },
+      { top: 0, left: 50, right: 100 },
+      { top: 50, left: 0, right: 100 },
     ]
     const expected: ReturnType<typeof placeStone> = {
       position: { top: 0, left: 50 },
       availableSpots: [
-        { top: 30, left: 50, right: 100, bottom: null },
-        { top: 50, left: 0, right: 100, bottom: null },
+        { top: 30, left: 50, right: 100 },
+        { top: 50, left: 0, right: 100 },
       ],
     }
     const containerSize = 100
@@ -72,17 +70,17 @@ describe('placeStone', () => {
   it('should place first stone on second row correct', () => {
     const stone = { width: 30, height: 30 }
     const availableSpots: Spot[] = [
-      { top: 9, left: 80, right: 100, bottom: null },
-      { top: 10, left: 0, right: 50, bottom: null },
-      { top: 20, left: 50, right: 100, bottom: null },
+      { top: 9, left: 80, right: 100 },
+      { top: 10, left: 0, right: 50 },
+      { top: 20, left: 50, right: 100 },
     ]
     const expected: ReturnType<typeof placeStone> = {
       position: { top: 10, left: 0 },
       availableSpots: [
-        { top: 9, left: 80, right: 100, bottom: null },
-        { top: 10, left: 30, right: 50, bottom: null },
-        { top: 20, left: 50, right: 100, bottom: null },
-        { top: 40, left: 0, right: 100, bottom: null },
+        { top: 9, left: 80, right: 100 },
+        { top: 10, left: 30, right: 50 },
+        { top: 20, left: 50, right: 100 },
+        { top: 40, left: 0, right: 100 },
       ],
     }
     const containerSize = 100
@@ -101,16 +99,16 @@ describe('placeStone', () => {
     `, () => {
     const stone = { width: 20, height: 30 }
     const availableSpots: Spot[] = [
-      { top: 9, left: 80, right: 100, bottom: null },
-      { top: 10, left: 0, right: 50, bottom: null },
-      { top: 20, left: 50, right: 100, bottom: null },
+      { top: 9, left: 80, right: 100 },
+      { top: 10, left: 0, right: 50 },
+      { top: 20, left: 50, right: 100 },
     ]
     const expected: ReturnType<typeof placeStone> = {
       position: { top: 9, left: 80 },
       availableSpots: [
-        { top: 10, left: 0, right: 50, bottom: null },
-        { top: 20, left: 50, right: 80, bottom: null },
-        { top: 39, left: 80, right: 100, bottom: null },
+        { top: 10, left: 0, right: 50 },
+        { top: 20, left: 50, right: 80 },
+        { top: 39, left: 80, right: 100 },
       ],
     }
     const containerSize = 100
@@ -155,19 +153,16 @@ describe('placeStone', () => {
         top: 0,
         left: 60,
         right: 100,
-        bottom: null,
       },
       {
         top: 20,
         left: 30,
         right: 100,
-        bottom: null,
       },
       {
         top: 30,
         left: 0,
         right: 100,
-        bottom: null,
       },
     ]
 
@@ -190,7 +185,6 @@ describe('placeStone', () => {
           top: 50,
           left: 0,
           right: 100,
-          bottom: null,
         },
       ],
     }
@@ -222,7 +216,6 @@ describe('placeStone', () => {
         top: 50,
         left: 0,
         right: 100,
-        bottom: null,
       },
     ]
     const stone = { width: 30, height: 60 }
@@ -255,7 +248,6 @@ describe('placeStone', () => {
         top: 50,
         left: 0,
         right: 100,
-        bottom: null,
       },
     ]
     const stone = { width: 30, height: 30 }

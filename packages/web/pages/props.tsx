@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import apiDescription from 'react-masonry/types.json'
+import { JSONOutput } from 'typedoc'
 
 const PropertyWrapper = styled.div`
   margin-bottom: 30px;
@@ -45,20 +46,22 @@ const PropertyDefault = styled.span`
   border-radius: 3px;
 `
 
-const Interface = ({ node }) => {
+const Interface: React.FunctionComponent<{
+  node: JSONOutput.DeclarationReflection
+}> = ({ node }) => {
   return (
     <PropertyWrapper key={node.name}>
       <PropTitle id={node.id}>{node.name}</PropTitle>
       {node.children && (
         <List>
           {node.children?.map?.((child) => {
-            const commentText = child.comment.summary
+            const commentText = child.comment?.summary
               .filter((c) => c.text)
               .map((c) => c.text)
               .join('')
 
-            const defaultValue = child.comment.blockTags
-              .find((tag) => tag.tag === '@defaults')
+            const defaultValue = child.comment?.blockTags
+              ?.find?.((tag) => tag.tag === '@defaults')
               ?.content?.map((content) => content.text)
               .join('')
 
@@ -72,10 +75,12 @@ const Interface = ({ node }) => {
                     {isOptional ? '?' : ''}
                   </PropertyName>
                   <PropertyType>
-                    {child?.type?.id ? (
+                    {child?.type && 'id' in child?.type ? (
                       <a href={`#${child?.type?.id}`}>{child?.type?.name}</a>
-                    ) : (
+                    ) : child?.type && 'name' in child?.type ? (
                       child?.type?.name
+                    ) : (
+                      ''
                     )}
                   </PropertyType>
                   <PropertyDefault>{defaultValue}</PropertyDefault>
@@ -102,8 +107,14 @@ const TypeAliasTitle = styled.div`
   margin-bottom: 20px;
 `
 
-const TypeAlias = ({ node }) => {
+const TypeAlias: React.FunctionComponent<{
+  node: JSONOutput.DeclarationReflection
+}> = ({ node }) => {
   let typeElements = null
+
+  if (!node.type) {
+    return <></>
+  }
 
   switch (node.type.type) {
     case 'intrinsic':
@@ -113,7 +124,7 @@ const TypeAlias = ({ node }) => {
       typeElements = node.type.types.map((type, index) => (
         <a key={type.id} href={`#${type.id}`}>
           {index !== 0 && ' | '}
-          {type.name}
+          {'name' in type && type.name}
         </a>
       ))
       break
@@ -121,8 +132,15 @@ const TypeAlias = ({ node }) => {
       typeElements = (
         <code>
           {'{'}
-          {node.type.declaration.children
-            .map((item) => ` ${item.name}: ${item.type.name}, `)
+          {node.type?.declaration?.children
+            ?.map?.(
+              (item) =>
+                ` ${item.name}: ${
+                  'type' in item && 'name' in item?.type!
+                    ? item?.type?.name
+                    : ''
+                }, `,
+            )
             .join('')}
           {'}'}
         </code>
@@ -130,7 +148,7 @@ const TypeAlias = ({ node }) => {
   }
 
   return (
-    <TypeAliasWrapper id={node.id}>
+    <TypeAliasWrapper>
       <TypeAliasTitle>{node.name}</TypeAliasTitle>
       <div>{typeElements}</div>
     </TypeAliasWrapper>
@@ -139,21 +157,23 @@ const TypeAlias = ({ node }) => {
 
 const Wrapper = styled.div``
 
-export const Api = () => {
+export const Props = () => {
   return (
     <Wrapper>
-      {apiDescription.children.map((node) => {
-        switch (node.kindString) {
-          case 'Interface':
-            return <Interface key={node.name} node={node} />
-          case 'Type alias':
-            return <TypeAlias key={node.name} node={node} />
-          default:
-            return <div key={node.name}>none</div>
-        }
-      })}
+      {(apiDescription! as JSONOutput.ContainerReflection).children!.map(
+        (node) => {
+          switch (node.kindString) {
+            case 'Interface':
+              return <Interface key={node.name} node={node} />
+            case 'Type alias':
+              return <TypeAlias key={node.name} node={node} />
+            default:
+              return <div key={node.name}>none</div>
+          }
+        },
+      )}
     </Wrapper>
   )
 }
 
-export default Api
+export default Props

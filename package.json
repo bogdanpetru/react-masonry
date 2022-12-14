@@ -8,12 +8,13 @@
   "scripts": {
     "dev": "yarn workspace web dev",
     "build": "yarn workspace react-masonry build",
-    "build:site": "yarn gen-docs && yarn workspace site build",
+    "build:site": "yarn gen-docs && yarn workspace web build",
     "test": "yarn workspace react-masonry test",
-    "clean:deps": "yarn workspace site clean:deps && yarn workspace web clean:deps && yarn workspace react-masonry clean:deps",
+    "clean:deps": "yarn workspace web clean:deps && yarn workspace react-masonry clean:deps",
     "gen-docs": "yarn workspace react-masonry gen-docs"
   },
   "devDependencies": {
-    "gh-pages": "4.0.0"
+    "gh-pages": "4.0.0",
+    "typedoc": "0.23.21"
   }
 }

@@ -1,7 +1,8 @@
 {
   "name": "react-masonry",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "TODO: find a way to work both in lib and in web": "",
+  "main": "src",
   "type": "module",
   "repository": {
     "type": "git",
@@ -28,15 +29,15 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@jest/globals": "^29.3.1",
-    "@types/jest": "^29.2.3",
-    "@types/lodash.debounce": "^4.0.7",
-    "@types/node": "^18.11.9",
-    "@types/react": "^18.0.25",
-    "esbuild": "^0.15.16",
+    "@jest/globals": "29.3.1",
+    "@types/jest": "29.2.3",
+    "@types/lodash.debounce": "4.0.7",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "esbuild": "0.15.16",
     "jest": "29.3.1",
-    "ts-jest": "^29.0.3",
-    "typedoc": "^0.23.21",
-    "typescript": "^4.9.3"
+    "ts-jest": "29.0.3",
+    "typedoc": "0.23.21",
+    "typescript": "4.9.3"
   }
 }

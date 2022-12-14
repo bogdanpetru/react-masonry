@@ -4,19 +4,17 @@ import { Gutter } from '../types'
 import { placeStones } from '../utils/place-stones'
 
 const getStones = (stoneNodes: HTMLElement[]): Stone[] => {
-  return stoneNodes
-    .map((stone) => {
-      if (!stone) {
-        return null
-      }
-
-      const rect = stone.getBoundingClientRect()
-      return {
-        width: rect.width,
-        height: rect.height,
-      }
+  return stoneNodes.reduce((acc, stone) => {
+    if (!stone) {
+      return acc
+    }
+    const rect = stone.getBoundingClientRect()
+    acc.push({
+      width: rect.width,
+      height: rect.height,
     })
-    .filter(Boolean)
+    return acc
+  }, [] as Stone[])
 }
 
 const usePositions = ({
@@ -34,7 +32,7 @@ const usePositions = ({
 }) => {
   const [{ positions, containerHeight, stones }, setPositionsSpec] = useState<{
     positions: Position[]
-    containerHeight: number
+    containerHeight: number | null
     stones: Stone[]
   }>({
     positions: [],
@@ -44,10 +42,13 @@ const usePositions = ({
 
   useEffect(() => {
     const stones = getStones(boxesRefs.current)
-    const containerSize = wrapperRef.current.offsetWidth
+    const containerSize = wrapperRef.current?.offsetWidth ?? 0
+    if (containerSize === null) {
+      return
+    }
     const spec = placeStones({
       stones,
-      gutter,
+      gutter: gutter ?? {},
       containerSize,
     })
 

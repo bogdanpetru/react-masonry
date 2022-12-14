@@ -27,7 +27,6 @@ describe('getNewSpot', () => {
       top: 40,
       left: 0,
       right: 30,
-      bottom: null,
     }
     const containerSize = 1000
 

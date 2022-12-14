@@ -36,7 +36,7 @@ export const Masonry: FunctionComponent<
   })
 
   const preparedStyle: CSSProperties = {
-    minHeight: containerHeight,
+    minHeight: containerHeight ?? 0,
     position: 'relative',
     ...style,
   }

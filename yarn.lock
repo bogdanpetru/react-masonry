@@ -649,7 +649,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/globals@npm:^29.3.1":
+"@jest/globals@npm:29.3.1, @jest/globals@npm:^29.3.1":
   version: 29.3.1
   resolution: "@jest/globals@npm:29.3.1"
   dependencies:
@@ -1132,7 +1132,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.2.3":
+"@types/jest@npm:29.2.3":
   version: 29.2.3
   resolution: "@types/jest@npm:29.2.3"
   dependencies:
@@ -1149,7 +1149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.debounce@npm:^4.0.7":
+"@types/lodash.debounce@npm:4.0.7":
   version: 4.0.7
   resolution: "@types/lodash.debounce@npm:4.0.7"
   dependencies:
@@ -1165,7 +1165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:18.11.9, @types/node@npm:^18.11.9":
+"@types/node@npm:*, @types/node@npm:18.11.9":
   version: 18.11.9
   resolution: "@types/node@npm:18.11.9"
   checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
@@ -1195,7 +1195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.0.25, @types/react@npm:^18.0.25":
+"@types/react@npm:*, @types/react@npm:18.0.25":
   version: 18.0.25
   resolution: "@types/react@npm:18.0.25"
   dependencies:
@@ -2429,7 +2429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.15.16":
+"esbuild@npm:0.15.16":
   version: 0.15.16
   resolution: "esbuild@npm:0.15.16"
   dependencies:
@@ -5219,17 +5219,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "react-masonry@workspace:packages/react-masonry"
   dependencies:
-    "@jest/globals": ^29.3.1
-    "@types/jest": ^29.2.3
-    "@types/lodash.debounce": ^4.0.7
-    "@types/node": ^18.11.9
-    "@types/react": ^18.0.25
-    esbuild: ^0.15.16
+    "@jest/globals": 29.3.1
+    "@types/jest": 29.2.3
+    "@types/lodash.debounce": 4.0.7
+    "@types/node": 18.11.9
+    "@types/react": 18.0.25
+    esbuild: 0.15.16
     jest: 29.3.1
     react: ^18.2.0
-    ts-jest: ^29.0.3
-    typedoc: ^0.23.21
-    typescript: ^4.9.3
+    ts-jest: 29.0.3
+    typedoc: 0.23.21
+    typescript: 4.9.3
   languageName: unknown
   linkType: soft
 
@@ -5397,6 +5397,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     gh-pages: 4.0.0
+    typedoc: 0.23.21
   languageName: unknown
   linkType: soft
 
@@ -5897,7 +5898,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:^29.0.3":
+"ts-jest@npm:29.0.3":
   version: 29.0.3
   resolution: "ts-jest@npm:29.0.3"
   dependencies:
@@ -5997,7 +5998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.23.21":
+"typedoc@npm:0.23.21":
   version: 0.23.21
   resolution: "typedoc@npm:0.23.21"
   dependencies:
@@ -6013,7 +6014,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.9.3, typescript@npm:^4.9.3":
+"typescript@npm:4.9.3":
   version: 4.9.3
   resolution: "typescript@npm:4.9.3"
   bin:
@@ -6023,7 +6024,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.9.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.9.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.9.3#~builtin<compat/typescript>":
   version: 4.9.3
   resolution: "typescript@patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=7ad353"
   bin:
