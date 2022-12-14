@@ -51,7 +51,7 @@ const Interface: React.FunctionComponent<{
 }> = ({ node }) => {
   return (
     <PropertyWrapper key={node.name}>
-      <PropTitle id={node.id}>{node.name}</PropTitle>
+      <PropTitle id={`${node.id}`}>{node.name}</PropTitle>
       {node.children && (
         <List>
           {node.children?.map?.((child) => {
@@ -122,7 +122,7 @@ const TypeAlias: React.FunctionComponent<{
       break
     case 'union':
       typeElements = node.type.types.map((type, index) => (
-        <a key={type.id} href={`#${type.id}`}>
+        <a key={index} href={`#${(type as any).id}`}>
           {index !== 0 && ' | '}
           {'name' in type && type.name}
         </a>
