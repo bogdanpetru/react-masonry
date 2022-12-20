@@ -1,1 +1,1 @@
-export { Masonry } from './components/Masonry'
+export { Masonry } from './components/masonry'
