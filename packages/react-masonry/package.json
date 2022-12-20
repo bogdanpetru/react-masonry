@@ -22,6 +22,7 @@
     "types-gen-dts": "tsc src/index.ts --emitDeclarationOnly --declaration --outDir dist --jsx react-jsx --esModuleInterop",
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist",
+    "clean:deps": "rm -rf node_modules",
     "gen-docs": "yarn typedoc ./src/types.ts --json ./types.json"
   },
   "dependencies": {
