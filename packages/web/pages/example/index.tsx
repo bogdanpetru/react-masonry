@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import { RelativeWidthsExample } from '../../examples/RelativeWidthsExample'
 import { Label } from '../../components/Label'
@@ -15,8 +15,8 @@ const ControlsWrapper = styled.div`
 `
 
 const Examples = () => {
-  const [numberOfBoxes, setCardsNumber] = useState(20)
-  const [gutter, setGutter] = useState(20)
+  const [numberOfBoxes, setCardsNumber] = React.useState(20)
+  const [gutter, setGutter] = React.useState(20)
 
   return (
     <ExamplesWrapper>

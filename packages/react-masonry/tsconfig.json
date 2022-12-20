@@ -1,11 +1,14 @@
 {
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
+    "outDir": "dist",
     "strict": true,
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "allowJs": true,
+    "allowJs": false,
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
