@@ -1,3 +1,3 @@
 # react masonry
 
-ReactJs layout library. See Readme.md from packages/react-masonry/README.md.
+ReactJs layout library. For documentation and examples visit [docs](https://masonry.bogdanpetru.eu/)
