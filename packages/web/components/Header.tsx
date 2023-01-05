@@ -2,6 +2,7 @@ import { Navigation } from './Navigation'
 import styled from 'styled-components'
 
 const StyleHeader = styled.header`
+  width: 180px;
   flex-direction: column;
   margin-bottom: 40px;
 `
