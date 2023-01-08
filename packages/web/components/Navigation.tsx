@@ -16,11 +16,16 @@ const StyledLink = styled.a`
 export interface NavLinkProps {
   to: string
   children: React.ReactNode
+  target?: string
 }
 
-const NavLink: React.FunctionComponent<NavLinkProps> = ({ to, children }) => {
+const NavLink: React.FunctionComponent<NavLinkProps> = ({
+  to,
+  children,
+  target,
+}) => {
   return (
-    <StyledLink data-active={true} href={to}>
+    <StyledLink data-active={true} href={to} target={target}>
       {children}
     </StyledLink>
   )
@@ -39,7 +44,12 @@ export const Navigation = () => {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/examples">Examples</NavLink>
       <NavLink to="/docs">Docs</NavLink>
-      <NavLink to="/props">Github</NavLink>
+      <NavLink
+        target="_blank"
+        to="https://github.com/bogdanpetru/react-masonry"
+      >
+        Github
+      </NavLink>
     </StyledNavigation>
   )
 }
