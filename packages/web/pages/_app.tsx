@@ -4,20 +4,11 @@ import type { AppProps } from 'next/app'
 import styled from 'styled-components'
 import { Header } from '../components/Header'
 
-const AppWrapper = styled.div`
-  display: flex;
-`
+const AppWrapper = styled.div``
 
-const Main = styled.main`
-  padding-top: 80px;
-  flex: 1;
-`
+const Main = styled.main``
 
-const HeaderWrapper = styled.header`
-  padding-left: 40px;
-  padding-top: 20px;
-  width: 300px;
-`
+const HeaderWrapper = styled.header``
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
