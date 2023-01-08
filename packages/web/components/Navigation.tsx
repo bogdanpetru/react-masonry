@@ -38,7 +38,7 @@ export const Navigation = () => {
     <StyledNavigation>
       <NavLink to="/">Home</NavLink>
       <NavLink to="/examples">Examples</NavLink>
-      <NavLink to="/props">Docs</NavLink>
+      <NavLink to="/docs">Docs</NavLink>
       <NavLink to="/props">Github</NavLink>
     </StyledNavigation>
   )

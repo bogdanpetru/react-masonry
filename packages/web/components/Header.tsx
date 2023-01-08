@@ -5,8 +5,7 @@ import styled from 'styled-components'
 const StyleHeader = styled.header`
   display: flex;
   align-items: center;
-  max-width: 860px;
-  margin: 50px auto 0;
+  margin: 50px auto 50px;
 `
 
 export const Header = () => {

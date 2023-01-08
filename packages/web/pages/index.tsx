@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-
 import styled from 'styled-components'
+import { PageSubTitle } from '../components/PageTitle'
 
 const HomeWrapper = styled.div``
 
@@ -11,7 +9,7 @@ const Home: NextPage = () => {
     <HomeWrapper>
       <main>
         <div>
-          <h2>Introduction</h2>
+          <PageSubTitle>Introduction</PageSubTitle>
           <p>ReactJs layout library.</p>
           <p>
             Places stones (elements) in optimal positions by stacking them from
