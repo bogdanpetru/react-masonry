@@ -5,15 +5,25 @@ body {
 }
 
 :root {
-  --primary-color: #114c87;
-  --text-color: rgb(49, 49, 49);
+  --masonry-purple: #58287f;
+  --masonry-dark: #1a0000;
+  --masonry-light: #f5edce;
+  --masonry-blue: #89c4e1;
+
+  --masonry-purple: #58287f;
+  --masonry-text-color: var(--masonry-light);
+  --masonry-background: var(--masonry-dark);
+  --masonry-highlight: var(--masonry-blue);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
 body * {
   font-family: 'Roboto', sans-serif;
-  color: var(--text-color);
+}
+body {
+  color: var(--masonry-text-color);
+  background: var(--masonry-background);
 }
 
 .title {

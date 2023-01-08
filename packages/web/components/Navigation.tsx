@@ -3,7 +3,6 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 const StyledLink = styled.a`
-  margin: 0 0 20px;
   text-decoration: none;
   font-weight: 300;
   font-size: 18px;
@@ -29,16 +28,18 @@ const NavLink: React.FunctionComponent<NavLinkProps> = ({ to, children }) => {
 
 const StyledNavigation = styled.nav`
   display: flex;
-  flex-direction: column;
-  flex: 1;
+  flex-direction: row;
+  gap: 20px;
+  margin-left: auto;
 `
 
 export const Navigation = () => {
   return (
     <StyledNavigation>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/example">Example</NavLink>
-      <NavLink to="/props">Pros</NavLink>
+      <NavLink to="/examples">Examples</NavLink>
+      <NavLink to="/props">Docs</NavLink>
+      <NavLink to="/props">Github</NavLink>
     </StyledNavigation>
   )
 }
