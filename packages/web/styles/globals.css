@@ -21,6 +21,11 @@ body {
 body * {
   font-family: 'Roboto', sans-serif;
 }
+
+p {
+  font-size: 18px;
+}
+
 body {
   color: var(--masonry-text-color);
   background: var(--masonry-background);

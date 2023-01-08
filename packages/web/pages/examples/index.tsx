@@ -1,17 +1,19 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { RelativeWidthsExample } from '../../examples/RelativeWidthsExample'
+import { RelativeWidthsExample } from '../../examples/RelativeWidths'
 import { Label } from '../../components/Label'
+import { Input } from '../../components/Input'
+import { PageSubTitle } from '../../components/PageTitle'
 
 const ExamplesWrapper = styled.div`
   padding: 0 0 100px;
-  max-width: 1200px;
   margin: 0 auto;
 `
 
 const ControlsWrapper = styled.div`
+  display: flex;
   margin-bottom: 30px;
-  width: 300px;
+  /* width: 300px; */
 `
 
 const Examples = () => {
@@ -20,19 +22,19 @@ const Examples = () => {
 
   return (
     <ExamplesWrapper>
-      <h2>Example</h2>
+      <PageSubTitle>Relative Widths</PageSubTitle>
       <ControlsWrapper>
         <Label>
-          Number of images:
-          <input
+          Number of images
+          <Input
             type="number"
             value={numberOfBoxes}
             onChange={(event) => setCardsNumber(parseInt(event.target.value))}
           />
         </Label>
         <Label>
-          Gutter size:
-          <input
+          Gutter size
+          <Input
             type="number"
             value={gutter}
             onChange={(event) => {

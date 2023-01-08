@@ -9,6 +9,12 @@ const PropertyWrapper = styled.div`
 
 const List = styled.div``
 
+const Link = styled.a`
+  text-decoration: none;
+  color: var(--masonry-text-color);
+  font-weight: 500;
+`
+
 const ListItem = styled.div`
   margin-bottom: 50px;
 `
@@ -39,10 +45,11 @@ const PropertyType = styled.span`
 
 const PropertyDefault = styled.span`
   display: inline-block;
-  padding: 2px 5px;
+  padding: 3px 6px;
   text-align: center;
-  background: #d4d4d4;
-  font-style: italic;
+  color: var(--masonry-background);
+  background-color: var(--masonry-light);
+  font-weight: 500;
   border-radius: 3px;
 `
 
@@ -76,7 +83,9 @@ const Interface: React.FunctionComponent<{
                   </PropertyName>
                   <PropertyType>
                     {child?.type && 'id' in child?.type ? (
-                      <a href={`#${child?.type?.id}`}>{child?.type?.name}</a>
+                      <Link href={`#${child?.type?.id}`}>
+                        {child?.type?.name}
+                      </Link>
                     ) : child?.type && 'name' in child?.type ? (
                       child?.type?.name
                     ) : (
@@ -122,10 +131,10 @@ const TypeAlias: React.FunctionComponent<{
       break
     case 'union':
       typeElements = node.type.types.map((type, index) => (
-        <a key={index} href={`#${(type as any).id}`}>
+        <Link key={index} href={`#${(type as any).id}`}>
           {index !== 0 && ' | '}
           {'name' in type && type.name}
-        </a>
+        </Link>
       ))
       break
     case 'reflection':
