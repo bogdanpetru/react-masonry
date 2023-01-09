@@ -6,7 +6,7 @@ It places elements in optimal positions by stacking them from left to right and 
 
 No deps besides ReactJs ⚛️.
 
-See [Demo](https://bogdanpetru.github.io/react-masonry/).
+See [Demo](https://react-masonry.bogdanpetru.eu/examples/).
 
 ## Usage
 

@@ -1,6 +1,6 @@
 {
   "name": "react-masonry",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "dist",
   "module": "dist",
   "type": "module",
@@ -23,7 +23,8 @@
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist",
     "clean:deps": "rm -rf node_modules",
-    "gen-docs": "yarn typedoc ./src/types.ts --json ./types.json"
+    "gen-docs": "yarn typedoc ./src/types.ts --json ./types.json",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "react": "^18.2.0"
