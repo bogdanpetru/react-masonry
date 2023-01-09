@@ -1,6 +1,6 @@
 {
   "name": "react-masonry",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist",
   "module": "dist",
   "type": "module",
@@ -17,8 +17,9 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && yarn types-gen-dts && yarn bundle",
-    "bundle": "tsc",
+    "build": "yarn clean && yarn types-gen-dts",
+    "bundle": "esbuild ./src/index.ts --bundle --outfile=./dist/index.js",
+    "tsc": "tsc",
     "types-gen-dts": "tsc src/index.ts --emitDeclarationOnly --declaration --outDir dist --jsx react-jsx --esModuleInterop",
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist",
