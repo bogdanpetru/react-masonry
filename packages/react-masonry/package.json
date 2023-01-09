@@ -1,6 +1,6 @@
 {
   "name": "react-masonry",
-  "version": "1.0.0-beta-3",
+  "version": "1.0.1",
   "main": "dist",
   "module": "dist",
   "type": "module",
