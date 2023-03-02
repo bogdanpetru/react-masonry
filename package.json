@@ -13,9 +13,5 @@
     "test": "yarn workspace react-masonry test",
     "clean:deps": "yarn workspace web clean:deps && yarn workspace react-masonry clean:deps",
     "gen-docs": "yarn workspace react-masonry gen-docs"
-  },
-  "devDependencies": {
-    "gh-pages": "4.0.0",
-    "typedoc": "0.23.21"
   }
 }

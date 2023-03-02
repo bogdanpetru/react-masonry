@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 TODO.md
 dist
-docs
+packages/react-masonry/docs
 dist
 api.json
 .yarn

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import { getImages, randomColor } from './utils'
+import { getImages } from './imagesApi'
+import { randomColor } from './random'
 
 export function getBox(gutter: number) {
   const common = {

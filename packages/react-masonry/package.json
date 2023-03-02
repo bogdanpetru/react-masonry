@@ -17,9 +17,10 @@
   "homepage": "http://bogdanpetru.github.io/react-masonry",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && node ./build && yarn types-gen-dts",
+    "build:watch": "esbuild src/index.ts --bundle --outDir=dist --watch",
     "tsc": "tsc",
-    "types-gen-dts": "tsc src/index.ts --emitDeclarationOnly --declaration --outDir dist --jsx react-jsx --esModuleInterop",
+    "types-gen-dts": "tsc src/index.ts --emitDeclarationOnly --declaration --outDir dist --jsx react-jsx --esModuleInterop --skipLibCheck",
     "test": "jest ./src --passWithNoTests",
     "clean": "rm -rf dist",
     "clean:deps": "rm -rf node_modules",
@@ -27,17 +28,18 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "react": "^18.2.0"
+    "react": "^18.0.0"
   },
   "devDependencies": {
     "@jest/globals": "29.3.1",
-    "@types/jest": "29.2.4",
+    "@types/jest": "29.2.6",
     "@types/lodash.debounce": "4.0.7",
-    "@types/node": "18.11.17",
-    "@types/react": "18.0.25",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.27",
+    "esbuild": "^0.17.9",
     "jest": "29.3.1",
-    "ts-jest": "29.0.3",
-    "typedoc": "0.23.23",
+    "ts-jest": "29.0.5",
+    "typedoc": "0.23.24",
     "typescript": "4.9.4"
   }
 }

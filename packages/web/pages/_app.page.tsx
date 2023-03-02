@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import styled from 'styled-components'
 import '../styles/globals.css'
-import { Header } from '../components/Header'
+import { Header } from '../src/components/Header'
 
 const AppWrapper = styled.div`
   max-width: 1200px;

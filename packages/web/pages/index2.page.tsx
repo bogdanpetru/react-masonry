@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components'
-import { PageSubTitle } from '../components/PageTitle'
+import { PageSubTitle } from '../src/components/PageTitle'
 
 const HomeWrapper = styled.div``
 

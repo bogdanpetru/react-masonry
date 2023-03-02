@@ -25,15 +25,3 @@ return (
   </Masonry>
 )
 ```
-
-## Install
-
-Clone project.
-
-> run `yarn install` or `npm install`
-
-> run `yarn start` or `npm start` - will open in browser the demo (localhost:3000).
-
-## Api
-
-See [Api](https://bogdanpetru.github.io/react-masonry/) page.
