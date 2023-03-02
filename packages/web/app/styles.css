@@ -4,6 +4,10 @@ body {
   padding: 0;
 }
 
+body * {
+  font-family: 'Roboto', sans-serif;
+}
+
 :root {
   --masonry-purple: #58287f;
   --masonry-dark: #1a0000;
@@ -18,10 +22,6 @@ body {
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-body * {
-  font-family: 'Roboto', sans-serif;
-}
-
 p {
   font-size: 18px;
 }
@@ -31,6 +31,39 @@ body {
   background: var(--masonry-background);
 }
 
+h1 {
+  margin-bottom: 20px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  margin: 50px auto 50px;
+}
+
 .title {
   font-size: 34px;
+}
+
+.app-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.navigation-link {
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.navigation-link[data-active='true'] {
+  color: var(--primary-color);
+  font-weight: 500;
 }

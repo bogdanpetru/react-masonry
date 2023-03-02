@@ -1,12 +1,17 @@
+import { random } from './random'
+
 const IMG_LOCAL_STORAGE_KEY = 'react-masonry/examples-relative-widths'
 
 export function getImageSrc(height: number, width = 230) {
   return `https://picsum.photos/${width}/` + height
 }
 
-const getNewImages = (numberOfImages: number) => {
+export const getNewImages = (
+  numberOfImages: number,
+  heights = [220, 250, 280, 300, 330],
+) => {
   return [...Array(numberOfImages)].map(async () => {
-    const height = [220, 250, 280, 300, 330][random(0, 4)]
+    const height = heights[random(0, 4)]
     const width = 400
     const img = getImageSrc(height, width)
     const resp = await fetch(img)
@@ -46,16 +51,4 @@ export async function getImages(numberOfImages: number) {
   localStorage.setItem(IMG_LOCAL_STORAGE_KEY, JSON.stringify(images))
 
   return images
-}
-
-export function random(min: number, max: number) {
-  return Math.round(Math.random() * (max - min) + min)
-}
-
-export function random250() {
-  return random(0, 255)
-}
-
-export function randomColor() {
-  return `rgb(${random250()},${random(0, 100)},${random(0, 120)})`
 }

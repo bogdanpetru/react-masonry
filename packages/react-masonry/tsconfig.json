@@ -4,6 +4,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "strict": true,
+    "skipLibCheck": true,
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
