@@ -2,8 +2,6 @@ import { Masonry } from 'react-masonry'
 
 export default function App() {
   const data = 'world'
-  console.log(Masonry)
-  console.log('dude')
 
   return (
     <>

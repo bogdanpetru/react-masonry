@@ -9,7 +9,7 @@ export const Logo: React.FC<{ size?: number }> = (props) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_1_422)">
+    <g clipPath="url(#clip0_1_422)">
       <rect width="200" height="200" fill="#F5EDCE" />
       <rect x="13" y="51" width="43" height="36" fill="#58287F" />
       <rect

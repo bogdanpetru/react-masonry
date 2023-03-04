@@ -1,13 +1,11 @@
-import { Example } from '@/components/Example'
-import { loadFile } from '../../utils/loadFile'
+import { ExampleServer } from '../components/ExampleServer'
 
 const Examples = () => {
-  const props = {
-    masonry: loadFile('/../react-masonry/dist/index.js'),
-    app: loadFile('/pages/examples/sandpack.app.tsx'),
-  }
-
-  return <Example masonry={props.masonry} app={props.app} />
+  return (
+    <>
+      <ExampleServer useImages imagesApi app="/app/examples/example.tsx" />
+    </>
+  )
 }
 
 export default Examples
