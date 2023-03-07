@@ -1,66 +1,39 @@
-import * as React from 'react'
-import styled from 'styled-components'
+import type { ComponentProps, FunctionComponent } from 'react'
+import type { JSONOutput } from 'typedoc'
 import apiDescription from 'react-masonry/types.json'
-import { JSONOutput } from 'typedoc'
 
-const PropertyWrapper = styled.div`
-  margin-bottom: 30px;
-`
+const Link = (props: ComponentProps<'a'>) => (
+  <a {...props} className="property-link" />
+)
 
-const List = styled.div``
+const ListTitle = (props: ComponentProps<'div'>) => (
+  <div {...props} className="property-list-title" />
+)
 
-const Link = styled.a`
-  text-decoration: none;
-  color: var(--masonry-text-color);
-  font-weight: 500;
-`
+const PropertyName = (props: ComponentProps<'span'>) => (
+  <span {...props} className="property-name" />
+)
 
-const ListItem = styled.div`
-  margin-bottom: 50px;
-`
+const PropTitle = (props: ComponentProps<'h2'>) => (
+  <h2 {...props} className="property-title" />
+)
 
-const ListColumn = styled.div``
+const PropertyType = (props: ComponentProps<'span'>) => (
+  <span {...props} className="property-type" />
+)
 
-const ListTitle = styled.div`
-  display: flex;
-  margin-bottom: 15px;
-`
+const PropertyDefault = (props: ComponentProps<'span'>) => (
+  <span {...props} className="property-default" />
+)
 
-const PropertyName = styled.span`
-  display: inline-block;
-  font-weight: 600;
-  margin-right: 20px;
-`
-
-const PropTitle = styled.h2`
-  font-weight: 600;
-  font-size: 1.5em;
-  margin-bottom: 30px;
-`
-
-const PropertyType = styled.span`
-  display: inline-block;
-  margin-right: 10px;
-`
-
-const PropertyDefault = styled.span`
-  display: inline-block;
-  padding: 3px 6px;
-  text-align: center;
-  color: var(--masonry-background);
-  background-color: var(--masonry-light);
-  font-weight: 500;
-  border-radius: 3px;
-`
-
-const Interface: React.FunctionComponent<{
+const Interface: FunctionComponent<{
   node: JSONOutput.DeclarationReflection
 }> = ({ node }) => {
   return (
-    <PropertyWrapper key={node.name}>
+    <div className="property-wrapper" key={node.name}>
       <PropTitle id={`${node.id}`}>{node.name}</PropTitle>
       {node.children && (
-        <List>
+        <div className="property-list">
           {node.children?.map?.((child) => {
             const commentText = child.comment?.summary
               .filter((c) => c.text)
@@ -75,7 +48,7 @@ const Interface: React.FunctionComponent<{
             const isOptional = child?.flags?.isOptional
 
             return (
-              <ListItem key={child.name}>
+              <div className="property-list-item" key={child.name}>
                 <ListTitle>
                   <PropertyName>
                     {child.name}
@@ -95,28 +68,25 @@ const Interface: React.FunctionComponent<{
                   <PropertyDefault>{defaultValue}</PropertyDefault>
                 </ListTitle>
 
-                <ListColumn>{commentText}</ListColumn>
-              </ListItem>
+                <div className="property-list-column">{commentText}</div>
+              </div>
             )
           })}
-        </List>
+        </div>
       )}
-    </PropertyWrapper>
+    </div>
   )
 }
 
-const TypeAliasWrapper = styled.div`
-  display: flex;
-`
+const TypeAliasWrapper = (props: ComponentProps<'div'>) => (
+  <div {...props} className="type-alias-wrapper" />
+)
 
-const TypeAliasTitle = styled.div`
-  font-weight: 600;
-  font-size: 1.2em;
-  margin-right: 20px;
-  margin-bottom: 20px;
-`
+const TypeAliasTitle = (props: ComponentProps<'div'>) => (
+  <div {...props} className="type-alias-title" />
+)
 
-const TypeAlias: React.FunctionComponent<{
+const TypeAlias: FunctionComponent<{
   node: JSONOutput.DeclarationReflection
 }> = ({ node }) => {
   let typeElements = null
@@ -164,13 +134,12 @@ const TypeAlias: React.FunctionComponent<{
   )
 }
 
-const Wrapper = styled.div``
-
-export const Props = () => {
+export const Docs = (props) => {
   return (
-    <Wrapper>
+    <div>
+      {/* @ts-ignore */}
       {(apiDescription! as JSONOutput.ContainerReflection).children!.map(
-        (node) => {
+        (node: any) => {
           switch (node.kindString) {
             case 'Interface':
               return <Interface key={node.name} node={node} />
@@ -181,8 +150,6 @@ export const Props = () => {
           }
         },
       )}
-    </Wrapper>
+    </div>
   )
 }
-
-export default Props

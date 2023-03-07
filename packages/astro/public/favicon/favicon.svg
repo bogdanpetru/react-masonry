@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="200" height="200"><svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1_422)">
+<rect width="200" height="200" fill="#F5EDCE"></rect>
+<rect x="13" y="51" width="43" height="36" fill="#58287F"></rect>
+<rect x="187" y="148" width="43" height="54" transform="rotate(180 187 148)" fill="#58287F"></rect>
+<rect x="63" y="51" width="93" height="36" fill="#58287F"></rect>
+<rect x="137" y="148" width="93" height="54" transform="rotate(180 137 148)" fill="#58287F"></rect>
+<rect x="163" y="51" width="24" height="36" fill="#58287F"></rect>
+<rect x="37" y="148" width="24" height="54" transform="rotate(180 37 148)" fill="#58287F"></rect>
+</g>
+<defs>
+<clipPath id="SvgjsClipPath1000">
+<rect width="200" height="200" rx="10" fill="white"></rect>
+</clipPath>
+</defs>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+</style></svg>

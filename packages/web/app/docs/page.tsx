@@ -1,33 +1,34 @@
-import * as React from 'react'
 import apiDescription from 'react-masonry/types.json'
 import { JSONOutput } from 'typedoc'
 import './style.css'
+import { ComponentProps, FunctionComponent } from 'react'
+import { NextPage } from 'next'
 
-const Link = (props: React.ComponentProps<'a'>) => (
+const Link = (props: ComponentProps<'a'>) => (
   <a {...props} className="property-link" />
 )
 
-const ListTitle = (props: React.ComponentProps<'div'>) => (
+const ListTitle = (props: ComponentProps<'div'>) => (
   <div {...props} className="property-list-title" />
 )
 
-const PropertyName = (props: React.ComponentProps<'span'>) => (
+const PropertyName = (props: ComponentProps<'span'>) => (
   <span {...props} className="property-name" />
 )
 
-const PropTitle = (props: React.ComponentProps<'h2'>) => (
+const PropTitle = (props: ComponentProps<'h2'>) => (
   <h2 {...props} className="property-title" />
 )
 
-const PropertyType = (props: React.ComponentProps<'span'>) => (
+const PropertyType = (props: ComponentProps<'span'>) => (
   <span {...props} className="property-type" />
 )
 
-const PropertyDefault = (props: React.ComponentProps<'span'>) => (
+const PropertyDefault = (props: ComponentProps<'span'>) => (
   <span {...props} className="property-default" />
 )
 
-const Interface: React.FunctionComponent<{
+const Interface: FunctionComponent<{
   node: JSONOutput.DeclarationReflection
 }> = ({ node }) => {
   return (
@@ -79,15 +80,15 @@ const Interface: React.FunctionComponent<{
   )
 }
 
-const TypeAliasWrapper = (props: React.ComponentProps<'div'>) => (
+const TypeAliasWrapper = (props: ComponentProps<'div'>) => (
   <div {...props} className="type-alias-wrapper" />
 )
 
-const TypeAliasTitle = (props: React.ComponentProps<'div'>) => (
+const TypeAliasTitle = (props: ComponentProps<'div'>) => (
   <div {...props} className="type-alias-title" />
 )
 
-const TypeAlias: React.FunctionComponent<{
+const TypeAlias: FunctionComponent<{
   node: JSONOutput.DeclarationReflection
 }> = ({ node }) => {
   let typeElements = null
@@ -135,11 +136,11 @@ const TypeAlias: React.FunctionComponent<{
   )
 }
 
-export const Props = () => {
+export const Docs: NextPage = (props) => {
   return (
     <div>
       {(apiDescription! as JSONOutput.ContainerReflection).children!.map(
-        (node) => {
+        (node: any) => {
           switch (node.kindString) {
             case 'Interface':
               return <Interface key={node.name} node={node} />
@@ -154,4 +155,4 @@ export const Props = () => {
   )
 }
 
-export default Props
+export default Docs

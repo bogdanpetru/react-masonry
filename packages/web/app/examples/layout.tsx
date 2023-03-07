@@ -1,4 +1,4 @@
-import { Logo } from '@/components/Logo'
+import { Logo } from '../components/Logo'
 import { loadFile } from '../../utils/loadFile'
 
 export default function RootLayout({

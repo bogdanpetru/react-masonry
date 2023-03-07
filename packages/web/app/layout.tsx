@@ -1,6 +1,6 @@
-import { Logo } from '@/components/Logo'
+import { Logo } from './components/Logo'
 import './styles.css'
-import { Navigation } from '@/components/Navigation'
+import { Navigation } from './components/Navigation'
 import { SandpackStyle } from './SandpackStyle'
 
 export const metadata = {
