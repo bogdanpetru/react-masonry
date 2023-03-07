@@ -3,15 +3,21 @@
   "author": "Bogdan Petru Pintican",
   "workspaces": [
     "./packages/react-masonry",
-    "./packages/web"
+    "./packages/web",
+    "./packages/astro"
   ],
   "scripts": {
     "dev": "yarn workspace web dev",
+    "astro": "yarn workspace astro dev",
     "build": "yarn build:react-masonry && yarn build:site",
     "build:react-masonry": "yarn workspace react-masonry build",
     "build:site": "yarn gen-docs && yarn workspace web build",
     "test": "yarn workspace react-masonry test",
     "clean:deps": "yarn workspace web clean:deps && yarn workspace react-masonry clean:deps",
     "gen-docs": "yarn workspace react-masonry gen-docs"
+  },
+  "dependencies": {
+    "typedoc": "^0.23.26",
+    "web": "workspace:^"
   }
 }

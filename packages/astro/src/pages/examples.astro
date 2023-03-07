@@ -1,0 +1,17 @@
+---
+import { Example } from '../components/Example'
+import BaseLayout from '../layouts/base.astro'
+import { loadFile } from '../utils/loadFile'
+
+const files = {
+  masonry: loadFile('/../react-masonry/dist/index.js'),
+  app: loadFile('/src/pages/example.tsx'),
+  imagesApi: loadFile('/src/utils/imagesApi.ts'),
+  useImages: loadFile('/src/utils/useImages.ts'),
+  random: loadFile('/src/utils/random.ts'),
+}
+---
+
+<BaseLayout title="Docs">
+  <Example client:load {...files} />
+</BaseLayout>

@@ -1,0 +1,59 @@
+.property-wrapper {
+  margin-bottom: 30px;
+}
+
+.property-list {
+}
+
+.property-list-item {
+  margin-bottom: 50px;
+}
+
+.property-list-title {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.property-name {
+  display: inline-block;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+.property-title {
+  font-weight: 600;
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.property-type {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.property-default {
+  display: inline-block;
+  padding: 3px 6px;
+  text-align: center;
+  color: var(--masonry-background);
+  background-color: var(--masonry-light);
+  font-weight: 500;
+  border-radius: 3px;
+}
+
+.property-link {
+  text-decoration: none;
+  color: var(--masonry-text-color);
+  font-weight: 500;
+}
+
+.type-alias-wrapper {
+  display: flex;
+}
+
+.type-alias-title {
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
