@@ -11,13 +11,12 @@ import { VITE_REACT_TEMPLATE } from './react-typescript-template'
 export interface ExampleProps {
   masonry: string
   app: string
-  imagesApi?: string
-  useImages?: string
-  random?: string
+  otherFiles?: { name: string; code: string }[]
 }
 
 export const Example: FunctionComponent<ExampleProps> = (props) => {
   const [showCode, setShowCode] = useState(false)
+
   const files: Record<string, any> = {
     ...VITE_REACT_TEMPLATE.files,
     'App.tsx': props.app,
@@ -34,20 +33,10 @@ export const Example: FunctionComponent<ExampleProps> = (props) => {
     },
   }
 
-  if (props.imagesApi) {
-    files['imagesApi.ts'] = {
+  for (const file of props.otherFiles || []) {
+    files[file.name] = {
+      code: file.code,
       hidden: true,
-      code: props.imagesApi,
-    }
-  }
-  if (props.useImages && props.random) {
-    files['useImages.ts'] = {
-      hidden: true,
-      code: props.useImages,
-    }
-    files['random.ts'] = {
-      hidden: true,
-      code: props.random,
     }
   }
 
@@ -63,9 +52,9 @@ export const Example: FunctionComponent<ExampleProps> = (props) => {
     >
       <button onClick={() => setShowCode(!showCode)}>toggle</button>
       <SandpackLayout>
+        {showCode && <SandpackCodeEditor style={{ height: 300 }} />}
         <SandpackPreview style={{ height: 800 }} />
       </SandpackLayout>
-      {showCode && <SandpackCodeEditor style={{ height: 300 }} />}
     </SandpackProvider>
   )
 }

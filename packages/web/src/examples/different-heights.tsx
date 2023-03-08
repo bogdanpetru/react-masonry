@@ -1,6 +1,4 @@
-// @ts-ignore
 import { Masonry } from 'react-masonry'
-// @ts-ignore
 import { useImages } from './useImages'
 
 export default function App() {
@@ -10,7 +8,6 @@ export default function App() {
 
   return (
     <Masonry gutter={10}>
-      {/* @ts-ignore */}
       {boxes.slice(0, numberOfBoxes).map((box, index) => {
         const img = images[index]
         if (!img) {
