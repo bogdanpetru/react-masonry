@@ -12,11 +12,23 @@ import './style.css'
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon/favicon.png" />
     <SandpackStyle />
+
+    <style>
+      .logo-wrapper {
+        font-family: var(--masonry-title-font-family);
+        font-size: 46px;
+        display: flex;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
     <main class="app-wrapper">
       <header>
-        <Logo />
+        <div class="logo-wrapper">
+          <Logo />
+          React Masonry
+        </div>
         <Navigation />
       </header>
       <slot />

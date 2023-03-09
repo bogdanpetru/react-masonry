@@ -1,34 +1,42 @@
 ---
 import BaseLayout from '../layouts/base.astro'
+import ImagesExample from '../examples/images-example'
 ---
 
-<BaseLayout title="hello world">
-  <main>
-    <div>
-      <h1>Introduction</h1>
+<style>
+  .description {
+    margin-bottom: 30px;
+  }
+  .example-wrapper {
+  }
+</style>
+
+<BaseLayout title="React Masonry">
+  <main class="main-content">
+    <div class="description">
       <p>ReactJs layout library.</p>
       <p>
-        Places stones (elements) in optimal positions by stacking them from left
-        to right and from top to bottom.
+        Places stones in optimal positions by stacking them from left to right
+        and from top to bottom.
       </p>
       <p>
-        Elements rendered inside Masonry must be{' '}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html#dom-elements"
-        >
-          DOM elements
-        </a>
-        .
+        Elements rendered inside Masonry must be{' '}:
       </p>
-      <p>Stacking process has the following steps:</p>
       <ul>
-        <li>clone elements, save a reference (ref)</li>
-        <li>render elements hidden, measure</li>
-        <li>run position algorithm</li>
-        <li>rerender elements with calculated position</li>
+        <li>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html#dom-elements"
+          >
+            DOM elements
+          </a>
+        </li>
+        <li>or a component that passes the ref and style to a react element</li>
       </ul>
+    </div>
+    <div class="example-wrapper">
+      <ImagesExample client:load />
     </div>
   </main>
 </BaseLayout>

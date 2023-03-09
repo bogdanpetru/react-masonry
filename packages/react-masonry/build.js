@@ -1,6 +1,8 @@
 import * as esbuild from 'esbuild'
 
-await esbuild.build({
+const watch = process.env.WATCH
+
+const config = {
   entryPoints: ['src/index.ts'],
   bundle: true,
   minify: true,
@@ -9,4 +11,11 @@ await esbuild.build({
   external: ['react'],
   platform: 'browser',
   format: 'esm',
-})
+}
+
+if (watch) {
+  const ctx = await esbuild.context(config)
+  await ctx.watch()
+} else {
+  await esbuild.build(config)
+}

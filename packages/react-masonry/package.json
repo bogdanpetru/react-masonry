@@ -17,7 +17,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn clean && node ./build && yarn types-gen-dts",
-    "build:watch": "esbuild src/index.ts --bundle --outDir=dist --watch",
+    "build:watch": "yarn clean && WATCH=true node ./build",
     "tsc": "tsc",
     "types-gen-dts": "tsc src/index.ts --emitDeclarationOnly --declaration --outDir dist --jsx react-jsx --esModuleInterop --skipLibCheck",
     "test": "jest ./src --passWithNoTests",
