@@ -1,5 +1,4 @@
 import { Masonry } from 'react-masonry'
-import { useImages } from './useImages'
 import { CSSProperties, forwardRef, useEffect, useMemo, useState } from 'react'
 import { pick, randomColor } from './random'
 import { getImageSrc } from './imagesApi'
@@ -8,7 +7,7 @@ const KEY = 'react-masonry/examples-images'
 
 const ImageComponent = forwardRef<
   HTMLDivElement,
-  { gutter: number; style: CSSProperties }
+  { gutter: number; style?: CSSProperties; id: number }
 >((props, ref) => {
   const { gutter } = props
   const height = useMemo(() => {
@@ -25,6 +24,12 @@ const ImageComponent = forwardRef<
     })()
   }, [])
 
+  let width = `calc(100% / 5 - ${gutter}px)`
+  const matchTablet = globalThis.matchMedia('(max-width: 768px)').matches
+  if (matchTablet) {
+    width = `calc(100% / 3 - ${gutter}px)`
+  }
+
   const style: CSSProperties = {
     ...props.style,
     height,
@@ -32,7 +37,7 @@ const ImageComponent = forwardRef<
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 700,
-    width: `calc(100% / 4 - ${gutter}px)`,
+    width,
     backgroundColor: randomColor(),
   }
 
@@ -51,12 +56,12 @@ const ImageComponent = forwardRef<
 
 export default function ImagesExample() {
   const numberOfBoxes = 30
-  const gutter = 30
+  const gutter = 10
 
   return (
-    <Masonry gutter={10}>
+    <Masonry gutter={gutter}>
       {Array.from({ length: numberOfBoxes }, (_, index) => {
-        return <ImageComponent key={index} gutter={gutter} />
+        return <ImageComponent key={index} id={index} gutter={gutter} />
       })}
     </Masonry>
   )
