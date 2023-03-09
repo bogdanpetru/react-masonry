@@ -8,11 +8,11 @@ export function getBox(gutter: number) {
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 700,
-    width: '33%',
+    width: `calc(100% / 4 - ${gutter}px)`,
   }
+
   return {
     ...common,
-    width: `calc(25% - ${gutter}px)`,
     backgroundColor: randomColor(),
   }
 }

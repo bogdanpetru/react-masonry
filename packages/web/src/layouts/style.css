@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
 
 html,
 body {
@@ -7,7 +8,7 @@ body {
 }
 
 body * {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--masonry-font-family);
 }
 
 :root {
@@ -20,10 +21,25 @@ body * {
   --masonry-text-color: #fff;
   --masonry-background: var(--masonry-dark);
   --masonry-highlight: var(--masonry-blue);
+
+  --masonry-font-family: 'Roboto', sans-serif;
+  --masonry-title-font-family: 'Tilt Warp', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+a {
+  font-family: var(--masonry-title-font-family);
+}
+
+h1 {
+  font-size: 46px;
 }
 
 p {
-  font-size: 18px;
+  font-size: 24px;
 }
 
 body {
@@ -39,6 +55,15 @@ header {
   display: flex;
   align-items: center;
   margin: 50px auto 50px;
+}
+
+a {
+  color: var(--masonry-highlight);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--masonry-highlight);
 }
 
 .title {

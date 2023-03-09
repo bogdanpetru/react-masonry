@@ -57,7 +57,6 @@ export const Masonry: FunctionComponent<
           style,
           ref: (ref: HTMLElement) => (boxesRefs.current[index] = ref),
         }
-
         return cloneElement(child, {
           ...child.props,
           ...stoneProps,
