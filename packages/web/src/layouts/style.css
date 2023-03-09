@@ -9,6 +9,7 @@ body {
 
 body * {
   font-family: var(--masonry-font-family);
+  box-sizing: border-box;
 }
 
 :root {
