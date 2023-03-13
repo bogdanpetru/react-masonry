@@ -40,7 +40,7 @@ export const Example: FunctionComponent<ExampleProps> = (props) => {
     }
   }
 
-  const height = 800
+  const height = 640
   return (
     <SandpackProvider
       files={files}
@@ -51,9 +51,8 @@ export const Example: FunctionComponent<ExampleProps> = (props) => {
         },
       }}
     >
-      <button onClick={() => setShowCode(!showCode)}>toggle</button>
       <SandpackLayout>
-        {showCode && <SandpackCodeEditor style={{ height }} />}
+        <SandpackCodeEditor style={{ height }} />
         <SandpackPreview style={{ height }} />
       </SandpackLayout>
     </SandpackProvider>

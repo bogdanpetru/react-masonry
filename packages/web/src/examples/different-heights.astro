@@ -1,22 +1,14 @@
 ---
-import { Example } from '../components/Example'
-import { loadFile } from '../utils/loadFile'
+import { Example } from '@components/Example'
+import { loadFile } from '@utils/loadFile'
 
 const masonry = loadFile('/../react-masonry/dist/index.js')
 const app = loadFile('/src/examples/different-heights.tsx')
 
 const files = [
   {
-    name: 'imagesApi.ts',
-    code: loadFile('/src/examples/imagesApi.ts'),
-  },
-  {
     name: 'random.ts',
     code: loadFile('/src/examples/random.ts'),
-  },
-  {
-    name: 'useImages.ts',
-    code: loadFile('/src/examples/useImages.ts'),
   },
 ]
 ---
