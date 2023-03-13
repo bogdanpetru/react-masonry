@@ -1,9 +1,10 @@
 import { Masonry } from 'react-masonry'
 import { CSSProperties, forwardRef, useEffect, useMemo, useState } from 'react'
 import { pick, randomColor } from './random'
-import { getImageSrc } from './imagesApi'
 
-const KEY = 'react-masonry/examples-images'
+export function getImageSrc(height: number, width = 230) {
+  return `https://picsum.photos/${width}/` + height
+}
 
 const ImageComponent = forwardRef<
   HTMLDivElement,
