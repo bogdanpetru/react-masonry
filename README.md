@@ -18,7 +18,5 @@ See [Api](https://bogdanpetru.github.io/react-masonry/) page.
 
 ## A few words about this project
 
-This project started a long time ago, and went through a few iterations.
-
-This I think is the last one, it has a web site, a few examples.
-Main reason why I will not do more work on this is because you can do the same with CSS.
+This is my first open source project. I've started to work on it a long time ago.
+Over the time, I've ported the codebase to typescript, to a mono-repo with yarn workspaces, and now I've created a small website using astro.
