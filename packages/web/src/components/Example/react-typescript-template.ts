@@ -12,6 +12,11 @@ export const commonFiles = {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 `,
   },
 }

@@ -11,12 +11,12 @@ import { usePositions } from './use-positions'
 import { getStoneStyle } from './style'
 import { useWindowWidth } from './use-window-width'
 import { MasonryProps } from '../types'
+import { useWrapperWidth } from './use-wrapper-width'
 
 export const Masonry: FunctionComponent<
-  MasonryProps & React.PropsWithChildren
+  React.PropsWithChildren<MasonryProps>
 > = ({
   children,
-  gutter,
   style,
   transition = false,
   transitionDuration = 500,
@@ -26,13 +26,14 @@ export const Masonry: FunctionComponent<
   const boxesRefs = useRef<HTMLElement[]>([])
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const windowWidth = useWindowWidth()
+  const wrapperWidth = useWrapperWidth(wrapperRef)
 
   const { positions, containerHeight } = usePositions({
     boxesRefs,
     wrapperRef,
-    gutter,
     children,
     windowWidth,
+    wrapperWidth,
   })
 
   const preparedStyle: CSSProperties = {

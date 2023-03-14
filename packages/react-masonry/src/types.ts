@@ -1,22 +1,12 @@
 import * as React from 'react'
 
-export type GutterFullSpecified = {
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
-export type GutterNumber = number
-
-export type Gutter = GutterNumber | GutterFullSpecified
-
 export interface MasonryProps {
   /**
    * Defines the spacing between stones.
    * @defaults 0
+   * @deprecated - no use for gutter, use css instead, e.g. padding
    */
-  gutter?: Gutter
+  gutter?: number
 
   /**
    * If different than false, each item will appear one after another with an interval of `transitionStep` in between.

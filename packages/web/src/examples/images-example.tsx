@@ -1,6 +1,6 @@
 import { Masonry } from 'react-masonry'
 import { CSSProperties, forwardRef, useEffect, useMemo, useState } from 'react'
-import { pick, randomColor } from './random'
+import { pick } from './random'
 
 export function getImageSrc(height: number, width = 230) {
   return `https://picsum.photos/${width}/` + height
@@ -8,13 +8,12 @@ export function getImageSrc(height: number, width = 230) {
 
 const ImageComponent = forwardRef<
   HTMLDivElement,
-  { gutter: number; style?: CSSProperties; id: number }
+  { style?: CSSProperties; id: number }
 >((props, ref) => {
-  const { gutter } = props
   const height = useMemo(() => {
     return pick([220, 250, 280, 300, 330])
   }, [])
-  const imageWidth = 400
+  const imageWidth = 240
 
   const [url, setUrl] = useState('')
   useEffect(() => {
@@ -25,10 +24,10 @@ const ImageComponent = forwardRef<
     })()
   }, [])
 
-  let width = `calc(100% / 5 - ${gutter}px)`
+  let width = `calc(100% / 5)`
   const matchTablet = globalThis.matchMedia('(max-width: 768px)').matches
   if (matchTablet) {
-    width = `calc(100% / 3 - ${gutter}px)`
+    width = `calc(100% / 3)`
   }
 
   const style: CSSProperties = {
@@ -39,30 +38,35 @@ const ImageComponent = forwardRef<
     justifyContent: 'center',
     fontWeight: 700,
     width,
-    backgroundColor: randomColor(),
-  }
-
-  if (url) {
-    style.backgroundImage = `url(${url})`
-    style.backgroundSize = 'cover'
-    style.backgroundPosition = 'center'
+    padding: 10,
   }
 
   return (
     <div style={style} ref={ref}>
-      {!url && 'loading'}
+      {url ? (
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            backgroundImage: `url(${url})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        ></div>
+      ) : (
+        'loading'
+      )}
     </div>
   )
 })
 
 export default function ImagesExample() {
   const numberOfBoxes = 30
-  const gutter = 10
 
   return (
-    <Masonry gutter={gutter}>
+    <Masonry>
       {Array.from({ length: numberOfBoxes }, (_, index) => {
-        return <ImageComponent key={index} id={index} gutter={gutter} />
+        return <ImageComponent key={index} id={index} />
       })}
     </Masonry>
   )

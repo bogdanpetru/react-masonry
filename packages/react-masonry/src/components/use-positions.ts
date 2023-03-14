@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Stone, Position } from '../internal-types'
-import { Gutter } from '../types'
+import { Stone, Position, Spot } from '../internal-types'
+
 import { placeStones } from '../utils/place-stones'
 
 const getStones = (stoneNodes: HTMLElement[]): Stone[] => {
@@ -20,24 +20,29 @@ const getStones = (stoneNodes: HTMLElement[]): Stone[] => {
 const usePositions = ({
   boxesRefs,
   wrapperRef,
-  gutter,
   children,
   windowWidth,
+  wrapperWidth,
 }: {
   boxesRefs: React.MutableRefObject<HTMLElement[]>
   wrapperRef: React.MutableRefObject<HTMLElement | null>
-  gutter?: Gutter
   children: React.ReactNode
   windowWidth: number | undefined
+  wrapperWidth: number | null
 }) => {
-  const [{ positions, containerHeight, stones }, setPositionsSpec] = useState<{
+  const [
+    { positions, containerHeight, stones, availableSpots },
+    setPositionsSpec,
+  ] = useState<{
     positions: Position[]
     containerHeight: number | null
     stones: Stone[]
+    availableSpots: Spot[]
   }>({
     positions: [],
     containerHeight: null,
     stones: [],
+    availableSpots: [],
   })
 
   useEffect(() => {
@@ -48,14 +53,13 @@ const usePositions = ({
     }
     const spec = placeStones({
       stones,
-      gutter: gutter ?? {},
       containerSize,
     })
 
     setPositionsSpec({ ...spec, stones }) // TODO refactor spec
-  }, [children, gutter, boxesRefs, wrapperRef, windowWidth])
+  }, [children, boxesRefs, wrapperRef, windowWidth, wrapperWidth])
 
-  return { positions, containerHeight, stones }
+  return { positions, containerHeight, stones, availableSpots }
 }
 
 export { usePositions }

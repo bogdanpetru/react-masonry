@@ -7,14 +7,14 @@
 	"originalName": "",
 	"children": [
 		{
-			"id": 9,
+			"id": 1,
 			"name": "MasonryProps",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 13,
+					"id": 5,
 					"name": "enterOneAfterAnother",
 					"kind": 1024,
 					"kindString": "Property",
@@ -43,9 +43,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 37,
+							"line": 27,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L37"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L27"
 						}
 					],
 					"type": {
@@ -54,7 +54,7 @@
 					}
 				},
 				{
-					"id": 10,
+					"id": 2,
 					"name": "gutter",
 					"kind": 1024,
 					"kindString": "Property",
@@ -77,25 +77,33 @@
 										"text": "0"
 									}
 								]
+							},
+							{
+								"tag": "@deprecated",
+								"content": [
+									{
+										"kind": "text",
+										"text": "- no use for gutter, use css instead, e.g. padding"
+									}
+								]
 							}
 						]
 					},
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 19,
+							"line": 9,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L19"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L9"
 						}
 					],
 					"type": {
-						"type": "reference",
-						"id": 8,
-						"name": "Gutter"
+						"type": "intrinsic",
+						"name": "number"
 					}
 				},
 				{
-					"id": 17,
+					"id": 9,
 					"name": "style",
 					"kind": 1024,
 					"kindString": "Property",
@@ -124,9 +132,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 62,
+							"line": 52,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L62"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L52"
 						}
 					],
 					"type": {
@@ -137,7 +145,7 @@
 					}
 				},
 				{
-					"id": 11,
+					"id": 3,
 					"name": "transition",
 					"kind": 1024,
 					"kindString": "Property",
@@ -174,9 +182,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 25,
+							"line": 15,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L25"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L15"
 						}
 					],
 					"type": {
@@ -198,7 +206,7 @@
 					}
 				},
 				{
-					"id": 14,
+					"id": 6,
 					"name": "transitionDuration",
 					"kind": 1024,
 					"kindString": "Property",
@@ -231,9 +239,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 43,
+							"line": 33,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L43"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L33"
 						}
 					],
 					"type": {
@@ -242,7 +250,7 @@
 					}
 				},
 				{
-					"id": 12,
+					"id": 4,
 					"name": "transitionStep",
 					"kind": 1024,
 					"kindString": "Property",
@@ -287,9 +295,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 31,
+							"line": 21,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L31"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L21"
 						}
 					],
 					"type": {
@@ -298,7 +306,7 @@
 					}
 				},
 				{
-					"id": 15,
+					"id": 7,
 					"name": "updateOnWindowResize",
 					"kind": 1024,
 					"kindString": "Property",
@@ -327,9 +335,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 49,
+							"line": 39,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L49"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L39"
 						}
 					],
 					"type": {
@@ -338,7 +346,7 @@
 					}
 				},
 				{
-					"id": 16,
+					"id": 8,
 					"name": "updateOnWindowResizeDebounceWait",
 					"kind": 1024,
 					"kindString": "Property",
@@ -375,9 +383,9 @@
 					"sources": [
 						{
 							"fileName": "types.ts",
-							"line": 56,
+							"line": 46,
 							"character": 2,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L56"
+							"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L46"
 						}
 					],
 					"type": {
@@ -390,219 +398,32 @@
 				{
 					"title": "Properties",
 					"children": [
-						13,
-						10,
-						17,
-						11,
-						14,
-						12,
-						15,
-						16
+						5,
+						2,
+						9,
+						3,
+						6,
+						4,
+						7,
+						8
 					]
 				}
 			],
-			"sources": [
-				{
-					"fileName": "types.ts",
-					"line": 14,
-					"character": 17,
-					"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L14"
-				}
-			]
-		},
-		{
-			"id": 8,
-			"name": "Gutter",
-			"kind": 4194304,
-			"kindString": "Type alias",
-			"flags": {},
-			"sources": [
-				{
-					"fileName": "types.ts",
-					"line": 12,
-					"character": 12,
-					"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L12"
-				}
-			],
-			"type": {
-				"type": "union",
-				"types": [
-					{
-						"type": "reference",
-						"id": 7,
-						"name": "GutterNumber"
-					},
-					{
-						"type": "reference",
-						"id": 1,
-						"name": "GutterFullSpecified"
-					}
-				]
-			}
-		},
-		{
-			"id": 1,
-			"name": "GutterFullSpecified",
-			"kind": 4194304,
-			"kindString": "Type alias",
-			"flags": {},
 			"sources": [
 				{
 					"fileName": "types.ts",
 					"line": 3,
-					"character": 12,
-					"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L3"
+					"character": 17,
+					"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L3"
 				}
-			],
-			"type": {
-				"type": "reflection",
-				"declaration": {
-					"id": 2,
-					"name": "__type",
-					"kind": 65536,
-					"kindString": "Type literal",
-					"flags": {},
-					"children": [
-						{
-							"id": 4,
-							"name": "bottom",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isOptional": true
-							},
-							"sources": [
-								{
-									"fileName": "types.ts",
-									"line": 5,
-									"character": 2,
-									"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L5"
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "number"
-							}
-						},
-						{
-							"id": 5,
-							"name": "left",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isOptional": true
-							},
-							"sources": [
-								{
-									"fileName": "types.ts",
-									"line": 6,
-									"character": 2,
-									"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L6"
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "number"
-							}
-						},
-						{
-							"id": 6,
-							"name": "right",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isOptional": true
-							},
-							"sources": [
-								{
-									"fileName": "types.ts",
-									"line": 7,
-									"character": 2,
-									"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L7"
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "number"
-							}
-						},
-						{
-							"id": 3,
-							"name": "top",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isOptional": true
-							},
-							"sources": [
-								{
-									"fileName": "types.ts",
-									"line": 4,
-									"character": 2,
-									"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L4"
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "number"
-							}
-						}
-					],
-					"groups": [
-						{
-							"title": "Properties",
-							"children": [
-								4,
-								5,
-								6,
-								3
-							]
-						}
-					],
-					"sources": [
-						{
-							"fileName": "types.ts",
-							"line": 3,
-							"character": 34,
-							"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L3"
-						}
-					]
-				}
-			}
-		},
-		{
-			"id": 7,
-			"name": "GutterNumber",
-			"kind": 4194304,
-			"kindString": "Type alias",
-			"flags": {},
-			"sources": [
-				{
-					"fileName": "types.ts",
-					"line": 10,
-					"character": 12,
-					"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L10"
-				}
-			],
-			"type": {
-				"type": "intrinsic",
-				"name": "number"
-			}
+			]
 		}
 	],
 	"groups": [
 		{
 			"title": "Interfaces",
 			"children": [
-				9
-			]
-		},
-		{
-			"title": "Type Aliases",
-			"children": [
-				8,
-				1,
-				7
+				1
 			]
 		}
 	],
@@ -611,7 +432,7 @@
 			"fileName": "types.ts",
 			"line": 1,
 			"character": 0,
-			"url": "https://github.com/bogdanpetru/react-masonry/blob/428cd52/packages/react-masonry/src/types.ts#L1"
+			"url": "https://github.com/bogdanpetru/react-masonry/blob/61db6e7/packages/react-masonry/src/types.ts#L1"
 		}
 	]
 }
