@@ -1,39 +1,34 @@
 import { placeStone } from './place-stone'
-import { addGutterToStone, normalizeGutter } from './gutter-utils'
 import { Spot, Stone, Position } from '../internal-types'
-import { Gutter } from '../types'
 
 export const placeStones = ({
   stones,
   containerSize,
-  gutter = 0,
 }: {
   stones: Stone[]
   containerSize: number
-  gutter: Gutter
 }): {
-  availableSpots?: Spot[]
+  availableSpots: Spot[]
   positions: Position[]
   containerHeight: number
 } => {
-  const defaultPositions: { positions: Position[]; containerHeight: number } = {
+  const defaultPositions = {
     positions: [],
     containerHeight: 0,
+    availableSpots: [],
   }
 
   if (!stones.length) return defaultPositions
 
   let containerHeight = 0
   const positions = []
-  let availableSpots: Spot[] = [{ top: 0, left: 0, right: containerSize }]
 
-  const preparedGutter = normalizeGutter(gutter)
+  let availableSpots: Spot[] = [{ top: 0, left: 0, right: containerSize }]
   for (const stone of stones) {
-    const preparedStone = addGutterToStone(stone, preparedGutter)
     const spec = placeStone({
       availableSpots,
-      stone: preparedStone,
-      containerSize,
+      stone,
+      containerSize: containerSize,
     })
 
     const stoneBottom = spec.position.top + stone.height
