@@ -4,6 +4,11 @@ ReactJs layout library. Positions elements in optimal position based on availabl
 
 **Most of what this component does can be done now with CSS.**
 
+## Using the Component
+
+> `yarn add react-masonry`
+> Examples how it can be used https://react-masonry.bogdanpetru.eu/examples/
+
 ## Running The project
 
 Clone project.
@@ -14,7 +19,7 @@ Clone project.
 
 ## Api
 
-See [Api](https://bogdanpetru.github.io/react-masonry/) page.
+See [Api](https://react-masonry.bogdanpetru.eu/) page.
 
 ## A few words about this project
 
