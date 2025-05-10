@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export interface MasonryProps {
+export interface MasonryProps extends React.ComponentProps<'div'> {
   /**
    * Defines the spacing between stones.
    * @defaults 0
